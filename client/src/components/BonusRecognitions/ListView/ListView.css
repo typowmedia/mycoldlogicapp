@@ -1,0 +1,21 @@
+.ListView {
+  margin: 10px auto;
+  width: 70%;
+  display: block;
+  box-sizing: border-box;
+  padding: 16px;
+  text-align: left;
+  box-shadow: 1px 1px 3px #000;
+}
+.ListView p{
+  margin: 3px;
+  border-bottom: 1px dotted #000;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.ListView span{
+  flex: 1 0 0;
+  text-align: right;
+  margin-left: auto;
+}
