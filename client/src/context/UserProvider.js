@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import Spinner from '../components/UI/Spinner';
 
 export const UserContext = React.createContext();
 
@@ -10,49 +11,57 @@ class UserProvider extends Component {
 
     this.state = {
       user: null,
-      authToken: null,
-      // user: {
-      //   id: 1,
-      //   empNum: '850001',
-      //   isEmployed: true,
-      //   isAccountEnabled: true,
-      //   loginStatusId: 1,
-      //   loginStatus: null,
-      //   firstName: 'Nazif',
-      //   lastName: 'Everson',
-      //   secret: '850001',
-      //   loginFailCnt: 0,
-      //   lastFailDtm: '2018-01-01T00:00:00',
-      //   lastLoginDtm: '2018-01-01T00:00:00',
-      //   lastPwdSetDtm: '2018-01-01T00:00:00',
-      //   epIncentives: null,
-      //   associateJobBids: null,
-      //   supervisorJobBids: null,
-      //   leaveAbses: null,
-      //   timeOffs: null,
-      //   notices: null,
-      //   recepientNotices: null,
-      //   senderNotices: null
-      // }
+      loading: true,
+      error: null,
     };
   }
 
-  _logUserIn(user) {
-    user.rememberMe = true;
-    axios
-      .post('account/Login', user, {
+  componentDidMount = async () => {
+    const userToken = localStorage.getItem('COLDLOGIC_TOKEN');
+    if (userToken && typeof userToken === 'string') {
+      try {
+        const user = await this._getUser(userToken);
+        if (user.status === 200) {
+          this.setState({ user: user.data, loading: false });
+          console.log('User Already Logged in!');
+        } else {
+          this.setState({ user: null });
+        }
+      } catch (error) {
+        console.log('An Error has occured', error);
+      }
+    }
+  };
+
+  _getUser = async userToken => {
+    const user = await axios.get('account/Claims', {
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${userToken}`,
+      },
+    });
+    return user;
+  };
+
+  _logUserIn = async user => {
+    try {
+      user.rememberMe = true;
+      const userToken = await axios.post('account/Login', user, {
         headers: {
           'Content-Type': 'application/json; charset=utf-8',
         },
-      })
-      .then(res => {
-        this.setState({ user: res.data, authToken: `Bearer ${res.data}` });
-        localStorage.setItem('coldlogic_token', res.data);
-      })
-      .catch(err => console.log(err));
-  }
+      });
+      const authenticatedUser = this._getUser(userToken.data);
+      this.setState({ user: authenticatedUser });
+      localStorage.setItem('COLDLOGIC_TOKEN', userToken.data);
+    } catch (error) {
+      console.log('ERROR!@$$', error);
+    }
+  };
+
   _logout() {
-    this.setState({ user: null, authToken: null });
+    this.setState({ user: null });
+    localStorage.removeItem('COLDLOGIC_TOKEN');
   }
 
   render() {
@@ -65,7 +74,7 @@ class UserProvider extends Component {
           logout: () => this._logout(),
         }}
       >
-        {children}
+        {this.state.loading ? <Spinner size={40} color="primary" /> : children}
       </UserContext.Provider>
     );
   }
