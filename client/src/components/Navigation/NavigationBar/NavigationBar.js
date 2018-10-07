@@ -25,11 +25,7 @@ class NavigationBar extends Component {
     this.setState({ showDrawer: open });
   };
   render() {
-    const { classes, /*user*/ history, logout } = this.props;
-    const user = {
-      firstName: 'Cody',
-      lastName: 'Rathor',
-    };
+    const { classes, user, history, logout } = this.props;
     // temp user until one is provided
     return (
       <Fragment>
@@ -48,7 +44,7 @@ class NavigationBar extends Component {
               color="inherit"
               className={classes.flex}
             >
-              Welcome {user.firstName}
+              Welcome {user.FirstName}
             </Typography>
             <div
               className={classes.logo}
@@ -65,7 +61,7 @@ class NavigationBar extends Component {
           clicked={show => this.toggleDrawer(show)}
           history={history}
           logout={logout}
-          user={{ firstname: user.firstName, lastname: user.lastName }}
+          user={{ firstname: user.FirstName, lastname: user.LastName }}
         />
       </Fragment>
     );
@@ -74,7 +70,7 @@ class NavigationBar extends Component {
 
 NavigationBar.propTypes = {
   classes: PropTypes.object.isRequired,
-  //user: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
   logout: PropTypes.func.isRequired,
 };
 

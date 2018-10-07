@@ -17,7 +17,7 @@ class UserProvider extends Component {
   }
 
   componentDidMount = async () => {
-    const userToken = localStorage.getItem('COLDLOGIC_TOKEN');
+    const userToken = await localStorage.getItem('COLDLOGIC_TOKEN');
     if (userToken && typeof userToken === 'string') {
       try {
         const user = await this._getUser(userToken);
@@ -31,18 +31,20 @@ class UserProvider extends Component {
         this.setState({ user: null, loading: false });
       }
     } else {
-      this.setState({ loading: false });
+      this.setState({ user: null, loading: false });
     }
   };
 
-  _getUser = async userToken => {
-    const user = await axios.get('account/Claims', {
-      headers: {
-        accept: 'application/json',
-        Authorization: `Bearer ${userToken}`,
-      },
-    });
-    return user;
+  _getUser = userToken => {
+    return axios
+      .get('account/Claims', {
+        headers: {
+          accept: 'application/json',
+          Authorization: `Bearer ${userToken}`,
+        },
+      })
+      .then(res => res)
+      .catch(err => console.log(err));
   };
 
   _logUserIn = async user => {
@@ -53,11 +55,11 @@ class UserProvider extends Component {
           'Content-Type': 'application/json; charset=utf-8',
         },
       });
-      const authenticatedUser = this._getUser(userToken.data);
-      this.setState({ user: authenticatedUser });
+      const authenticatedUser = await this._getUser(userToken.data);
+      this.setState({ user: authenticatedUser.data });
       localStorage.setItem('COLDLOGIC_TOKEN', userToken.data);
     } catch (error) {
-      console.log('ERROR!@$$', error);
+      console.log('ERROR_MESSAGE:', error);
     }
   };
 
