@@ -5,7 +5,6 @@ import styles from './styles';
 import BonusRecognitions from '../../components/BonusRecognitions';
 import BonusRecognitionIcon from '../../assets/BonusRecognitionIcon';
 import Spinner from '../../components/UI/Spinner';
-import axios from 'axios';
 import LoadContent from '../../hoc/LoadContent';
 
 class BonusRecognitionPage extends Component {
