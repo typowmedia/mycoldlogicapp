@@ -25,10 +25,10 @@ class UserProvider extends Component {
           this.setState({ user: user.data, loading: false });
           console.log('User Already Logged in!');
         } else {
-          this.setState({ user: null });
+          this.setState({ user: null, loading: false });
         }
       } catch (error) {
-        console.log('An Error has occured', error);
+        this.setState({ user: null, loading: false });
       }
     }
   };
