@@ -17,7 +17,9 @@ class LoadContent extends Component {
           Authorization: Token,
         },
       })
-      .then(data => this.setState({ data, loading: false }))
+      .then(res => {
+        this.setState({ data: res.data, loading: false });
+      })
       .catch(err => this.setState({ loading: false, error: true }));
   }
 
