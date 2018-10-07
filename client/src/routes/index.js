@@ -4,10 +4,8 @@ import HomePage from '../pages/HomePage';
 import RequestPasswordPage from '../pages/RequestPasswordPage';
 import DashboardPage from '../pages/DashboardPage';
 import TimeOffRequestPage from '../pages/TimeOffRequestPage';
-import OpenPositionsPage from '../pages/OpenPositionsPage';
 import SafeSitePage from '../pages/SafeSitePage';
 import BestSitePage from '../pages/BestSitePage';
-import SchedulePage from '../pages/SchedulePage';
 import BonusRecognitionPage from '../pages/BonusRecognitionPage';
 import { UserContext } from '../context/UserProvider';
 import Header from '../components/Header';
@@ -16,10 +14,8 @@ import {
   DASHBOARD,
   REQUEST_TIME_OFF,
   BONUS_RECOGNITIONS,
-  MY_SCHEDULE,
   BEST_SITE_REPORT,
   SAFE_SITE_REPORT,
-  OPEN_POSITIONS,
   HOME,
   REQUEST_PASSWORD,
 } from './routes';
@@ -54,7 +50,6 @@ export default () => (
               path={REQUEST_TIME_OFF}
               component={TimeOffRequestPage}
             />
-            <Route exact path={MY_SCHEDULE} component={SchedulePage} />
             <Route
               exact
               path={BONUS_RECOGNITIONS}
@@ -62,7 +57,6 @@ export default () => (
             />
             <Route exact path={BEST_SITE_REPORT} component={BestSitePage} />
             <Route exact path={SAFE_SITE_REPORT} component={SafeSitePage} />
-            <Route exact path={OPEN_POSITIONS} component={OpenPositionsPage} />
             <Redirect to={DASHBOARD} />
           </Switch>
         </Fragment>

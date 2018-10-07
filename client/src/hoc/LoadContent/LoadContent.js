@@ -9,7 +9,7 @@ class LoadContent extends Component {
   };
 
   componentDidMount() {
-    const Token = `Bearer ${localStorage.getItem('coldlogic_token')}`;
+    const Token = `Bearer ${localStorage.getItem('COLDLOGIC_TOKEN')}`;
     axios
       .get(this.props.url, {
         headers: {

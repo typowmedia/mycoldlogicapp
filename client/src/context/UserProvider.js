@@ -30,6 +30,8 @@ class UserProvider extends Component {
       } catch (error) {
         this.setState({ user: null, loading: false });
       }
+    } else {
+      this.setState({ loading: false });
     }
   };
 

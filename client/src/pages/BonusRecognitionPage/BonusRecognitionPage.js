@@ -5,7 +5,6 @@ import styles from './styles';
 import BonusRecognitions from '../../components/BonusRecognitions';
 import BonusRecognitionIcon from '../../assets/BonusRecognitionIcon';
 import Spinner from '../../components/UI/Spinner';
-import { ApiContext } from '../../context/ApiContextProvider';
 import axios from 'axios';
 import LoadContent from '../../hoc/LoadContent';
 
@@ -20,31 +19,25 @@ class BonusRecognitionPage extends Component {
     };
   }
 
-  componentDidMount() {
-    axios
-      .get('/EpIncentives', {
-        headers: {
-          accept: 'application/json',
-          Authorization: `Bearer ${this.props.user}`,
-        },
-      })
-      .then(res => {
-        this.setState({ bonuses: res.data }, () => {
-          setTimeout(() => {
-            this.setState({ loading: false });
-          }, 3000);
-        });
-      })
-      .catch(err => {
-        this.setState({ error: err });
-      });
-  }
-
-  _getBonuses = () => {
-    if (this.state.error) return <p>{this.state.error}</p>;
-    if (this.state.loading) return <Spinner size={40} color="primary" />;
-    return <BonusRecognitions bonuses={this.state.bonuses} />;
-  };
+  // componentDidMount() {
+  //   axios
+  //     .get('/EpIncentives', {
+  //       headers: {
+  //         accept: 'application/json',
+  //         Authorization: `Bearer ${this.props.user}`,
+  //       },
+  //     })
+  //     .then(res => {
+  //       this.setState({ bonuses: res.data }, () => {
+  //         setTimeout(() => {
+  //           this.setState({ loading: false });
+  //         }, 3000);
+  //       });
+  //     })
+  //     .catch(err => {
+  //       this.setState({ error: err });
+  //     });
+  // }
 
   render() {
     const { classes } = this.props;

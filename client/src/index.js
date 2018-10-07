@@ -9,7 +9,6 @@ import axios from 'axios';
 
 import theme from './theme';
 import Routes from './routes/';
-import ApiContextProvider from './context/ApiContextProvider';
 
 axios.defaults.baseURL = 'https://208.98.206.252/my/api/';
 
@@ -18,11 +17,9 @@ const App = () => {
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <UserProvider>
-        <ApiContextProvider>
-          <Router>
-            <Routes />
-          </Router>
-        </ApiContextProvider>
+        <Router>
+          <Routes />
+        </Router>
       </UserProvider>
     </MuiThemeProvider>
   );

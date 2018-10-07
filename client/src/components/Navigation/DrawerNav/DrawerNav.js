@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {
   withStyles,
   SwipeableDrawer,
@@ -6,20 +6,24 @@ import {
   MenuItem,
   ListItemIcon,
   ListItemText,
-  Divider
-} from '@material-ui/core'
-import AccountCircle from '@material-ui/icons/AccountCircle'
-import PropTypes from 'prop-types'
-import styles from './styles'
-import DashboardIcon from '../../../assets/DashboardIcon'
-import ScheduleIcon from '../../../assets/ScheduleIcon'
-import ExitIcon from '../../../assets/ExitIcon'
-import TimeOffIcon from '../../../assets/TimeOffIcon'
+  Divider,
+} from '@material-ui/core';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import PropTypes from 'prop-types';
+import styles from './styles';
+import DashboardIcon from '../../../assets/DashboardIcon';
+import ExitIcon from '../../../assets/ExitIcon';
+import TimeOffIcon from '../../../assets/TimeOffIcon';
+import BonusRecognitionIcon from '../../../assets/BonusRecognitionIcon';
+import MyBestSiteIcon from '../../../assets/MyBestSiteIcon';
+import SafeSiteIcon from '../../../assets/SafeSiteIcon';
 import {
-  DASHBOARD,
   REQUEST_TIME_OFF,
-  MY_SCHEDULE
-} from '../../../routes/routes'
+  BONUS_RECOGNITIONS,
+  BEST_SITE_REPORT,
+  SAFE_SITE_REPORT,
+  DASHBOARD,
+} from '../../../routes/routes';
 
 const DrawerNav = ({ show, clicked, classes, history, logout, user }) => {
   return (
@@ -43,8 +47,8 @@ const DrawerNav = ({ show, clicked, classes, history, logout, user }) => {
         <MenuItem
           className={classes.menuItem}
           onClick={() => {
-            clicked(false)
-            history.push(DASHBOARD)
+            clicked(false);
+            history.push(DASHBOARD);
           }}
         >
           <ListItemIcon className={classes.icon}>
@@ -61,26 +65,8 @@ const DrawerNav = ({ show, clicked, classes, history, logout, user }) => {
         <MenuItem
           className={classes.menuItem}
           onClick={() => {
-            clicked(false)
-            history.push(MY_SCHEDULE)
-          }}
-        >
-          <ListItemIcon className={classes.icon}>
-            <div className={classes.icons}>
-              <ScheduleIcon color="#f4f4f4" />
-            </div>
-          </ListItemIcon>
-          <ListItemText
-            classes={{ primary: classes.primary }}
-            inset
-            primary="My Schedule"
-          />
-        </MenuItem>
-        <MenuItem
-          className={classes.menuItem}
-          onClick={() => {
-            clicked(false)
-            history.push(REQUEST_TIME_OFF)
+            clicked(false);
+            history.push(REQUEST_TIME_OFF);
           }}
         >
           <ListItemIcon className={classes.icon}>
@@ -97,8 +83,62 @@ const DrawerNav = ({ show, clicked, classes, history, logout, user }) => {
         <MenuItem
           className={classes.menuItem}
           onClick={() => {
-            clicked(false)
-            logout()
+            clicked(false);
+            history.push(BONUS_RECOGNITIONS);
+          }}
+        >
+          <ListItemIcon className={classes.icon}>
+            <div className={classes.icons}>
+              <BonusRecognitionIcon color="#f4f4f4" />
+            </div>
+          </ListItemIcon>
+          <ListItemText
+            classes={{ primary: classes.primary }}
+            inset
+            primary="Bonus Recognitions"
+          />
+        </MenuItem>
+        <MenuItem
+          className={classes.menuItem}
+          onClick={() => {
+            clicked(false);
+            history.push(BEST_SITE_REPORT);
+          }}
+        >
+          <ListItemIcon className={classes.icon}>
+            <div className={classes.icons}>
+              <MyBestSiteIcon color="#f4f4f4" />
+            </div>
+          </ListItemIcon>
+          <ListItemText
+            classes={{ primary: classes.primary }}
+            inset
+            primary="Best Site Report"
+          />
+        </MenuItem>
+        <MenuItem
+          className={classes.menuItem}
+          onClick={() => {
+            clicked(false);
+            history.push(SAFE_SITE_REPORT);
+          }}
+        >
+          <ListItemIcon className={classes.icon}>
+            <div className={classes.icons}>
+              <SafeSiteIcon color="#f4f4f4" />
+            </div>
+          </ListItemIcon>
+          <ListItemText
+            classes={{ primary: classes.primary }}
+            inset
+            primary="Safe Site Report"
+          />
+        </MenuItem>
+        <MenuItem
+          className={classes.menuItem}
+          onClick={() => {
+            clicked(false);
+            logout();
           }}
         >
           <ListItemIcon className={classes.icon}>
@@ -114,8 +154,8 @@ const DrawerNav = ({ show, clicked, classes, history, logout, user }) => {
         </MenuItem>
       </MenuList>
     </SwipeableDrawer>
-  )
-}
+  );
+};
 
 DrawerNav.propTypes = {
   classes: PropTypes.object.isRequired,
@@ -123,6 +163,6 @@ DrawerNav.propTypes = {
   clicked: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
   logout: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired
-}
-export default withStyles(styles)(DrawerNav)
+  user: PropTypes.object.isRequired,
+};
+export default withStyles(styles)(DrawerNav);

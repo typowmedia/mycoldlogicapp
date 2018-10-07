@@ -1,9 +1,7 @@
-export const DASHBOARD = '/dashboard'
-export const REQUEST_TIME_OFF = '/request-time-off'
-export const BONUS_RECOGNITIONS = '/my-bonus-recognitions'
-export const MY_SCHEDULE = '/my-schedule'
-export const BEST_SITE_REPORT = '/my-best-site-report'
-export const SAFE_SITE_REPORT = '/safe-site-report'
-export const OPEN_POSITIONS = '/bid-for-position'
-export const REQUEST_PASSWORD = '/request-password'
-export const HOME = '/'
+export const DASHBOARD = '/dashboard';
+export const REQUEST_TIME_OFF = '/request-time-off';
+export const BONUS_RECOGNITIONS = '/my-bonus-recognitions';
+export const BEST_SITE_REPORT = '/my-best-site-report';
+export const SAFE_SITE_REPORT = '/safe-site-report';
+export const REQUEST_PASSWORD = '/request-password';
+export const HOME = '/';
