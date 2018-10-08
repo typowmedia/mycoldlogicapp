@@ -3,6 +3,8 @@ import { Grid, withStyles } from '@material-ui/core';
 import TimeOffIcon from '../../assets/TimeOffIcon';
 import TitleBar from '../../components/TitleBar';
 import TimeOffRequest from './TimeOffRequest';
+import Spinner from '../../components/UI/Spinner';
+import LoadContent from '../../hoc/LoadContent';
 import styles from './styles';
 import PropTypes from 'prop-types';
 
@@ -15,7 +17,13 @@ const TimeOffRequestPage = ({ classes }) => (
       />
     </Grid>
     <Grid item xs={12} md={8}>
-      <TimeOffRequest />
+      <LoadContent url="/LeaveAbsReasons">
+        {({ data, error, loading }) => {
+          if (loading) return <Spinner color="secondary" size={100} />;
+          if (error) return <p>Error</p>;
+          return <TimeOffRequest reasons={data} />;
+        }}
+      </LoadContent>
     </Grid>
   </Grid>
 );
