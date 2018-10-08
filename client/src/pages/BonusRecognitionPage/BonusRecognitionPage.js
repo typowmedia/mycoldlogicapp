@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Grid, withStyles } from '@material-ui/core';
 import TitleBar from '../../components/TitleBar';
 import styles from './styles';
-import BonusRecognitions from '../../components/BonusRecognitions';
+import BonusRecognitions from './BonusRecognitions';
 import BonusRecognitionIcon from '../../assets/BonusRecognitionIcon';
 import Spinner from '../../components/UI/Spinner';
 import LoadContent from '../../hoc/LoadContent';

@@ -9,9 +9,9 @@ import {
   Grid,
 } from '@material-ui/core';
 import { Form, Field } from 'react-final-form';
-import styles from './styles';
-import Spinner from '../../UI/Spinner';
-import { UserContext } from '../../../context/UserProvider';
+import styles from '../../components/Forms/AccountForm/styles';
+import Spinner from '../../components/UI/Spinner';
+import { UserContext } from '../../context/UserProvider';
 import PropTypes from 'prop-types';
 
 // const user = {

@@ -7,7 +7,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import styles from './styles';
+import styles from './BonusRecognitions/styles';
 import moment from 'moment';
 
 const Details = ({ title, value, factor }) => (
