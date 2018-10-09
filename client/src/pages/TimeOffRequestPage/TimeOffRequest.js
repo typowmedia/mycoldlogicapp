@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component, Fragment } from 'react';
 import {
   InputLabel,
   Button,
@@ -8,27 +8,23 @@ import {
   TextField,
   Select,
   MenuItem,
-  FormHelperText
-} from '@material-ui/core'
-import { Form, Field } from 'react-final-form'
-import styles from './styles'
-import Spinner from '../../UI/Spinner'
-import PropTypes from 'prop-types'
+  FormHelperText,
+  Typography,
+} from '@material-ui/core';
+import { Form, Field } from 'react-final-form';
+import styles from './styles';
+import PropTypes from 'prop-types';
+import Spinner from '../../components/UI/Spinner';
+import { maxCharLength } from '../../lib/maxCharLength';
 
-class AskManagerForm extends Component {
+class TimeOffRequest extends Component {
   _onSubmit = values => {
     //sendValues
-  }
-  _validate = () => {}
+  };
+  _validate = () => {};
 
-  maxCharLength = (charLimit, value) => {
-    if (value.length > charLimit) {
-      return value.slice(0, value.length - 1)
-    }
-    return value
-  }
   render() {
-    const { classes } = this.props
+    const { classes, reasons } = this.props;
     return (
       <div className={classes.form}>
         <Form
@@ -40,51 +36,61 @@ class AskManagerForm extends Component {
             submitting,
             form,
             pristine,
-            values
+            values,
           }) => (
             <form onSubmit={handleSubmit} className={classes.accountForm}>
+              <FormControl className={classes.formControl}>
+                <div className={classes.dateContainer}>
+                  <Typography>From:</Typography>
+                  <Field name="from">
+                    {({ input, meta }) => (
+                      <TextField
+                        id="from"
+                        type="date"
+                        {...input}
+                        autoComplete="off"
+                      />
+                    )}
+                  </Field>
+                  <Typography>To:</Typography>
+                  <Field name="to">
+                    {({ input, meta }) => (
+                      <TextField
+                        id="to"
+                        type="date"
+                        {...input}
+                        autoComplete="off"
+                      />
+                    )}
+                  </Field>
+                </div>
+              </FormControl>
               <FormControl required className={classes.formControl}>
-                <Field name="manager">
+                <Field name="reason">
                   {({ input, meta }) => (
                     <Fragment>
-                      <InputLabel htmlFor="manager">Manager</InputLabel>
+                      <InputLabel htmlFor="reasom">
+                        Please Select a Reason
+                      </InputLabel>
                       <Select
-                        id="manager"
+                        id="reason"
                         value={input.value}
                         {...input}
-                        name="manager"
+                        name="Reason"
                       >
                         <MenuItem value="">
                           <em>None</em>
                         </MenuItem>
-                        <MenuItem value={'Dan Imbery'}>Dan Imbery</MenuItem>
-                        <MenuItem value={"Laurel O'Donnell"}>
-                          Laurel O'Donnell
-                        </MenuItem>
-                        <MenuItem value={'Shanda Hope'}>Shanda Hope</MenuItem>
+                        {reasons.map(reason => (
+                          <MenuItem key={reason.id} value={reason.name}>
+                            {reason.name}
+                          </MenuItem>
+                        ))}
                       </Select>
                       <FormHelperText>Required</FormHelperText>
                     </Fragment>
                   )}
                 </Field>
-              </FormControl>
-              <FormControl fullWidth required className={classes.formControl}>
-                <Field name="subject">
-                  {({ input, meta }) => (
-                    <TextField
-                      id="subject"
-                      {...input}
-                      onChange={e => {
-                        const value = this.maxCharLength(55, e.target.value)
-                        input.onChange(value)
-                      }}
-                      label="Subject"
-                      required
-                      autoComplete="off"
-                    />
-                  )}
-                </Field>
-                <FormHelperText>Required</FormHelperText>
               </FormControl>
               <FormControl fullWidth required className={classes.formControl}>
                 <Field name="message">
@@ -93,10 +99,10 @@ class AskManagerForm extends Component {
                       id="message"
                       {...input}
                       onChange={e => {
-                        const value = this.maxCharLength(300, e.target.value)
-                        input.onChange(value)
+                        const value = maxCharLength(300, e.target.value);
+                        input.onChange(value);
                       }}
-                      label="Question"
+                      label="Reason Details"
                       required
                       autoComplete="off"
                       multiline
@@ -134,11 +140,11 @@ class AskManagerForm extends Component {
           )}
         />
       </div>
-    )
+    );
   }
 }
 
-AskManagerForm.propTypes = {
-  classes: PropTypes.object.isRequired
-}
-export default withStyles(styles)(AskManagerForm)
+TimeOffRequest.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+export default withStyles(styles)(TimeOffRequest);

@@ -1,18 +1,12 @@
 const styles = theme => ({
   root: {
-    flexGrow: 1,
-    height: '100%',
+    minHeight: '60%',
     paddingTop: theme.spacing.unit * 5,
+    alignItems: 'baseline',
     padding: theme.spacing.unit,
     [theme.breakpoints.up('sm')]: {
-      padding: theme.spacing.unit * 8,
-    },
-  },
-  message: {
-    textAlign: 'center',
-    paddingTop: theme.spacing.unit * 2,
-    [theme.breakpoints.up('sm')]: {
-      padding: theme.spacing.unit * 8,
+      paddingTop: theme.spacing.unit * 8,
+      padding: theme.spacing.unit * 4,
     },
   },
   formControl: {
@@ -44,6 +38,10 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 5,
     display: 'flex',
     justifyContent: 'center',
+  },
+  dateContainer: {
+    display: 'flex',
+    justifyContent: 'space-evenly',
   },
 });
 

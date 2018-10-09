@@ -1,30 +1,30 @@
-import React, { Component } from 'react'
-import { Grid, withStyles, Typography } from '@material-ui/core'
-import RequestPasswordForm from '../../components/Forms/RequestPasswordForm'
-import ColdLogic from '../../assets/ColdLogicLogo'
-import { withRouter } from 'react-router-dom'
-import PropTypes from 'prop-types'
-import styles from './styles'
+import React, { Component } from 'react';
+import { Grid, withStyles, Typography } from '@material-ui/core';
+import RequestPassword from './RequestPassword';
+import ColdLogic from '../../assets/ColdLogicLogo';
+import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import styles from './styles';
 
 class RequestPasswordPage extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
-      requestSent: false
-    }
+      requestSent: false,
+    };
   }
 
   requestSuccessful = () => {
     this.setState({ requestSent: true }, () => {
       setTimeout(() => {
-        this.props.history.push('/')
-      }, 3000)
-    })
-  }
+        this.props.history.push('/');
+      }, 3000);
+    });
+  };
   render() {
-    const { classes, history } = this.props
-    const { requestSent } = this.state
+    const { classes, history } = this.props;
+    const { requestSent } = this.state;
     return (
       <Grid container className={classes.root} justify="center">
         <Grid item xs={12} sm={12} md={6}>
@@ -35,20 +35,20 @@ class RequestPasswordPage extends Component {
               will get in contact with a password soon!
             </Typography>
           ) : (
-            <RequestPasswordForm
+            <RequestPassword
               history={history}
               requestSuccess={this.requestSuccessful}
             />
           )}
         </Grid>
       </Grid>
-    )
+    );
   }
 }
 
 RequestPasswordPage.propTypes = {
   classes: PropTypes.object.isRequired,
-  history: PropTypes.object.isRequired
-}
+  history: PropTypes.object.isRequired,
+};
 
-export default withRouter(withStyles(styles)(RequestPasswordPage))
+export default withRouter(withStyles(styles)(RequestPasswordPage));

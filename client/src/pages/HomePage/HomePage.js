@@ -1,10 +1,10 @@
-import React from 'react'
-import { Grid, withStyles } from '@material-ui/core'
-import AccountForm from '../../components/Forms/AccountForm'
-import ColdLogic from '../../assets/ColdLogicLogo'
-import { withRouter } from 'react-router-dom'
-import PropTypes from 'prop-types'
-import styles from './styles'
+import React from 'react';
+import { Grid, withStyles } from '@material-ui/core';
+import AccountForm from './AccountForm';
+import ColdLogic from '../../assets/ColdLogicLogo';
+import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import styles from './styles';
 
 const HomePage = ({ classes, history }) => (
   <Grid container className={classes.root} justify="center">
@@ -13,10 +13,10 @@ const HomePage = ({ classes, history }) => (
       <AccountForm history={history} />
     </Grid>
   </Grid>
-)
+);
 
 HomePage.propTypes = {
-  classes: PropTypes.object.isRequired
-}
+  classes: PropTypes.object.isRequired,
+};
 
-export default withRouter(withStyles(styles)(HomePage))
+export default withRouter(withStyles(styles)(HomePage));

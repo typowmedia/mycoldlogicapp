@@ -3,8 +3,8 @@ const styles = theme => ({
     flexGrow: 1,
     display: 'flex',
     justifyContent: 'center',
-    padding: 20
-  }
-})
+    padding: 20,
+  },
+});
 
-export default styles
+export default styles;

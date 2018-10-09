@@ -1,26 +1,26 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import {
   Input,
   InputLabel,
   Button,
   withStyles,
   FormControl,
-  Grid
-} from '@material-ui/core'
-import { Form, Field } from 'react-final-form'
-import styles from './styles'
-import Spinner from '../../UI/Spinner'
-import PropTypes from 'prop-types'
+  Grid,
+} from '@material-ui/core';
+import { Form, Field } from 'react-final-form';
+import styles from './styles';
+import Spinner from '../../components/UI/Spinner';
+import PropTypes from 'prop-types';
 
 class RequestPasswordForm extends Component {
   _onSubmit = values => {
     //sendValues
-    this.props.requestSuccess()
-  }
-  _validate = () => {}
+    this.props.requestSuccess();
+  };
+  _validate = () => {};
 
   render() {
-    const { classes } = this.props
+    const { classes } = this.props;
     return (
       <div className={classes.form}>
         <Form
@@ -36,7 +36,7 @@ class RequestPasswordForm extends Component {
                       id="pin"
                       type="text"
                       inputProps={{
-                        autoComplete: 'off'
+                        autoComplete: 'off',
                       }}
                       {...input}
                     />
@@ -70,12 +70,12 @@ class RequestPasswordForm extends Component {
           )}
         />
       </div>
-    )
+    );
   }
 }
 
 RequestPasswordForm.propTypes = {
   classes: PropTypes.object.isRequired,
-  requestSuccess: PropTypes.func.isRequired
-}
-export default withStyles(styles)(RequestPasswordForm)
+  requestSuccess: PropTypes.func.isRequired,
+};
+export default withStyles(styles)(RequestPasswordForm);
