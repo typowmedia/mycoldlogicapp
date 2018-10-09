@@ -1,8 +1,8 @@
-import { formatReport } from './formatReport';
+import { formatSafetyReport } from './formatReport';
 import axios from 'axios';
 
 export const submitReport = (report, url, token) => {
-  const data = formatReport(report);
+  const data = formatSafetyReport(report);
   return axios
     .post(url, data, {
       headers: {

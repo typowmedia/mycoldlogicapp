@@ -12,7 +12,7 @@ class BestSitePage extends Component {
     super(props);
 
     this.state = {
-      step: 1,
+      step: 2,
       loading: false,
     };
   }
@@ -23,6 +23,7 @@ class BestSitePage extends Component {
   _prevStep = () => {
     this.setState(prevState => ({ step: prevState.step - 1 }));
   };
+
   _submitReport = async report => {
     this.setState({ loading: true });
     const token = await localStorage.getItem(COLDLOGIC_TOKEN);

@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-export const formatReport = report => {
+export const formatSafetyReport = report => {
   const formattedReport = {
     report: `
   Date of Incident: ${moment(report.date).format('MMMMMM DD YYYY')} \r
