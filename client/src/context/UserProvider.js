@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import Spinner from '../components/UI/Spinner';
+import { COLDLOGIC_TOKEN } from '../config/tokens';
 
 export const UserContext = React.createContext();
 
@@ -17,7 +18,7 @@ class UserProvider extends Component {
   }
 
   componentDidMount = async () => {
-    const userToken = await localStorage.getItem('COLDLOGIC_TOKEN');
+    const userToken = await localStorage.getItem(COLDLOGIC_TOKEN);
     if (userToken && typeof userToken === 'string') {
       try {
         const user = await this._getUser(userToken);
@@ -57,7 +58,7 @@ class UserProvider extends Component {
       });
       const authenticatedUser = await this._getUser(userToken.data);
       this.setState({ user: authenticatedUser.data });
-      localStorage.setItem('COLDLOGIC_TOKEN', userToken.data);
+      localStorage.setItem(COLDLOGIC_TOKEN, userToken.data);
     } catch (error) {
       console.log('ERROR_MESSAGE:', error);
     }
@@ -65,7 +66,7 @@ class UserProvider extends Component {
 
   _logout() {
     this.setState({ user: null });
-    localStorage.removeItem('COLDLOGIC_TOKEN');
+    localStorage.removeItem(COLDLOGIC_TOKEN);
   }
 
   render() {

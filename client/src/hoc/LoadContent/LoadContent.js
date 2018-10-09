@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import axios from 'axios';
+import { COLDLOGIC_TOKEN } from '../../config/tokens';
 
 class LoadContent extends Component {
   state = {
@@ -9,7 +10,7 @@ class LoadContent extends Component {
   };
 
   componentDidMount() {
-    const Token = `Bearer ${localStorage.getItem('COLDLOGIC_TOKEN')}`;
+    const Token = `Bearer ${localStorage.getItem(COLDLOGIC_TOKEN)}`;
     axios
       .get(this.props.url, {
         headers: {
