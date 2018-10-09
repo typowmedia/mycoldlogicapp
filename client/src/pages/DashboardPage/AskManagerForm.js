@@ -11,7 +11,7 @@ import {
   FormHelperText,
 } from '@material-ui/core';
 import { Form, Field } from 'react-final-form';
-import styles from '../../components/Forms/AskManagerForm/styles';
+import styles from './styles';
 import Spinner from '../../components/UI/Spinner';
 import PropTypes from 'prop-types';
 

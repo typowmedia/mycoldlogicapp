@@ -8,7 +8,7 @@ import {
   Grid,
 } from '@material-ui/core';
 import { Form, Field } from 'react-final-form';
-import styles from '../../components/Forms/RequestPasswordForm/styles';
+import styles from './styles';
 import Spinner from '../../components/UI/Spinner';
 import PropTypes from 'prop-types';
 
