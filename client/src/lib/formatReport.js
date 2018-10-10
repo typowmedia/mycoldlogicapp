@@ -10,3 +10,22 @@ export const formatSafetyReport = report => {
   };
   return formattedReport;
 };
+
+export const formatBestSiteReport = report => {
+  const reasons = report.reasons
+    .map(reason => {
+      if (reason === 'Other') {
+        return `${reason}: ${report.other}`;
+      }
+      return `${reason} \n`;
+    })
+    .join('');
+  const formattedReport = {
+    report: `
+  Suggestion: ${report.suggestion} \r
+  This improves ColdLogic by: ${report.details} \r
+  Potential to improve the following: \r ${reasons}
+  `,
+  };
+  return formattedReport;
+};

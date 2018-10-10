@@ -6,13 +6,14 @@ import { withStyles, Grid } from '@material-ui/core';
 import styles from './styles';
 import { submitReport } from '../../lib/submitReport';
 import { COLDLOGIC_TOKEN } from '../../config/tokens';
+import { formatBestSiteReport } from '../../lib/formatReport';
 
 class BestSitePage extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      step: 2,
+      step: 1,
       loading: false,
     };
   }
@@ -27,8 +28,14 @@ class BestSitePage extends Component {
   _submitReport = async report => {
     this.setState({ loading: true });
     const token = await localStorage.getItem(COLDLOGIC_TOKEN);
-    const response = await submitReport(report, '/SafeSiteVms', token);
+    const formattedResponse = await formatBestSiteReport(report);
+    const response = await submitReport(
+      formattedResponse,
+      '/BestSiteVms',
+      token,
+    );
     if (response.status === 201) {
+      console.log(response);
       this.setState({ loading: false });
       this._nextStep();
     } else {

@@ -6,6 +6,7 @@ import {
   InputLabel,
   Checkbox,
   TextField,
+  Typography,
   Grid,
   Button,
 } from '@material-ui/core';
@@ -33,6 +34,32 @@ class BestSiteForm extends Component {
       otherReason: null,
     };
   }
+  _otherReason = values => {
+    if (values.reasons) {
+      if (values.reasons.includes('Other')) {
+        return (
+          <FormControl
+            fullWidth
+            required
+            className={this.props.classes.formControl}
+          >
+            <Field name="other">
+              {({ input, meta }) => (
+                <TextField
+                  id="other"
+                  {...input}
+                  label="Please specify"
+                  required
+                  autoComplete="off"
+                />
+              )}
+            </Field>
+          </FormControl>
+        );
+      }
+    }
+    return null;
+  };
 
   _onSubmit = values => {
     this.props.submitReport(values);
@@ -77,25 +104,33 @@ class BestSiteForm extends Component {
                   )}
                 </Field>
               </FormControl>
-              <Grid container spacing={0}>
-                {checkboxes.map((checkbox, i) => (
-                  <Grid
-                    item
-                    xs={12}
-                    key={i}
-                    className={classes.checkboxContainer}
-                  >
-                    <Field name="reasons" type="checkbox" value={checkbox}>
-                      {({ input, meta }) => (
-                        <InputLabel shrink>
-                          <Checkbox {...input} />
-                          {checkbox}
-                        </InputLabel>
-                      )}
-                    </Field>
-                  </Grid>
-                ))}
-              </Grid>
+              <div>
+                <Typography>
+                  This has the potential to improve ColdLogic by:
+                </Typography>
+                <Grid container spacing={0}>
+                  {checkboxes.map((checkbox, i) => (
+                    <Grid
+                      item
+                      xs={12}
+                      key={i}
+                      className={classes.checkboxContainer}
+                    >
+                      <Field name="reasons" type="checkbox" value={checkbox}>
+                        {({ input, meta }) => {
+                          return (
+                            <InputLabel shrink>
+                              <Checkbox {...input} />
+                              {checkbox}
+                            </InputLabel>
+                          );
+                        }}
+                      </Field>
+                    </Grid>
+                  ))}
+                </Grid>
+              </div>
+              {this._otherReason(values)}
 
               <FormControl fullWidth className={classes.formControl}>
                 <Grid

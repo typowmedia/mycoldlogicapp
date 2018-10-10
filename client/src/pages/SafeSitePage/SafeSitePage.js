@@ -5,6 +5,7 @@ import TitleBar from '../../components/TitleBar';
 import { withStyles, Grid } from '@material-ui/core';
 import styles from './styles';
 import { submitReport } from '../../lib/submitReport';
+import { formatSafetyReport } from '../../lib/formatReport';
 import { COLDLOGIC_TOKEN } from '../../config/tokens';
 
 class SafeSitePage extends Component {
@@ -26,7 +27,8 @@ class SafeSitePage extends Component {
   _submitReport = async report => {
     this.setState({ loading: true });
     const token = await localStorage.getItem(COLDLOGIC_TOKEN);
-    const response = await submitReport(report, '/SafeSiteVms', token);
+    const formattedReport = await formatSafetyReport(report);
+    const response = await submitReport(formattedReport, '/SafeSiteVms', token);
     if (response.status === 201) {
       this.setState({ loading: false });
       this._nextStep();
