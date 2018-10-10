@@ -6,7 +6,13 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { DASHBOARD } from '../../routes/routes';
 
-const ReportSuccess = ({ classes, safesite, leftButton, history }) => {
+const ReportSuccess = ({
+  classes,
+  safesite,
+  leftBtnClick,
+  leftBtnTitle,
+  history,
+}) => {
   return (
     <UserContext.Consumer>
       {({ logout }) => {
@@ -21,9 +27,9 @@ const ReportSuccess = ({ classes, safesite, leftButton, history }) => {
               variant="extendedFab"
               className={classes.button}
               color="primary"
-              onClick={safesite ? () => logout() : () => leftButton.clicked()}
+              onClick={safesite ? () => logout() : () => leftBtnClick()}
             >
-              {safesite ? 'Exit Coldlogic Portal' : leftButton.title}
+              {safesite ? 'Exit Coldlogic Portal' : leftBtnTitle}
             </Button>
             <Button
               variant="extendedFab"
@@ -43,10 +49,8 @@ const ReportSuccess = ({ classes, safesite, leftButton, history }) => {
 ReportSuccess.propTypes = {
   classes: PropTypes.object.isRequired,
   safesite: PropTypes.bool,
-  leftButton: PropTypes.objectOf({
-    title: PropTypes.string.isRequired,
-    clicked: PropTypes.func.isRequired,
-  }),
+  leftBtnTitle: PropTypes.string,
+  leftBtnClick: PropTypes.func,
   history: PropTypes.object.isRequired,
 };
 

@@ -13,8 +13,10 @@ const BestSite = ({ step, classes, nextStep, submitReport, loading }) => {
       content = (
         <Fragment>
           <Typography>
-            It's our responsibility to report any concern about safety, this
-            helps us to keep our facilities safe and our work free of concerns
+            We would like to recognize and share your suggestions that improve
+            our organization. Please note that your user's full name will be
+            taken so that we can acknowledge you and include you in discussions
+            of your great idea!
           </Typography>
           <Button
             variant="extendedFab"
@@ -22,7 +24,7 @@ const BestSite = ({ step, classes, nextStep, submitReport, loading }) => {
             color="secondary"
             onClick={() => nextStep.forward()}
           >
-            Start My Report
+            Start My Suggestion
           </Button>
         </Fragment>
       );
@@ -35,7 +37,7 @@ const BestSite = ({ step, classes, nextStep, submitReport, loading }) => {
 
     default:
       content = (
-        <ReportSuccess leftButton={{ title: 'hello', clicked: () => {} }} />
+        <ReportSuccess leftBtnTitle="New Report" leftBtnClick={nextStep.back} />
       );
       break;
   }

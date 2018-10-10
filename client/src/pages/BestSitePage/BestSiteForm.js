@@ -3,8 +3,10 @@ import Spinner from '../../components/UI/Spinner';
 import {
   withStyles,
   FormControl,
-  Typography,
+  InputLabel,
+  Checkbox,
   TextField,
+  Typography,
   Grid,
   Button,
 } from '@material-ui/core';
@@ -12,16 +14,57 @@ import { Form, Field } from 'react-final-form';
 import styles from './styles';
 import PropTypes from 'prop-types';
 
+const checkboxes = [
+  'Make work more fun or interesting',
+  'Improve safe operations',
+  'Make the job easier',
+  'Make people feel more appreciated',
+  'Make people want to work for us for a long time',
+  'Save the company money',
+  'Keep the equipment in better condition',
+  'Improve accurate order selection and/or deliver to Sobeys',
+  'Other',
+];
+
 class BestSiteForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      other: false,
+      otherReason: null,
+    };
   }
+  _otherReason = values => {
+    if (values.reasons) {
+      if (values.reasons.includes('Other')) {
+        return (
+          <FormControl
+            fullWidth
+            required
+            className={this.props.classes.formControl}
+          >
+            <Field name="other">
+              {({ input, meta }) => (
+                <TextField
+                  id="other"
+                  {...input}
+                  label="Please specify"
+                  required
+                  autoComplete="off"
+                />
+              )}
+            </Field>
+          </FormControl>
+        );
+      }
+    }
+    return null;
+  };
 
   _onSubmit = values => {
     this.props.submitReport(values);
   };
-  _validate = () => {};
+  _validate = values => {};
   render() {
     const { classes } = this.props;
     return (
@@ -29,41 +72,15 @@ class BestSiteForm extends Component {
         <Form
           onSubmit={this._onSubmit}
           validate={this._validate}
-          render={({ handleSubmit, invalid, submitting, pristine }) => (
+          render={({ handleSubmit, invalid, submitting, pristine, values }) => (
             <form onSubmit={handleSubmit} className={classes.accountForm}>
               <FormControl fullWidth required className={classes.formControl}>
-                <Typography>Date of Incident:</Typography>
-                <Field name="date">
+                <Field name="suggestion">
                   {({ input, meta }) => (
                     <TextField
-                      id="date"
-                      type="date"
+                      id="suggestion"
                       {...input}
-                      autoComplete="off"
-                    />
-                  )}
-                </Field>
-              </FormControl>
-              <FormControl fullWidth required className={classes.formControl}>
-                <Field name="where">
-                  {({ input, meta }) => (
-                    <TextField
-                      id="where"
-                      {...input}
-                      autoComplete="off"
-                      label="Place of Incident"
-                      required
-                    />
-                  )}
-                </Field>
-              </FormControl>
-              <FormControl fullWidth required className={classes.formControl}>
-                <Field name="message">
-                  {({ input, meta }) => (
-                    <TextField
-                      id="message"
-                      {...input}
-                      label="Important details of the incident"
+                      label="My Suggestion is:"
                       required
                       autoComplete="off"
                       multiline
@@ -72,6 +89,49 @@ class BestSiteForm extends Component {
                   )}
                 </Field>
               </FormControl>
+              <FormControl fullWidth required className={classes.formControl}>
+                <Field name="details">
+                  {({ input, meta }) => (
+                    <TextField
+                      id="details"
+                      {...input}
+                      label="This will make Cold Logic the best site by:"
+                      required
+                      autoComplete="off"
+                      multiline
+                      rows="4"
+                    />
+                  )}
+                </Field>
+              </FormControl>
+              <div>
+                <Typography>
+                  This has the potential to improve ColdLogic by:
+                </Typography>
+                <Grid container spacing={0}>
+                  {checkboxes.map((checkbox, i) => (
+                    <Grid
+                      item
+                      xs={12}
+                      key={i}
+                      className={classes.checkboxContainer}
+                    >
+                      <Field name="reasons" type="checkbox" value={checkbox}>
+                        {({ input, meta }) => {
+                          return (
+                            <InputLabel shrink>
+                              <Checkbox {...input} />
+                              {checkbox}
+                            </InputLabel>
+                          );
+                        }}
+                      </Field>
+                    </Grid>
+                  ))}
+                </Grid>
+              </div>
+              {this._otherReason(values)}
+
               <FormControl fullWidth className={classes.formControl}>
                 <Grid
                   container
@@ -95,6 +155,7 @@ class BestSiteForm extends Component {
                   )}
                 </Grid>
               </FormControl>
+              <pre>{JSON.stringify(values, 0, 2)}</pre>
             </form>
           )}
         />
