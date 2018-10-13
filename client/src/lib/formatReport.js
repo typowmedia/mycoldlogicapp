@@ -29,3 +29,7 @@ export const formatBestSiteReport = report => {
   };
   return formattedReport;
 };
+
+export const formatQuestion = report => {
+  console.log(report);
+};

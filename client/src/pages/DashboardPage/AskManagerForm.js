@@ -17,7 +17,7 @@ import PropTypes from 'prop-types';
 
 class AskManagerForm extends Component {
   _onSubmit = values => {
-    //sendValues
+    this.props.submitQuestion(values, this.props.user);
   };
   _validate = () => {};
 
@@ -28,7 +28,9 @@ class AskManagerForm extends Component {
     return value;
   };
   render() {
-    const { classes } = this.props;
+    const { classes, departments } = this.props;
+    console.log(departments);
+
     return (
       <div className={classes.form}>
         <Form
@@ -57,11 +59,17 @@ class AskManagerForm extends Component {
                         <MenuItem value="">
                           <em>None</em>
                         </MenuItem>
-                        <MenuItem value={'Dan Imbery'}>Dan Imbery</MenuItem>
-                        <MenuItem value={"Laurel O'Donnell"}>
-                          Laurel O'Donnell
-                        </MenuItem>
-                        <MenuItem value={'Shanda Hope'}>Shanda Hope</MenuItem>
+                        {departments.map(dept => (
+                          <MenuItem
+                            key={dept.id}
+                            value={JSON.stringify({
+                              departmentId: dept.id,
+                              email: dept.mgrEmail,
+                            })}
+                          >
+                            {dept.mgrName} - {dept.name}
+                          </MenuItem>
+                        ))}
                       </Select>
                       <FormHelperText>Required</FormHelperText>
                     </Fragment>
@@ -87,10 +95,10 @@ class AskManagerForm extends Component {
                 <FormHelperText>Required</FormHelperText>
               </FormControl>
               <FormControl fullWidth required className={classes.formControl}>
-                <Field name="message">
+                <Field name="question">
                   {({ input, meta }) => (
                     <TextField
-                      id="message"
+                      id="question"
                       {...input}
                       onChange={e => {
                         const value = this.maxCharLength(300, e.target.value);
