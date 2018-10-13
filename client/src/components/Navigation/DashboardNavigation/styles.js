@@ -15,6 +15,9 @@ const styles = theme => ({
     width: '50%',
     height: '50%',
   },
+  card: {
+    backgroundColor: 'red',
+  },
 });
 
 export default styles;
