@@ -17,14 +17,12 @@ class BestSitePage extends Component {
       loading: false,
     };
   }
-
   _nextStep = () => {
     this.setState(prevState => ({ step: prevState.step + 1 }));
   };
   _prevStep = () => {
     this.setState(prevState => ({ step: prevState.step - 1 }));
   };
-
   _submitReport = async report => {
     this.setState({ loading: true });
     const token = await localStorage.getItem(COLDLOGIC_TOKEN);
@@ -35,7 +33,6 @@ class BestSitePage extends Component {
       token,
     );
     if (response.status === 201) {
-      console.log(response);
       this.setState({ loading: false });
       this._nextStep();
     } else {
