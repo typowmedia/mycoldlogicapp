@@ -4,10 +4,7 @@ import {
   Typography,
   Paper,
   withStyles,
-  Card,
-  CardContent,
 } from '@material-ui/core';
-import { Link } from 'react-router-dom';
 import styles from './styles';
 import PropTypes from 'prop-types';
 import { navigation } from '../config';
@@ -21,33 +18,24 @@ const DashboardNavigation = ({ classes, history }) => {
           className={classes.navLinkContainer}
           key={nav.name}
           item
-          xs={6}
+          xs={8}
           sm={6}
           md={6}
-          lg={4}
+          lg={6}
         >
-          <Card
-            className={classes.card}
-            onClick={() => history.push(nav.route)}
-          >
             <Paper
-              className={classes.navButton}
-              variant="fab"
-              component={Link}
-              to={nav.route}
+                className={classes.root}
+                elevation={2}
+                onClick={() => history.push(nav.route)}
             >
-              <div className={classes.navLink}>{nav.icon}</div>
+                <div className={classes.navLink}>{nav.icon}</div>
+                <Typography variant="headline" component="h3">
+                    {nav.name}
+                </Typography>
+                <Typography component="p">
+                    {nav.description}
+                </Typography>
             </Paper>
-            <CardContent>
-              <Typography gutterBottom variant="headline" component="h2">
-                {nav.name}
-              </Typography>
-              <Typography component="p">
-                Lizards are a widespread group of squamate reptiles, with over
-                6,000 species, ranging across all continents except Antarctica
-              </Typography>
-            </CardContent>
-          </Card>
         </Grid>
       ))}
     </Grid>
