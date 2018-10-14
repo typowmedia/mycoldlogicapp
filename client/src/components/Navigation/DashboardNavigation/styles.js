@@ -3,8 +3,8 @@ const styles = theme => ({
     textAlign: 'center',
   },
   navButton: {
-    width: 100,
-    height: 100,
+    width: 90,
+    height: 90,
     backgroundColor: theme.palette.secondary.main,
     [theme.breakpoints.up('sm')]: {
       width: 150,
@@ -17,7 +17,14 @@ const styles = theme => ({
   },
     // Paper Cards below:
   root: {
-    backgroundColor: 'red',
+    height: 180,
+    width: 200,
+      align: {
+      items: center,
+      },
+[theme.breakpoints.up('sm')]: {
+    height: 260,
+}
   },
 });
 

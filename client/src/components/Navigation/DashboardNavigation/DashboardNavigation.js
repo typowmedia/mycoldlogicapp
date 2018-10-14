@@ -18,10 +18,10 @@ const DashboardNavigation = ({ classes, history }) => {
           className={classes.navLinkContainer}
           key={nav.name}
           item
-          xs={6}
+          xs={8}
           sm={6}
           md={6}
-          lg={4}
+          lg={6}
         >
             <Paper
                 className={classes.root}
