@@ -19,9 +19,6 @@ const styles = theme => ({
   root: {
     height: 180,
     width: 200,
-      align: {
-      items: center,
-      },
 [theme.breakpoints.up('sm')]: {
     height: 260,
 }
