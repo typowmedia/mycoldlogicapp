@@ -15,7 +15,8 @@ const styles = theme => ({
     width: '50%',
     height: '50%',
   },
-  card: {
+    // Paper Cards below:
+  root: {
     backgroundColor: 'red',
   },
 });
