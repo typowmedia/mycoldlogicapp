@@ -5,18 +5,19 @@ import TitleBar from '../../components/TitleBar';
 import TimeOffRequest from './TimeOffRequest';
 import Spinner from '../../components/UI/Spinner';
 import LoadContent from '../../hoc/LoadContent';
+import LeaveOfAbsenceData from '../../components/LeaveOfAbsenceData/';
 import styles from './styles';
 import PropTypes from 'prop-types';
 
 const TimeOffRequestPage = ({ classes }) => (
   <Grid container justify="center" className={classes.root}>
-    <Grid item xs={12} md={8}>
+    <Grid item xs={12}>
       <TitleBar
         icon={<TimeOffIcon color={'#0D3C55'} />}
         title="Request Time Off"
       />
     </Grid>
-    <Grid item xs={12} md={8}>
+    <Grid item>
       <LoadContent url="/LeaveAbsReasons">
         {({ data, error, loading }) => {
           if (loading) return <Spinner color="secondary" size={100} />;
@@ -24,6 +25,9 @@ const TimeOffRequestPage = ({ classes }) => (
           return <TimeOffRequest reasons={data} />;
         }}
       </LoadContent>
+    </Grid>
+    <Grid item>
+      <LeaveOfAbsenceData />
     </Grid>
   </Grid>
 );
