@@ -1,11 +1,16 @@
 import React from 'react';
-import { Grid, Typography, Button, withStyles } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import {
+  Grid,
+  Typography,
+  Paper,
+  withStyles,
+} from '@material-ui/core';
 import styles from './styles';
 import PropTypes from 'prop-types';
 import { navigation } from '../config';
+import { withRouter } from 'react-router-dom';
 
-const DashboardNavigation = ({ classes }) => {
+const DashboardNavigation = ({ classes, history }) => {
   return (
     <Grid container spacing={24}>
       {navigation.map(nav => (
@@ -13,20 +18,24 @@ const DashboardNavigation = ({ classes }) => {
           className={classes.navLinkContainer}
           key={nav.name}
           item
-          xs={6}
+          xs={8}
           sm={6}
           md={6}
-          lg={4}
+          lg={6}
         >
-          <Button
-            className={classes.navButton}
-            variant="fab"
-            component={Link}
-            to={nav.route}
-          >
-            <div className={classes.navLink}>{nav.icon}</div>
-          </Button>
-          <Typography>{nav.name}</Typography>
+            <Paper
+                className={classes.root}
+                elevation={2}
+                onClick={() => history.push(nav.route)}
+            >
+                <div className={classes.navLink}>{nav.icon}</div>
+                <Typography variant="headline" component="h3">
+                    {nav.name}
+                </Typography>
+                <Typography component="p">
+                    {nav.description}
+                </Typography>
+            </Paper>
         </Grid>
       ))}
     </Grid>
@@ -36,4 +45,4 @@ const DashboardNavigation = ({ classes }) => {
 DashboardNavigation.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-export default withStyles(styles)(DashboardNavigation);
+export default withRouter(withStyles(styles)(DashboardNavigation));
