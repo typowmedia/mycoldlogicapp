@@ -56,9 +56,9 @@ class UserProvider extends Component {
           'Content-Type': 'application/json; charset=utf-8',
         },
       });
+      await localStorage.setItem(COLDLOGIC_TOKEN, userToken.data);
       const authenticatedUser = await this._getUser(userToken.data);
       this.setState({ user: authenticatedUser.data });
-      localStorage.setItem(COLDLOGIC_TOKEN, userToken.data);
     } catch (error) {
       console.log('ERROR_MESSAGE:', error);
     }

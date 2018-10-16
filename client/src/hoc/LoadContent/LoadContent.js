@@ -8,21 +8,23 @@ class LoadContent extends Component {
     error: false,
     data: [],
   };
-
-  componentDidMount() {
-    const Token = `Bearer ${localStorage.getItem(COLDLOGIC_TOKEN)}`;
+  _getToken = () => {
+    return localStorage.getItem(COLDLOGIC_TOKEN);
+  };
+  componentDidMount = async () => {
+    const Token = await this._getToken();
     axios
       .get(this.props.url, {
         headers: {
           accept: 'application/json',
-          Authorization: Token,
+          Authorization: `Bearer ${Token}`,
         },
       })
       .then(res => {
         this.setState({ data: res.data, loading: false });
       })
       .catch(err => this.setState({ loading: false, error: true }));
-  }
+  };
 
   render() {
     return (

@@ -22,8 +22,7 @@ class DashboardPage extends Component {
           'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'
         ],
       departmentId: manager.departmentId,
-      //email: manager.email,
-      email: 'luis@typow.ca',
+      email: manager.email,
       subject: values.subject,
       question: values.question,
     };
