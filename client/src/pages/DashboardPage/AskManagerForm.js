@@ -4,11 +4,11 @@ import {
   Button,
   withStyles,
   FormControl,
-  Grid,
   TextField,
   Select,
   MenuItem,
   FormHelperText,
+  Chip,
 } from '@material-ui/core';
 import { Form, Field } from 'react-final-form';
 import styles from './styles';
@@ -16,10 +16,33 @@ import Spinner from '../../components/UI/Spinner';
 import PropTypes from 'prop-types';
 
 class AskManagerForm extends Component {
-  _onSubmit = values => {
-    this.props.submitQuestion(values, this.props.user);
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      loading: false,
+      error: false,
+      success: false,
+    };
+  }
+
+  _onSubmit = async (values, resetForm) => {
+    this.setState({ loading: true });
+    const success = await this.props.submitQuestion(values, this.props.user);
+    console.log(success);
+    if (success.status === 201) {
+      this.setState({ loading: false, success: true });
+      resetForm();
+    } else this.setState({ loading: false, error: true });
   };
-  _validate = () => {};
+  _validate = values => {
+    let errors = {};
+    if (!values.manager) errors.manager = 'Please select a manager';
+    if (!values.subject) errors.subject = 'Please enter a subject';
+    if (!values.question) errors.question = 'Please enter a question';
+
+    return errors;
+  };
 
   maxCharLength = (charLimit, value) => {
     if (value.length > charLimit) {
@@ -33,16 +56,11 @@ class AskManagerForm extends Component {
     return (
       <div className={classes.form}>
         <Form
-          onSubmit={this._onSubmit}
-          validate={this._validate}
-          render={({
-            handleSubmit,
-            invalid,
-            submitting,
-            form,
-            pristine,
-            values,
-          }) => (
+          onSubmit={(values, form) =>
+            this._onSubmit(values, () => form.reset())
+          }
+          validate={values => this._validate(values)}
+          render={({ handleSubmit, invalid, form, pristine, values }) => (
             <form onSubmit={handleSubmit} className={classes.accountForm}>
               <FormControl required className={classes.formControl}>
                 <Field name="manager">
@@ -114,29 +132,53 @@ class AskManagerForm extends Component {
                 <FormHelperText>Required</FormHelperText>
               </FormControl>
               <FormControl fullWidth className={classes.formControl}>
-                <Grid
-                  container
-                  direction="row"
-                  justify="space-between"
-                  alignItems="center"
-                >
-                  {submitting ? (
-                    <Spinner size={30} color="secondary" />
+                <div className={classes.buttons}>
+                  {this.state.loading ? (
+                    <div>
+                      <Spinner size={30} color="secondary" />
+                    </div>
                   ) : (
-                    <Button
-                      type="submit"
-                      className={classes.formButton}
-                      variant="contained"
-                      size="large"
-                      color="secondary"
-                      disabled={pristine || invalid || submitting}
-                    >
-                      Submit
-                    </Button>
+                    <Fragment>
+                      {this.state.success && (
+                        <Chip
+                          label="Message sent! Your manager will get back to you shortly."
+                          onClick={() => {
+                            this.setState({ success: false });
+                          }}
+                          onDelete={() => {
+                            this.setState({ success: false });
+                          }}
+                          className={classes.chipSuccess}
+                        />
+                      )}
+                      {this.state.error && (
+                        <Chip
+                          label="Oops something went wrong! Please try again later."
+                          onClick={() => {
+                            this.setState({ error: false });
+                          }}
+                          onDelete={() => {
+                            this.setState({ error: false });
+                          }}
+                          className={classes.chipError}
+                        />
+                      )}
+                      {this.state.error || this.state.success ? null : (
+                        <Button
+                          type="submit"
+                          className={classes.formButton}
+                          variant="contained"
+                          size="large"
+                          color="secondary"
+                          disabled={pristine || invalid}
+                        >
+                          Submit
+                        </Button>
+                      )}
+                    </Fragment>
                   )}
-                </Grid>
+                </div>
               </FormControl>
-              <pre>{JSON.stringify(values, 0, 2)}</pre>
             </form>
           )}
         />

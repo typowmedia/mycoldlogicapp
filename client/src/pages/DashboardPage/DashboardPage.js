@@ -25,15 +25,15 @@ class DashboardPage extends Component {
       subject: values.subject,
       question: values.question,
     };
-    axios
+    return axios
       .post(url, question, {
         headers: {
           accept: 'application/json',
           Authorization: `Bearer ${token}`,
         },
       })
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
+      .then(res => res)
+      .catch(err => err);
   };
   render() {
     const { classes } = this.props;
