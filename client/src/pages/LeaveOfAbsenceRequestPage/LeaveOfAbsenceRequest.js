@@ -17,9 +17,10 @@ import PropTypes from 'prop-types';
 import Spinner from '../../components/UI/Spinner';
 import { maxCharLength } from '../../lib/maxCharLength';
 
-class TimeOffRequest extends Component {
+class LeaveOfAbsenceRequest extends Component {
   _onSubmit = values => {
     //sendValues
+    console.log(values);
   };
   _validate = () => {};
 
@@ -144,7 +145,7 @@ class TimeOffRequest extends Component {
   }
 }
 
-TimeOffRequest.propTypes = {
+LeaveOfAbsenceRequest.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-export default withStyles(styles)(TimeOffRequest);
+export default withStyles(styles)(LeaveOfAbsenceRequest);

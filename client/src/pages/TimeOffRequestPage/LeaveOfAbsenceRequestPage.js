@@ -1,11 +1,11 @@
 import React from 'react';
 import { Grid, withStyles } from '@material-ui/core';
-import TimeOffIcon from '../../assets/TimeOffIcon';
+import TimeOffIcon from '../../assets/LeaveOfAbsenceIcon';
 import TitleBar from '../../components/TitleBar';
-import TimeOffRequest from './TimeOffRequest';
+import TimeOffRequest from './LeaveOfAbsenceRequest';
 import Spinner from '../../components/UI/Spinner';
 import LoadContent from '../../hoc/LoadContent';
-import LeaveOfAbsenceData from '../../components/LeaveOfAbsenceData/';
+import LeaveOfAbsenceData from '../../components/LeaveOfAbsenceData';
 import styles from './styles';
 import PropTypes from 'prop-types';
 

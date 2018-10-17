@@ -5,16 +5,16 @@ import {
   SAFE_SITE_REPORT,
   BEST_SITE_REPORT,
 } from '../../routes/routes';
-import TimeOffIcon from '../../assets/TimeOffIcon';
+import LeaveOfAbsenceIcon from '../../assets/LeaveOfAbsenceIcon';
 import BonusRecognitionIcon from '../../assets/BonusRecognitionIcon';
 import MyBestSiteIcon from '../../assets/MyBestSiteIcon';
 import SafeSiteIcon from '../../assets/SafeSiteIcon';
 
 export const navigation = [
   {
-    name: 'Request Time Off',
+    name: 'Request Leave of Absence',
     route: REQUEST_TIME_OFF,
-    icon: <TimeOffIcon color={'#f4f4f4'} />,
+    icon: <LeaveOfAbsenceIcon color={'#f4f4f4'} />,
     description: 'Submit a leave of absence and follow up on them.',
   },
   {

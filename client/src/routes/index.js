@@ -3,7 +3,7 @@ import { Redirect, Route, Switch } from 'react-router';
 import HomePage from '../pages/HomePage';
 import RequestPasswordPage from '../pages/RequestPasswordPage';
 import DashboardPage from '../pages/DashboardPage';
-import TimeOffRequestPage from '../pages/TimeOffRequestPage';
+import LeaveOfAbsenceRequestPage from '../pages/LeaveOfAbsenceRequestPage';
 import SafeSitePage from '../pages/SafeSitePage';
 import BestSitePage from '../pages/BestSitePage';
 import BonusRecognitionPage from '../pages/BonusRecognitionPage';
@@ -48,7 +48,7 @@ export default () => (
             <Route
               exact
               path={REQUEST_TIME_OFF}
-              component={TimeOffRequestPage}
+              component={LeaveOfAbsenceRequestPage}
             />
             <Route
               exact
