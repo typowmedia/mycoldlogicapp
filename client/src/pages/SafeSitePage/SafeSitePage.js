@@ -34,7 +34,9 @@ class SafeSitePage extends Component {
       this._nextStep();
     } else {
       this.setState({ loading: false });
+      return false;
     }
+    return true;
   };
   render() {
     const { classes } = this.props;

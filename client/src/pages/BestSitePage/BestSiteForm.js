@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Spinner from '../../components/UI/Spinner';
 import {
   withStyles,
@@ -9,6 +9,7 @@ import {
   Typography,
   Grid,
   Button,
+  Chip,
 } from '@material-ui/core';
 import { Form, Field } from 'react-final-form';
 import styles from './styles';
@@ -32,6 +33,8 @@ class BestSiteForm extends Component {
     this.state = {
       other: false,
       otherReason: null,
+      loading: false,
+      error: false,
     };
   }
   _otherReason = values => {
@@ -56,15 +59,37 @@ class BestSiteForm extends Component {
             </Field>
           </FormControl>
         );
+      } else {
+        values.other = '';
       }
     }
     return null;
   };
 
-  _onSubmit = values => {
-    this.props.submitReport(values);
+  _onSubmit = async values => {
+    this.setState({ loading: true });
+    const success = await this.props.submitReport(values);
+    if (success.status === 201) {
+      this.setState({ loading: false });
+    } else this.setState({ loading: false, error: true });
   };
-  _validate = values => {};
+
+  _validate = values => {
+    let errors = {};
+    if (!values.suggestion) errors.suggestion = 'Please enter a suggestion.';
+    if (!values.details)
+      errors.details = 'Please explain some details of your suggestion.';
+    if (!values.reasons)
+      errors.reasons = 'Please select a minimum of one reason.';
+    if (values.reasons) {
+      if (values.reasons.length < 1)
+        errors.reasons = 'Please select a minimum of one reason.';
+      if (values.reasons.find(reason => reason === 'Other')) {
+        if (!values.other) errors.other = 'Please specify';
+      }
+    }
+    return errors;
+  };
   render() {
     const { classes } = this.props;
     return (
@@ -131,31 +156,42 @@ class BestSiteForm extends Component {
                 </Grid>
               </div>
               {this._otherReason(values)}
-
               <FormControl fullWidth className={classes.formControl}>
-                <Grid
-                  container
-                  direction="row"
-                  justify="space-between"
-                  alignItems="center"
-                >
-                  {submitting ? (
-                    <Spinner size={30} color="secondary" />
+                <div className={classes.buttons}>
+                  {this.state.loading ? (
+                    <div>
+                      <Spinner size={30} color="secondary" />
+                    </div>
                   ) : (
-                    <Button
-                      type="submit"
-                      className={classes.formButton}
-                      variant="contained"
-                      size="large"
-                      color="secondary"
-                      disabled={pristine || invalid || submitting}
-                    >
-                      Submit
-                    </Button>
+                    <Fragment>
+                      {this.state.error && (
+                        <Chip
+                          label="Oops something went wrong! Please try again later."
+                          onClick={() => {
+                            this.setState({ error: false });
+                          }}
+                          onDelete={() => {
+                            this.setState({ error: false });
+                          }}
+                          className={classes.chipError}
+                        />
+                      )}
+                      {this.state.error || this.state.success ? null : (
+                        <Button
+                          type="submit"
+                          className={classes.formButton}
+                          variant="contained"
+                          size="large"
+                          color="secondary"
+                          disabled={pristine || invalid || submitting}
+                        >
+                          Submit
+                        </Button>
+                      )}
+                    </Fragment>
                   )}
-                </Grid>
+                </div>
               </FormControl>
-              <pre>{JSON.stringify(values, 0, 2)}</pre>
             </form>
           )}
         />

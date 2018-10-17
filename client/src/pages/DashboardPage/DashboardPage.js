@@ -7,34 +7,18 @@ import PropTypes from 'prop-types';
 import { UserContext } from '../../context/UserProvider';
 import LoadContent from '../../hoc/LoadContent';
 import Spinner from '../../components/UI/Spinner';
-import axios from 'axios';
 import { COLDLOGIC_TOKEN } from '../../config/tokens';
+import { formatQuestion } from '../../lib/formatReport';
+import { submitReport } from '../../lib/submitReport';
 
 class DashboardPage extends Component {
   _submitQuestion = async (values, user) => {
     const token = await localStorage.getItem(COLDLOGIC_TOKEN);
+    const question = await formatQuestion(values, user);
     const url = '/QuesAnswers';
-    const manager = JSON.parse(values.manager);
-    const question = {
-      employeeId:
-        user[
-          'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'
-        ],
-      departmentId: manager.departmentId,
-      email: manager.email,
-      subject: values.subject,
-      question: values.question,
-    };
-    axios
-      .post(url, question, {
-        headers: {
-          accept: 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
+    return submitReport(question, url, token);
   };
+
   render() {
     const { classes } = this.props;
     return (

@@ -4,18 +4,24 @@ import {
   Button,
   withStyles,
   FormControl,
+  Chip,
   TextField,
   Select,
   MenuItem,
   FormHelperText,
-  Chip,
+  Typography,
 } from '@material-ui/core';
 import { Form, Field } from 'react-final-form';
 import styles from './styles';
-import Spinner from '../../components/UI/Spinner';
 import PropTypes from 'prop-types';
+import Spinner from '../../components/UI/Spinner';
+import { maxCharLength } from '../../lib/maxCharLength';
+import { formatLeaveOfAbsence } from '../../lib/formatReport';
+import { submitReport } from '../../lib/submitReport';
+import { COLDLOGIC_TOKEN } from '../../config/tokens';
+import moment from 'moment';
 
-class AskManagerForm extends Component {
+class LeaveOfAbsenceRequest extends Component {
   constructor(props) {
     super(props);
 
@@ -27,63 +33,101 @@ class AskManagerForm extends Component {
   }
 
   _onSubmit = async (values, resetForm) => {
-    this.setState({ loading: true });
-    const success = await this.props.submitQuestion(values, this.props.user);
+    const Token = await localStorage.getItem(COLDLOGIC_TOKEN);
+    const report = await formatLeaveOfAbsence(values, this.props.user);
+    const success = await submitReport(report, '/LeaveAbs', Token);
     if (success.status === 201) {
       this.setState({ loading: false, success: true });
       resetForm();
     } else this.setState({ loading: false, error: true });
   };
   _validate = values => {
+    const today = moment(new Date()).format('MMM Do YYYY');
+    const from = moment(values.from).format('MMM Do YYYY');
+    const to = moment(values.to).format('MMM Do YYYY');
+
     let errors = {};
-    if (!values.manager) errors.manager = 'Please select a manager';
-    if (!values.subject) errors.subject = 'Please enter a subject';
-    if (!values.question) errors.question = 'Please enter a question';
+
+    if (!values.from) errors.from = 'Please choose when to start your leave.';
+    if (from) {
+      if (from < today)
+        errors.from = 'Please select a date that has not already passed';
+      if (from > to)
+        errors.from = 'The date chosen happens after your return date.';
+    }
+    if (!values.to) errors.to = 'Please choose when to end your leave.';
+    if (to) {
+      if (to < today)
+        errors.to = 'Please select a date that has not already passed';
+      if (to < from)
+        errors.to = 'The date chosen happens before your leave starts.';
+    }
+    if (!values.message) errors.message = 'Please enter some details.';
+    if (!values.reason) errors.reason = 'Please select a reason.';
 
     return errors;
   };
 
-  maxCharLength = (charLimit, value) => {
-    if (value.length > charLimit) {
-      return value.slice(0, value.length - 1);
-    }
-    return value;
-  };
   render() {
-    const { classes, departments } = this.props;
-
+    const { classes, reasons } = this.props;
     return (
       <div className={classes.form}>
         <Form
-          onSubmit={(values, form) =>
-            this._onSubmit(values, () => form.reset())
-          }
-          validate={values => this._validate(values)}
-          render={({ handleSubmit, invalid, form, pristine, values }) => (
+          onSubmit={(values, form) => this._onSubmit(values, form.reset())}
+          validate={this._validate}
+          render={({ handleSubmit, invalid, form, pristine }) => (
             <form onSubmit={handleSubmit} className={classes.accountForm}>
+              <FormControl className={classes.formControl}>
+                <div className={classes.dateContainer}>
+                  <Typography>From:</Typography>
+                  <Field name="from">
+                    {({ input, meta }) => (
+                      <TextField
+                        error={
+                          pristine ? false : typeof meta.error === 'string'
+                        }
+                        id="from"
+                        type="date"
+                        {...input}
+                        autoComplete="off"
+                      />
+                    )}
+                  </Field>
+                  <Typography>To:</Typography>
+                  <Field name="to">
+                    {({ input, meta }) => (
+                      <TextField
+                        error={
+                          pristine ? false : typeof meta.error === 'string'
+                        }
+                        id="to"
+                        type="date"
+                        {...input}
+                        autoComplete="off"
+                      />
+                    )}
+                  </Field>
+                </div>
+              </FormControl>
               <FormControl required className={classes.formControl}>
-                <Field name="manager">
+                <Field name="reason">
                   {({ input, meta }) => (
                     <Fragment>
-                      <InputLabel htmlFor="manager">Manager</InputLabel>
+                      <InputLabel htmlFor="reasom">
+                        Please Select a Reason
+                      </InputLabel>
                       <Select
-                        id="manager"
+                        id="reason"
                         value={input.value}
                         {...input}
-                        name="manager"
+                        name="Reason"
                       >
                         <MenuItem value="">
                           <em>None</em>
                         </MenuItem>
-                        {departments.map(dept => (
-                          <MenuItem
-                            key={dept.id}
-                            value={JSON.stringify({
-                              departmentId: dept.id,
-                              email: dept.mgrEmail,
-                            })}
-                          >
-                            {dept.mgrName} - {dept.name}
+                        {reasons.map(reason => (
+                          <MenuItem key={reason.id} value={reason.id}>
+                            {reason.name}
                           </MenuItem>
                         ))}
                       </Select>
@@ -93,34 +137,16 @@ class AskManagerForm extends Component {
                 </Field>
               </FormControl>
               <FormControl fullWidth required className={classes.formControl}>
-                <Field name="subject">
+                <Field name="message">
                   {({ input, meta }) => (
                     <TextField
-                      id="subject"
+                      id="message"
                       {...input}
                       onChange={e => {
-                        const value = this.maxCharLength(55, e.target.value);
+                        const value = maxCharLength(300, e.target.value);
                         input.onChange(value);
                       }}
-                      label="Subject"
-                      required
-                      autoComplete="off"
-                    />
-                  )}
-                </Field>
-                <FormHelperText>Required</FormHelperText>
-              </FormControl>
-              <FormControl fullWidth required className={classes.formControl}>
-                <Field name="question">
-                  {({ input, meta }) => (
-                    <TextField
-                      id="question"
-                      {...input}
-                      onChange={e => {
-                        const value = this.maxCharLength(300, e.target.value);
-                        input.onChange(value);
-                      }}
-                      label="Question"
+                      label="Reason Details"
                       required
                       autoComplete="off"
                       multiline
@@ -186,7 +212,7 @@ class AskManagerForm extends Component {
   }
 }
 
-AskManagerForm.propTypes = {
+LeaveOfAbsenceRequest.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-export default withStyles(styles)(AskManagerForm);
+export default withStyles(styles)(LeaveOfAbsenceRequest);
