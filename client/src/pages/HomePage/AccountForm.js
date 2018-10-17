@@ -27,11 +27,8 @@ class AccountForm extends Component {
   _onSubmit = async (values, login) => {
     this.setState({ loading: true });
     const success = await login(values);
-    console.log(success);
     if (!success) {
-      setTimeout(() => {
-        this.setState({ loading: false, error: true });
-      }, 3000);
+      this.setState({ loading: false, error: true });
     }
   };
   _validate(values) {

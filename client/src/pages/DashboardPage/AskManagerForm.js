@@ -29,7 +29,6 @@ class AskManagerForm extends Component {
   };
   render() {
     const { classes, departments } = this.props;
-    console.log(departments);
 
     return (
       <div className={classes.form}>

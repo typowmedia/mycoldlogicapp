@@ -12,7 +12,6 @@ import { COLDLOGIC_TOKEN } from '../../config/tokens';
 
 class DashboardPage extends Component {
   _submitQuestion = async (values, user) => {
-    console.log(values, user);
     const token = await localStorage.getItem(COLDLOGIC_TOKEN);
     const url = '/QuesAnswers';
     const manager = JSON.parse(values.manager);

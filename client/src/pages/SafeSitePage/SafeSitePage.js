@@ -33,7 +33,6 @@ class SafeSitePage extends Component {
       this.setState({ loading: false });
       this._nextStep();
     } else {
-      console.log('error');
       this.setState({ loading: false });
     }
   };
