@@ -12,7 +12,6 @@ import { COLDLOGIC_TOKEN } from '../../config/tokens';
 
 class DashboardPage extends Component {
   _submitQuestion = async (values, user) => {
-    console.log(values, user);
     const token = await localStorage.getItem(COLDLOGIC_TOKEN);
     const url = '/QuesAnswers';
     const manager = JSON.parse(values.manager);
@@ -22,8 +21,7 @@ class DashboardPage extends Component {
           'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'
         ],
       departmentId: manager.departmentId,
-      //email: manager.email,
-      email: 'luis@typow.ca',
+      email: manager.email,
       subject: values.subject,
       question: values.question,
     };

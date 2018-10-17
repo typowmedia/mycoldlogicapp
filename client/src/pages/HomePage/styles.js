@@ -37,6 +37,22 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'center',
   },
+  buttons: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    height: 80,
+  },
+  errorContainer: {
+    width: '100%',
+    textAlign: 'center',
+    padding: theme.spacing.unit,
+    fontSize: 14,
+  },
+  error: {
+    color: 'red',
+  },
 });
 
 export default styles;
