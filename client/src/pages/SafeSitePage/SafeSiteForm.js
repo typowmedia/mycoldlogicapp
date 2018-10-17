@@ -30,7 +30,6 @@ class SafeSiteForm extends Component {
   };
 
   _validate = values => {
-    console.log(values);
     let errors = {};
     if (!values.date)
       errors.date = 'Please select the date the incident occurred.';
@@ -100,18 +99,6 @@ class SafeSiteForm extends Component {
                     </div>
                   ) : (
                     <Fragment>
-                      {this.state.success && (
-                        <Chip
-                          label="Message sent! Your manager will get back to you shortly."
-                          onClick={() => {
-                            this.setState({ success: false });
-                          }}
-                          onDelete={() => {
-                            this.setState({ success: false });
-                          }}
-                          className={classes.chipSuccess}
-                        />
-                      )}
                       {this.state.error && (
                         <Chip
                           label="Oops something went wrong! Please try again later."

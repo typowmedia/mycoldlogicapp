@@ -13,7 +13,7 @@ class BestSitePage extends Component {
     super(props);
 
     this.state = {
-      step: 1,
+      step: 2,
       loading: false,
     };
   }
@@ -37,7 +37,9 @@ class BestSitePage extends Component {
       this._nextStep();
     } else {
       this.setState({ loading: false });
+      return false;
     }
+    return true;
   };
   render() {
     const { classes } = this.props;
