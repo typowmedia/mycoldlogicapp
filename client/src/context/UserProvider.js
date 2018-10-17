@@ -59,8 +59,9 @@ class UserProvider extends Component {
       await localStorage.setItem(COLDLOGIC_TOKEN, userToken.data);
       const authenticatedUser = await this._getUser(userToken.data);
       this.setState({ user: authenticatedUser.data });
+      return true;
     } catch (error) {
-      console.log('ERROR_MESSAGE:', error);
+      return false;
     }
   };
 
