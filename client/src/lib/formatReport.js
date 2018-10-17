@@ -30,6 +30,29 @@ export const formatBestSiteReport = report => {
   return formattedReport;
 };
 
-export const formatQuestion = report => {
-  console.log(report);
+export const formatQuestion = (report, user) => {
+  const manager = JSON.parse(report.manager);
+  return {
+    employeeId:
+      user[
+        'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'
+      ],
+    departmentId: manager.departmentId,
+    email: manager.email,
+    subject: report.subject,
+    question: report.question,
+  };
+};
+
+export const formatLeaveOfAbsence = (report, user) => {
+  return {
+    employeeId:
+      user[
+        'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'
+      ],
+    leaveAbsReasonId: report.reason,
+    reasonDetail: report.message,
+    timeOffBeg: new Date(report.from),
+    timeOffEnd: new Date(report.to),
+  };
 };

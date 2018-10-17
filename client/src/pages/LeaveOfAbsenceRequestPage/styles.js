@@ -1,8 +1,6 @@
 const styles = theme => ({
   root: {
-    minHeight: '60%',
     paddingTop: theme.spacing.unit * 5,
-    alignItems: 'baseline',
     padding: theme.spacing.unit,
     [theme.breakpoints.up('sm')]: {
       paddingTop: theme.spacing.unit * 8,
@@ -10,6 +8,7 @@ const styles = theme => ({
     },
   },
   formControl: {
+    marginBottom: theme.spacing.unit * 2,
     width: '100%',
   },
   formButton: {
@@ -43,7 +42,6 @@ const styles = theme => ({
     justifyContent: 'space-evenly',
   },
   buttons: {
-    marginTop: theme.spacing.unit * 2,
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',

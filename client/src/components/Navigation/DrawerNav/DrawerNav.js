@@ -13,7 +13,7 @@ import PropTypes from 'prop-types';
 import styles from './styles';
 import DashboardIcon from '../../../assets/DashboardIcon';
 import ExitIcon from '../../../assets/ExitIcon';
-import TimeOffIcon from '../../../assets/TimeOffIcon';
+import LeaveOfAbsenceIcon from '../../../assets/LeaveOfAbsenceIcon';
 import BonusRecognitionIcon from '../../../assets/BonusRecognitionIcon';
 import MyBestSiteIcon from '../../../assets/MyBestSiteIcon';
 import SafeSiteIcon from '../../../assets/SafeSiteIcon';
@@ -71,13 +71,13 @@ const DrawerNav = ({ show, clicked, classes, history, logout, user }) => {
         >
           <ListItemIcon className={classes.icon}>
             <div className={classes.icons}>
-              <TimeOffIcon color="#f4f4f4" />
+              <LeaveOfAbsenceIcon color="#f4f4f4" />
             </div>
           </ListItemIcon>
           <ListItemText
             classes={{ primary: classes.primary }}
             inset
-            primary="Request Time Off"
+            primary="Request Leave of Absence"
           />
         </MenuItem>
         <MenuItem
