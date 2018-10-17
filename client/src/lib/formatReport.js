@@ -33,3 +33,40 @@ export const formatBestSiteReport = report => {
 export const formatQuestion = report => {
   console.log(report);
 };
+
+export const formatLeaveOfAbsence = (report, user) => {
+  return {
+    employeeId:
+      user[
+        'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'
+      ],
+    leaveAbsReasonId: report.reason,
+    reasonDetail: report.message,
+    timeOffBeg: new Date(report.from),
+    timeOffEnd: new Date(report.to),
+  };
+
+  // {
+  //   "id": 0,
+  //   "employeeId": 0,
+  //   "requestDate": "2018-10-17T22:53:40.007Z",
+  //   "distCenterId": 0,
+  //   "position": "string",
+  //   "shiftId": 0,
+  //   "departmentId": 0,
+  //   "leaveAbsReasonId": 0,
+  //   "reasonDetail": "string",
+  //   "timeOffBeg": "2018-10-17T22:53:40.008Z",
+  //   "timeOffEnd": "2018-10-17T22:53:40.008Z",
+  //   "timeOffDays": 0,
+  //   "returnDate": "2018-10-17T22:53:40.008Z",
+  //   "empSignDate": "2018-10-17T22:53:40.008Z",
+  //   "deptMgrSignDate": "2018-10-17T22:53:40.008Z",
+  //   "genMgrSignDate": "2018-10-17T22:53:40.008Z",
+  //   "hrSignDate": "2018-10-17T22:53:40.008Z",
+  //   "torLoaStatusId": 0,
+  //   "isActive": true,
+  //   "notes": "string",
+  //   "log": "string"
+  // }
+};

@@ -4,7 +4,7 @@ import {
   Button,
   withStyles,
   FormControl,
-  Grid,
+  Chip,
   TextField,
   Select,
   MenuItem,
@@ -16,29 +16,66 @@ import styles from './styles';
 import PropTypes from 'prop-types';
 import Spinner from '../../components/UI/Spinner';
 import { maxCharLength } from '../../lib/maxCharLength';
+import { formatLeaveOfAbsence } from '../../lib/formatReport';
+import { submitReport } from '../../lib/submitReport';
+import { COLDLOGIC_TOKEN } from '../../config/tokens';
+import moment from 'moment';
 
 class LeaveOfAbsenceRequest extends Component {
-  _onSubmit = values => {
-    //sendValues
-    console.log(values);
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      loading: false,
+      error: false,
+      success: false,
+    };
+  }
+
+  _onSubmit = async (values, resetForm) => {
+    const Token = await localStorage.getItem(COLDLOGIC_TOKEN);
+    const report = await formatLeaveOfAbsence(values, this.props.user);
+    const success = await submitReport(report, '/LeaveAbs', Token);
+    if (success.status === 201) {
+      this.setState({ loading: false, success: true });
+      resetForm();
+    } else this.setState({ loading: false, error: true });
   };
-  _validate = () => {};
+  _validate = values => {
+    const today = moment(new Date()).format('MMM Do YYYY');
+    const from = moment(values.from).format('MMM Do YYYY');
+    const to = moment(values.to).format('MMM Do YYYY');
+
+    let errors = {};
+
+    if (!values.from) errors.from = 'Please choose when to start your leave.';
+    if (from) {
+      if (from < today)
+        errors.from = 'Please select a date that has not already passed';
+      if (from > to)
+        errors.from = 'The date chosen happens after your return date.';
+    }
+    if (!values.to) errors.to = 'Please choose when to end your leave.';
+    if (to) {
+      if (to < today)
+        errors.to = 'Please select a date that has not already passed';
+      if (to < from)
+        errors.to = 'The date chosen happens before your leave starts.';
+    }
+    if (!values.message) errors.message = 'Please enter some details.';
+    if (!values.reason) errors.reason = 'Please select a reason.';
+
+    return errors;
+  };
 
   render() {
     const { classes, reasons } = this.props;
     return (
       <div className={classes.form}>
         <Form
-          onSubmit={this._onSubmit}
+          onSubmit={(values, form) => this._onSubmit(values, form.reset())}
           validate={this._validate}
-          render={({
-            handleSubmit,
-            invalid,
-            submitting,
-            form,
-            pristine,
-            values,
-          }) => (
+          render={({ handleSubmit, invalid, form, pristine }) => (
             <form onSubmit={handleSubmit} className={classes.accountForm}>
               <FormControl className={classes.formControl}>
                 <div className={classes.dateContainer}>
@@ -46,6 +83,9 @@ class LeaveOfAbsenceRequest extends Component {
                   <Field name="from">
                     {({ input, meta }) => (
                       <TextField
+                        error={
+                          pristine ? false : typeof meta.error === 'string'
+                        }
                         id="from"
                         type="date"
                         {...input}
@@ -57,6 +97,9 @@ class LeaveOfAbsenceRequest extends Component {
                   <Field name="to">
                     {({ input, meta }) => (
                       <TextField
+                        error={
+                          pristine ? false : typeof meta.error === 'string'
+                        }
                         id="to"
                         type="date"
                         {...input}
@@ -83,7 +126,7 @@ class LeaveOfAbsenceRequest extends Component {
                           <em>None</em>
                         </MenuItem>
                         {reasons.map(reason => (
-                          <MenuItem key={reason.id} value={reason.name}>
+                          <MenuItem key={reason.id} value={reason.id}>
                             {reason.name}
                           </MenuItem>
                         ))}
@@ -114,29 +157,53 @@ class LeaveOfAbsenceRequest extends Component {
                 <FormHelperText>Required</FormHelperText>
               </FormControl>
               <FormControl fullWidth className={classes.formControl}>
-                <Grid
-                  container
-                  direction="row"
-                  justify="space-between"
-                  alignItems="center"
-                >
-                  {submitting ? (
-                    <Spinner size={30} color="secondary" />
+                <div className={classes.buttons}>
+                  {this.state.loading ? (
+                    <div>
+                      <Spinner size={30} color="secondary" />
+                    </div>
                   ) : (
-                    <Button
-                      type="submit"
-                      className={classes.formButton}
-                      variant="contained"
-                      size="large"
-                      color="secondary"
-                      disabled={pristine || invalid || submitting}
-                    >
-                      Submit
-                    </Button>
+                    <Fragment>
+                      {this.state.success && (
+                        <Chip
+                          label="Message sent! Your manager will get back to you shortly."
+                          onClick={() => {
+                            this.setState({ success: false });
+                          }}
+                          onDelete={() => {
+                            this.setState({ success: false });
+                          }}
+                          className={classes.chipSuccess}
+                        />
+                      )}
+                      {this.state.error && (
+                        <Chip
+                          label="Oops something went wrong! Please try again later."
+                          onClick={() => {
+                            this.setState({ error: false });
+                          }}
+                          onDelete={() => {
+                            this.setState({ error: false });
+                          }}
+                          className={classes.chipError}
+                        />
+                      )}
+                      {this.state.error || this.state.success ? null : (
+                        <Button
+                          type="submit"
+                          className={classes.formButton}
+                          variant="contained"
+                          size="large"
+                          color="secondary"
+                          disabled={pristine || invalid}
+                        >
+                          Submit
+                        </Button>
+                      )}
+                    </Fragment>
                   )}
-                </Grid>
+                </div>
               </FormControl>
-              <pre>{JSON.stringify(values, 0, 2)}</pre>
             </form>
           )}
         />
