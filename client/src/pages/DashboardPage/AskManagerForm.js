@@ -29,7 +29,6 @@ class AskManagerForm extends Component {
   _onSubmit = async (values, resetForm) => {
     this.setState({ loading: true });
     const success = await this.props.submitQuestion(values, this.props.user);
-    console.log(success);
     if (success.status === 201) {
       this.setState({ loading: false, success: true });
       resetForm();
