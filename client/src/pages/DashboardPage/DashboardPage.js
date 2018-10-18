@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Grid, Typography, withStyles } from '@material-ui/core';
 import DashboardNavigation from '../../components/Navigation/DashboardNavigation';
-import AskManagerForm from './AskManagerForm';
-import styles from './styles';
+import styles from './AskManagerForm/styles';
 import PropTypes from 'prop-types';
 import { UserContext } from '../../context/UserProvider';
 import LoadContent from '../../hoc/LoadContent';
 import Spinner from '../../components/UI/Spinner';
+import AskManagerForm from '../../components/Forms/AskManagerForm';
 import { COLDLOGIC_TOKEN } from '../../config/tokens';
 import { formatQuestion } from '../../lib/formatReport';
 import { submitReport } from '../../lib/submitReport';

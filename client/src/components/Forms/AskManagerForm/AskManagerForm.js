@@ -12,7 +12,7 @@ import {
 } from '@material-ui/core';
 import { Form, Field } from 'react-final-form';
 import styles from './styles';
-import Spinner from '../../components/UI/Spinner';
+import Spinner from '../../../components/UI/Spinner';
 import PropTypes from 'prop-types';
 
 class AskManagerForm extends Component {

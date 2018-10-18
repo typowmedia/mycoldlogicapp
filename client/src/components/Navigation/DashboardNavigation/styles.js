@@ -1,4 +1,8 @@
 const styles = theme => ({
+  navContainer: {
+    display: 'flex',
+    flexWrap: 'row wrap',
+  },
   navLinkContainer: {
     textAlign: 'center',
   },
@@ -15,13 +19,12 @@ const styles = theme => ({
     width: '50%',
     height: '50%',
   },
-    // Paper Cards below:
-  root: {
-    height: 180,
-    width: 200,
-[theme.breakpoints.up('sm')]: {
-    height: 260,
-}
+  card: {
+    width: '100%',
+    margin: theme.spacing.unit,
+    [theme.breakpoints.up('sm')]: {
+      height: 260,
+    },
   },
 });
 
