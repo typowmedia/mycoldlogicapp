@@ -1,19 +1,17 @@
 import React, { Component, Fragment } from 'react';
 import {
   InputLabel,
-  Button,
   withStyles,
   FormControl,
   TextField,
   Select,
   MenuItem,
   FormHelperText,
-  Chip,
 } from '@material-ui/core';
 import { Form, Field } from 'react-final-form';
 import styles from './styles';
-import Spinner from '../../../components/UI/Spinner';
 import PropTypes from 'prop-types';
+import FormControls from '../../Forms/FormControls';
 
 class AskManagerForm extends Component {
   constructor(props) {
@@ -51,7 +49,7 @@ class AskManagerForm extends Component {
   };
   render() {
     const { classes, departments } = this.props;
-
+    const { loading, error, success } = this.state;
     return (
       <div className={classes.form}>
         <Form
@@ -60,29 +58,24 @@ class AskManagerForm extends Component {
           }
           validate={values => this._validate(values)}
           render={({ handleSubmit, invalid, pristine }) => (
-            <form onSubmit={handleSubmit} className={classes.accountForm}>
+            <form onSubmit={handleSubmit}>
               <FormControl required className={classes.formControl}>
                 <Field name="manager">
                   {({ input, meta }) => (
                     <Fragment>
-                      <InputLabel
-                        htmlFor="manager"
-                        className={classes.fontSize}
-                      >
-                        Manager
-                      </InputLabel>
+                      <InputLabel htmlFor="manager">Manager</InputLabel>
                       <Select
                         id="manager"
                         value={input.value}
                         {...input}
                         name="manager"
                       >
-                        <MenuItem value="" className={classes.fontSize}>
+                        <MenuItem value="" className={classes.selectItem}>
                           <em>None</em>
                         </MenuItem>
                         {departments.map(dept => (
                           <MenuItem
-                            className={classes.fontSize}
+                            className={classes.selectItem}
                             key={dept.id}
                             value={JSON.stringify({
                               departmentId: dept.id,
@@ -93,9 +86,7 @@ class AskManagerForm extends Component {
                           </MenuItem>
                         ))}
                       </Select>
-                      <FormHelperText className={classes.fontSize}>
-                        Required
-                      </FormHelperText>
+                      <FormHelperText>Required</FormHelperText>
                     </Fragment>
                   )}
                 </Field>
@@ -116,15 +107,12 @@ class AskManagerForm extends Component {
                     />
                   )}
                 </Field>
-                <FormHelperText className={classes.fontSize}>
-                  Required
-                </FormHelperText>
+                <FormHelperText>Required</FormHelperText>
               </FormControl>
               <FormControl fullWidth required className={classes.formControl}>
                 <Field name="question">
                   {({ input, meta }) => (
                     <TextField
-                      className={classes.fontSize}
                       id="question"
                       {...input}
                       onChange={e => {
@@ -139,57 +127,18 @@ class AskManagerForm extends Component {
                     />
                   )}
                 </Field>
-                <FormHelperText className={classes.fontSize}>
-                  Required
-                </FormHelperText>
+                <FormHelperText>Required</FormHelperText>
               </FormControl>
               <FormControl fullWidth className={classes.formControl}>
-                <div className={classes.buttons}>
-                  {this.state.loading ? (
-                    <div>
-                      <Spinner size={30} color="secondary" />
-                    </div>
-                  ) : (
-                    <Fragment>
-                      {this.state.success && (
-                        <Chip
-                          label="Message sent! Your manager will get back to you shortly."
-                          onClick={() => {
-                            this.setState({ success: false });
-                          }}
-                          onDelete={() => {
-                            this.setState({ success: false });
-                          }}
-                          className={classes.chipSuccess}
-                        />
-                      )}
-                      {this.state.error && (
-                        <Chip
-                          label="Oops something went wrong! Please try again later."
-                          onClick={() => {
-                            this.setState({ error: false });
-                          }}
-                          onDelete={() => {
-                            this.setState({ error: false });
-                          }}
-                          className={classes.chipError}
-                        />
-                      )}
-                      {this.state.error || this.state.success ? null : (
-                        <Button
-                          type="submit"
-                          className={classes.formButton}
-                          variant="contained"
-                          size="large"
-                          color="secondary"
-                          disabled={pristine || invalid}
-                        >
-                          Submit
-                        </Button>
-                      )}
-                    </Fragment>
-                  )}
-                </div>
+                <FormControls
+                  loading={loading}
+                  error={error}
+                  success={success}
+                  successClicked={() => this.setState({ success: false })}
+                  errorClicked={() => this.setState({ error: false })}
+                  invalid={invalid}
+                  pristine={pristine}
+                />
               </FormControl>
             </form>
           )}
