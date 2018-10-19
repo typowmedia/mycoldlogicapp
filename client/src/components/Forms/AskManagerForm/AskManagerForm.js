@@ -59,24 +59,30 @@ class AskManagerForm extends Component {
             this._onSubmit(values, () => form.reset())
           }
           validate={values => this._validate(values)}
-          render={({ handleSubmit, invalid, form, pristine, values }) => (
+          render={({ handleSubmit, invalid, pristine }) => (
             <form onSubmit={handleSubmit} className={classes.accountForm}>
               <FormControl required className={classes.formControl}>
                 <Field name="manager">
                   {({ input, meta }) => (
                     <Fragment>
-                      <InputLabel htmlFor="manager">Manager</InputLabel>
+                      <InputLabel
+                        htmlFor="manager"
+                        className={classes.fontSize}
+                      >
+                        Manager
+                      </InputLabel>
                       <Select
                         id="manager"
                         value={input.value}
                         {...input}
                         name="manager"
                       >
-                        <MenuItem value="">
+                        <MenuItem value="" className={classes.fontSize}>
                           <em>None</em>
                         </MenuItem>
                         {departments.map(dept => (
                           <MenuItem
+                            className={classes.fontSize}
                             key={dept.id}
                             value={JSON.stringify({
                               departmentId: dept.id,
@@ -87,7 +93,9 @@ class AskManagerForm extends Component {
                           </MenuItem>
                         ))}
                       </Select>
-                      <FormHelperText>Required</FormHelperText>
+                      <FormHelperText className={classes.fontSize}>
+                        Required
+                      </FormHelperText>
                     </Fragment>
                   )}
                 </Field>
@@ -108,12 +116,15 @@ class AskManagerForm extends Component {
                     />
                   )}
                 </Field>
-                <FormHelperText>Required</FormHelperText>
+                <FormHelperText className={classes.fontSize}>
+                  Required
+                </FormHelperText>
               </FormControl>
               <FormControl fullWidth required className={classes.formControl}>
                 <Field name="question">
                   {({ input, meta }) => (
                     <TextField
+                      className={classes.fontSize}
                       id="question"
                       {...input}
                       onChange={e => {
@@ -128,7 +139,9 @@ class AskManagerForm extends Component {
                     />
                   )}
                 </Field>
-                <FormHelperText>Required</FormHelperText>
+                <FormHelperText className={classes.fontSize}>
+                  Required
+                </FormHelperText>
               </FormControl>
               <FormControl fullWidth className={classes.formControl}>
                 <div className={classes.buttons}>

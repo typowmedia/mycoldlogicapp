@@ -18,6 +18,7 @@ export default createMuiTheme({
     },
     white: {
       main: '#FFFFFF',
+      dark: '#f4f4f4',
     },
   },
 });

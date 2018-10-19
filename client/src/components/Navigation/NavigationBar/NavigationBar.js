@@ -40,9 +40,9 @@ class NavigationBar extends Component {
               <MenuIcon />
             </IconButton>
             <Typography
-              variant="title"
+              variant="display1"
               color="inherit"
-              className={classes.flex}
+              className={classes.userWelcome}
             >
               Welcome {user.FirstName}
             </Typography>

@@ -1,22 +1,22 @@
 const styles = theme => ({
-  flex: {
+  userWelcome: {
     flexGrow: 3,
     [theme.breakpoints.down('xs')]: {
-      display: 'none'
-    }
+      display: 'none',
+    },
   },
   toolbar: {
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   menuButton: {
-    marginLeft: -12,
-    marginRight: 20
+    marginLeft: '-1.2rem',
+    marginRight: '2rem',
   },
   logo: {
     padding: 5,
     alignSelf: 'flex-end',
-    width: 200
-  }
-})
+    width: '20rem',
+  },
+});
 
-export default styles
+export default styles;

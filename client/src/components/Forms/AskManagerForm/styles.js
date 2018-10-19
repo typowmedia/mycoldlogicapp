@@ -3,6 +3,10 @@ const styles = theme => ({
     flex: 1,
     height: '100%',
     padding: theme.spacing.unit * 4,
+    fontSize: '1.6rem',
+  },
+  fontSize: {
+    fontSize: '1.2rem',
   },
   formContainer: {
     textAlign: 'center',
