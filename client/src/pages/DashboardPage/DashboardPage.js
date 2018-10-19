@@ -24,10 +24,12 @@ class DashboardPage extends Component {
     return (
       <section className={classes.sectionDashboard}>
         <Grid container justify="center">
-          <Grid item xs={12} md={6}>
-            <DashboardNavigation />
+          <Grid item xs={12} sm={12} md={6}>
+            <div className={classes.navContainer}>
+              <DashboardNavigation />
+            </div>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} sm={12} md={6}>
             <UserContext.Consumer>
               {({ user }) => (
                 <LoadContent url="/Departments">

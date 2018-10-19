@@ -1,17 +1,22 @@
 const styles = theme => ({
   sectionDashboard: {
-    width: '100vw',
-    height: '90vh',
+    height: '88vh',
     display: 'flex',
     marginTop: theme.spacing.unit * 2,
     alignItems: 'center',
+  },
+  navContainer: {
+    width: '80%',
+    margin: '0 auto',
+    '@media (max-width: 1350px)': {
+      width: '100%',
+    },
   },
   formTitle: {
     textAlign: 'center',
     paddingTop: theme.spacing.unit * 2,
   },
   managerFormContainer: {
-    width: '100%',
     height: '100%',
     display: 'flex',
     alignItems: 'center',
@@ -19,7 +24,7 @@ const styles = theme => ({
   },
   formContainer: {
     padding: '3rem',
-    width: '80%',
+    maxWidth: '80%',
     margin: '0 auto',
     border: `2px solid ${theme.palette.secondary.main}`,
     boxShadow: '1px 2px 4rem rgba(0,0,0,0.4), -1px -2px 4rem rgba(0,0,0,0.4)',
