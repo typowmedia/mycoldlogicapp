@@ -1,15 +1,12 @@
 const styles = theme => ({
   navCard: {
     height: '100%',
-    width: '100%',
+    width: '90%',
     padding: theme.spacing.unit,
+    marginBottom: '10%',
     boxShadow: '1px 3px 4rem rgba(0,0,0,.4)',
     borderRadius: theme.spacing.unit * 5,
     transition: 'all .2s',
-
-    // '@media (max-width: 1080px)': {
-    //   width: '80%',
-    // },
 
     '&:hover': {
       cursor: 'pointer',
@@ -47,10 +44,6 @@ const styles = theme => ({
     width: '75%',
     textAlign: 'center',
     margin: '0 auto',
-
-    // '@media (max-width: 1080px)': {
-    //   display: 'none',
-    // },
   },
 });
 

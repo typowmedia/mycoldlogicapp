@@ -1,24 +1,19 @@
 const styles = theme => ({
   navFlexContainer: {
     display: 'flex',
+    height: '100%',
     justifyContent: 'center',
+    alignItems: 'center',
     flexWrap: 'wrap',
     textAlign: 'center',
-    transition: 'all .2s',
-    transform: 'translateX(4rem)',
-    '@media (max-width: 1080px)': {
-      transform: 'translateX(0)',
-    },
+    padding: '1rem',
   },
   flexContainerItem: {
-    width: '24rem',
-    margin: '1%',
+    width: '40%',
+    height: '48%',
+    margin: '1rem',
     display: 'flex',
     justifyContent: 'center',
-
-    '@media (max-width: 1080px)': {
-      width: '22rem',
-    },
   },
 });
 

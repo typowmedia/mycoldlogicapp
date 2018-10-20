@@ -23,13 +23,25 @@ class DashboardPage extends Component {
     const { classes } = this.props;
     return (
       <section className={classes.sectionDashboard}>
-        <Grid container justify="center">
-          <Grid item xs={12} sm={12} md={6}>
+        <Grid container justify="center" alignItems="stretch">
+          <Grid
+            item
+            xs={12}
+            sm={12}
+            md={6}
+            className={classes.dashboardGridItem}
+          >
             <div className={classes.navContainer}>
               <DashboardNavigation />
             </div>
           </Grid>
-          <Grid item xs={12} sm={12} md={6}>
+          <Grid
+            item
+            xs={12}
+            sm={12}
+            md={6}
+            className={classes.dashboardGridItem}
+          >
             <UserContext.Consumer>
               {({ user }) => (
                 <LoadContent url="/Departments">

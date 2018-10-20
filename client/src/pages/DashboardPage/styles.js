@@ -1,16 +1,17 @@
 const styles = theme => ({
   sectionDashboard: {
-    height: '88vh',
+    paddingTop: '2rem',
+    height: '94vh',
     display: 'flex',
-    marginTop: theme.spacing.unit * 2,
-    alignItems: 'center',
+  },
+  dashboardGridItem: {
+    [theme.breakpoints.up('sm')]: {
+      paddingBottom: '5rem',
+    },
   },
   navContainer: {
-    width: '80%',
-    margin: '0 auto',
-    '@media (max-width: 1350px)': {
-      width: '100%',
-    },
+    width: '100%',
+    height: '100%',
   },
   formTitle: {
     textAlign: 'center',
