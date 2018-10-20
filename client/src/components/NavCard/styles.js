@@ -1,12 +1,17 @@
 const styles = theme => ({
   navCard: {
     height: '100%',
-    width: '90%',
+    width: '97%',
+    margin: '0 auto',
+    marginBottom: '1rem',
     padding: theme.spacing.unit,
-    marginBottom: '10%',
     boxShadow: '1px 3px 4rem rgba(0,0,0,.4)',
     borderRadius: theme.spacing.unit * 5,
     transition: 'all .2s',
+    [theme.breakpoints.up('sm')]: {
+      width: '90%',
+      marginBottom: '10%',
+    },
 
     '&:hover': {
       cursor: 'pointer',
@@ -18,6 +23,7 @@ const styles = theme => ({
       boxShadow: '1px 3px 2rem rgba(0,0,0,.6)',
     },
   },
+
   navCardImageContainer: {
     position: 'relative',
     width: '13rem',

@@ -3,17 +3,22 @@ const styles = theme => ({
     display: 'flex',
     height: '100%',
     justifyContent: 'center',
-    alignItems: 'center',
     flexWrap: 'wrap',
+    alignItems: 'center',
     textAlign: 'center',
-    padding: '1rem',
+    [theme.breakpoints.up('sm')]: {
+      padding: '1rem',
+    },
   },
   flexContainerItem: {
-    width: '40%',
-    height: '48%',
-    margin: '1rem',
-    display: 'flex',
-    justifyContent: 'center',
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      width: '40%',
+      height: '48%',
+      margin: '1rem',
+      display: 'flex',
+      justifyContent: 'center',
+    },
   },
 });
 
