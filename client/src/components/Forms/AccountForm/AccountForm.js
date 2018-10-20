@@ -10,8 +10,8 @@ import {
 } from '@material-ui/core';
 import { Form, Field } from 'react-final-form';
 import styles from './styles';
-import Spinner from '../../components/UI/Spinner';
-import { UserContext } from '../../context/UserProvider';
+import Spinner from '../../UI/Spinner';
+import { UserContext } from '../../../context/UserProvider';
 import PropTypes from 'prop-types';
 
 class AccountForm extends Component {
@@ -31,6 +31,7 @@ class AccountForm extends Component {
       this.setState({ loading: false, error: true });
     }
   };
+
   _validate(values) {
     const NumberRegex = /\D/g;
     let errors = {};

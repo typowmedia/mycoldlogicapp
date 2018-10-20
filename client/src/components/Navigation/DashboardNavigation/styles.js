@@ -1,27 +1,24 @@
 const styles = theme => ({
-  navLinkContainer: {
+  navFlexContainer: {
+    display: 'flex',
+    height: '100%',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    alignItems: 'center',
     textAlign: 'center',
-  },
-  navButton: {
-    width: 90,
-    height: 90,
-    backgroundColor: theme.palette.secondary.main,
     [theme.breakpoints.up('sm')]: {
-      width: 150,
-      height: 150,
+      padding: '1rem',
     },
   },
-  navLink: {
-    width: '50%',
-    height: '50%',
-  },
-    // Paper Cards below:
-  root: {
-    height: 180,
-    width: 200,
-[theme.breakpoints.up('sm')]: {
-    height: 260,
-}
+  flexContainerItem: {
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      width: '40%',
+      height: '48%',
+      margin: '1rem',
+      display: 'flex',
+      justifyContent: 'center',
+    },
   },
 });
 

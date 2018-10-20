@@ -42,10 +42,11 @@ class LeaveOfAbsenceRequest extends Component {
     } else this.setState({ loading: false, error: true });
   };
   _validate = values => {
-    const today = moment(new Date()).format('MMM Do YYYY');
-    const from = moment(values.from).format('MMM Do YYYY');
-    const to = moment(values.to).format('MMM Do YYYY');
+    const today = new Date().setHours(0, 0, 0, 0);
+    const from = new Date(values.from).setHours(0, 0, 0, 0);
+    const to = new Date(values.to).setHours(0, 0, 0, 0);
 
+    console.log(today, to, from);
     let errors = {};
 
     if (!values.from) errors.from = 'Please choose when to start your leave.';
@@ -75,7 +76,7 @@ class LeaveOfAbsenceRequest extends Component {
         <Form
           onSubmit={(values, form) => this._onSubmit(values, form.reset())}
           validate={this._validate}
-          render={({ handleSubmit, invalid, form, pristine }) => (
+          render={({ handleSubmit, invalid, form, pristine, values }) => (
             <form onSubmit={handleSubmit} className={classes.accountForm}>
               <FormControl className={classes.formControl}>
                 <div className={classes.dateContainer}>
@@ -204,6 +205,7 @@ class LeaveOfAbsenceRequest extends Component {
                   )}
                 </div>
               </FormControl>
+              <pre>{JSON.stringify(values, 0, 2)}</pre>
             </form>
           )}
         />

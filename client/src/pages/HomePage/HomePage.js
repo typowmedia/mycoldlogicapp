@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, withStyles } from '@material-ui/core';
-import AccountForm from './AccountForm';
+import AccountForm from '../../components/Forms/AccountForm';
 import ColdLogic from '../../assets/ColdLogicLogo';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';

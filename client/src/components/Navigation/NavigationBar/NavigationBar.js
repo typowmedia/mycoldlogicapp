@@ -26,10 +26,9 @@ class NavigationBar extends Component {
   };
   render() {
     const { classes, user, history, logout } = this.props;
-    // temp user until one is provided
     return (
       <Fragment>
-        <AppBar position="sticky">
+        <AppBar position="static">
           <Toolbar className={classes.toolbar}>
             <IconButton
               className={classes.menuButton}
@@ -40,9 +39,9 @@ class NavigationBar extends Component {
               <MenuIcon />
             </IconButton>
             <Typography
-              variant="title"
+              variant="display1"
               color="inherit"
-              className={classes.flex}
+              className={classes.userWelcome}
             >
               Welcome {user.FirstName}
             </Typography>
