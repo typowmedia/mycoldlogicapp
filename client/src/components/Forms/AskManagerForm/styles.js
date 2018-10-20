@@ -7,7 +7,7 @@ const styles = theme => ({
   formControl: {
     marginBottom: theme.spacing.unit * 2,
     width: '100%',
-    fontSize: '1.6rem',
+    fontSize: '1.8rem',
 
     '& > *': {
       fontSize: 'inherit',
@@ -17,7 +17,7 @@ const styles = theme => ({
     },
   },
   selectItem: {
-    fontSize: '1.6rem',
+    fontSize: '1.8rem',
   },
 });
 

@@ -5,9 +5,7 @@ const styles = theme => ({
     display: 'flex',
   },
   dashboardGridItem: {
-    [theme.breakpoints.up('sm')]: {
-      paddingBottom: '5rem',
-    },
+    paddingBottom: '5rem',
   },
   navContainer: {
     width: '100%',
@@ -24,11 +22,15 @@ const styles = theme => ({
     justifyContent: 'center',
   },
   formContainer: {
-    padding: '3rem',
-    maxWidth: '80%',
+    padding: '2rem',
+    width: '100%',
     margin: '0 auto',
     border: `2px solid ${theme.palette.secondary.main}`,
     boxShadow: '1px 2px 4rem rgba(0,0,0,0.4), -1px -2px 4rem rgba(0,0,0,0.4)',
+    [theme.breakpoints.up('sm')]: {
+      padding: '3rem',
+      maxWidth: '80%',
+    },
   },
 });
 
