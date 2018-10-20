@@ -1,7 +1,10 @@
 const styles = theme => ({
   navCard: {
     height: '100%',
-    width: '97%',
+    width: '80%',
+    display: 'flex',
+    alignItems: 'center',
+    textAlign: 'right',
     margin: '0 auto',
     marginBottom: '1rem',
     padding: theme.spacing.unit,
@@ -11,6 +14,9 @@ const styles = theme => ({
     [theme.breakpoints.up('sm')]: {
       width: '90%',
       marginBottom: '10%',
+      width: '97%',
+      flexDirection: 'column',
+      justifyContent: 'center',
     },
 
     '&:hover': {
@@ -23,33 +29,59 @@ const styles = theme => ({
       boxShadow: '1px 3px 2rem rgba(0,0,0,.6)',
     },
   },
-
-  navCardImageContainer: {
-    position: 'relative',
-    width: '13rem',
-    height: '13rem',
-    borderRadius: '50%',
-    margin: '0 auto',
-    marginTop: '2rem',
-    backgroundColor: theme.palette.secondary.main,
-    boxShadow: '1px 3px 1rem rgba(0,0,0,.8)',
+  navCardFlexItemOne: {
+    width: '40%',
+    [theme.breakpoints.up('sm')]: {
+      width: '100%',
+    },
+  },
+  navCardFlexItemTwo: {
+    width: '60%',
+    [theme.breakpoints.up('sm')]: {
+      width: '100%',
+    },
   },
   navCardImage: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: '60%',
+    width: '43%',
     height: 'auto',
+    backgroundColor: theme.palette.secondary.main,
+    boxShadow: '1px 3px 1rem rgba(0,0,0,.8)',
+    borderRadius: '100%',
+    padding: '1.3rem',
+    [theme.breakpoints.up('sm')]: {
+      margin: 'auto',
+      padding: '2rem',
+    },
   },
   navCardTitle: {
-    margin: '2rem 0',
+    textTransform: 'capitalize',
+    [theme.breakpoints.up('sm')]: {
+      width: '100%',
+      margin: '2rem 0',
+    },
   },
+  navCardTitleText: {
+    fontSize: '1.6rem',
+    fontWeight: '700',
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '1.9rem',
+    },
+  },
+
   navCardDescription: {
-    marginBottom: '1rem',
-    width: '75%',
-    textAlign: 'center',
-    margin: '0 auto',
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'block',
+      marginBottom: '1rem',
+      width: '75%',
+      textAlign: 'center',
+      margin: '0 auto',
+    },
+  },
+
+  navCardDescriptionText: {
+    fontSize: '1.6rem',
+    fontWeight: '400',
   },
 });
 
