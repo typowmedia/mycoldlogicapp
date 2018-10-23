@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './styles';
-import { withStyles, Typography } from '@material-ui/core';
+import { withStyles } from '@material-ui/core';
 import { withRouter } from 'react-router-dom';
 
 const NavCard = ({ classes, nav, history }) => {

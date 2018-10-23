@@ -19,7 +19,6 @@ import { maxCharLength } from '../../lib/maxCharLength';
 import { formatLeaveOfAbsence } from '../../lib/formatReport';
 import { submitReport } from '../../lib/submitReport';
 import { COLDLOGIC_TOKEN } from '../../config/tokens';
-import moment from 'moment';
 
 class LeaveOfAbsenceRequest extends Component {
   constructor(props) {

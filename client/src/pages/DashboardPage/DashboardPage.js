@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, withStyles, withTheme, Hidden } from '@material-ui/core';
+import { Grid, withStyles, withTheme } from '@material-ui/core';
 import DashboardNavigation from '../../components/Navigation/DashboardNavigation';
 import styles from './styles';
 import PropTypes from 'prop-types';
