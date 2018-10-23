@@ -1,32 +1,28 @@
 const styles = theme => ({
-  formControl: {
-    marginBottom: theme.spacing.unit * 2,
-    width: '100%',
-  },
-  formButton: {
-    marginTop: theme.spacing.unit * 2,
-  },
-  formToggle: {
-    background: 'none',
-    border: 'none',
-    textDecoration: 'underline',
-    '&:hover': {
-      cursor: 'pointer',
-    },
-  },
-  accountForm: {
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      width: '500px',
-    },
-  },
-  errorMessage: {
-    color: 'firebrick',
-  },
+  formContainer: {},
   form: {
-    marginTop: theme.spacing.unit * 5,
+    margin: '0 auto',
+    marginTop: '3rem',
+    maxWidth: '70rem',
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
+    padding: '1.5rem',
+  },
+  formControl: {
+    marginBottom: '1.6rem',
+    width: '100%',
+    fontSize: '1.8rem',
+
+    '& > *': {
+      fontSize: 'inherit',
+      '& > *': {
+        fontSize: 'inherit',
+      },
+    },
+  },
+  error: {
+    color: 'firebrick',
   },
   buttons: {
     display: 'flex',
@@ -35,14 +31,25 @@ const styles = theme => ({
     alignItems: 'center',
     height: 80,
   },
+  inlineButton: {
+    background: 'none',
+    border: 'none',
+    textDecoration: 'underline',
+    transition: 'color .3s',
+    '&:hover': {
+      cursor: 'pointer',
+      color: theme.palette.secondary.main,
+    },
+  },
+  formButton: {
+    marginTop: theme.spacing.unit * 2,
+    fontSize: '1.4rem',
+  },
   errorContainer: {
     width: '100%',
     textAlign: 'center',
     padding: theme.spacing.unit,
     fontSize: 14,
-  },
-  error: {
-    color: 'red',
   },
 });
 
