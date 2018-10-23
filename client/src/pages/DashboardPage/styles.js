@@ -1,13 +1,11 @@
 const styles = theme => ({
   dashboardContainer: {
     minHeight: '100vh',
+    paddingTop: '6rem',
 
     '& > *': {
       padding: '1rem',
       display: 'flex',
-    },
-    [theme.breakpoints.down('sm')]: {
-      marginTop: '9rem',
     },
   },
   coldlogic: {
@@ -26,6 +24,9 @@ const styles = theme => ({
     [theme.breakpoints.down('sm')]: {
       padding: '3rem',
     },
+    [theme.breakpoints.down('xs')]: {
+      padding: '1rem',
+    },
   },
   dashboardAskManager: {
     [theme.breakpoints.down('sm')]: {
@@ -33,6 +34,7 @@ const styles = theme => ({
     },
     [theme.breakpoints.down('xs')]: {
       padding: 0,
+      marginTop: '2rem',
     },
   },
 });

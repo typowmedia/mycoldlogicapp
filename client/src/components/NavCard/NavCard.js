@@ -6,27 +6,11 @@ import { withRouter } from 'react-router-dom';
 const NavCard = ({ classes, nav, history }) => {
   return (
     <div className={classes.navCard} onClick={() => history.push(nav.route)}>
-      <div className={classes.navCardImageContainer}>
-        <figure className={classes.navCardImage}>{nav.icon}</figure>
-      </div>
+      <figure className={classes.navCardImage}>{nav.icon}</figure>
 
       <div className={classes.navCardTextContainer}>
-        <Typography
-          align="center"
-          variant="display3"
-          component="h1"
-          className={classes.navCardTitleText}
-        >
-          {nav.name}
-        </Typography>
-        <Typography
-          align="center"
-          variant="display3"
-          component="p"
-          className={classes.navCardDescriptionText}
-        >
-          {nav.description}
-        </Typography>
+        <h2 className={classes.navCardTitleText}>{nav.name}</h2>
+        <p className={classes.navCardDescriptionText}>{nav.description}</p>
       </div>
     </div>
   );

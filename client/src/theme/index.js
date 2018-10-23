@@ -23,7 +23,8 @@ export default createMuiTheme({
     grey: {
       main: '#EEEEEE',
       light: '#a0a0a0',
-      dark: '777777',
+      dark: '#777777',
+      darker: '#1e1e1e',
     },
   },
 });
