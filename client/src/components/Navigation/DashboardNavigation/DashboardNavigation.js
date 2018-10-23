@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core';
+import { withStyles, Grid } from '@material-ui/core';
 import styles from './styles';
 import PropTypes from 'prop-types';
 import { navigation } from '../config';
@@ -7,13 +7,13 @@ import NavCard from '../../NavCard';
 
 const DashboardNavigation = ({ classes }) => {
   return (
-    <div className={classes.navFlexContainer}>
+    <Grid container zeroMinWidth spacing={24}>
       {navigation.map(nav => (
-        <div key={nav.name} className={classes.flexContainerItem}>
+        <Grid item xs={6} key={nav.name}>
           <NavCard nav={nav} />
-        </div>
+        </Grid>
       ))}
-    </div>
+    </Grid>
   );
 };
 

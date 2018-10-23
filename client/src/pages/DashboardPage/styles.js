@@ -1,17 +1,39 @@
 const styles = theme => ({
   dashboardContainer: {
+    minHeight: '100vh',
+
     '& > *': {
-      padding: '3rem',
+      padding: '1rem',
+      display: 'flex',
+    },
+    [theme.breakpoints.down('sm')]: {
+      marginTop: '9rem',
     },
   },
   coldlogic: {
-    background: 'skyblue',
+    flex: 1,
+
+    display: 'none',
+    [theme.breakpoints.down('xs')]: {
+      display: 'flex',
+    },
   },
-  dashboardGridItem: {
-    background: 'orangered',
+  logoContainer: {
+    flex: 1,
+    height: '10rem',
   },
-  dashboardGridItemTwo: {
-    background: 'yellowgreen',
+  dashboardNavContainer: {
+    [theme.breakpoints.down('sm')]: {
+      padding: '3rem',
+    },
+  },
+  dashboardAskManager: {
+    [theme.breakpoints.down('sm')]: {
+      padding: '3rem',
+    },
+    [theme.breakpoints.down('xs')]: {
+      padding: 0,
+    },
   },
 });
 

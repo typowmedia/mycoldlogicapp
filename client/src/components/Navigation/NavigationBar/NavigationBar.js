@@ -29,7 +29,7 @@ class NavigationBar extends Component {
     const { classes, user, history, logout } = this.props;
     return (
       <Fragment>
-        <AppBar position="static">
+        <AppBar position="fixed">
           <Toolbar className={classes.toolbar}>
             <IconButton
               className={classes.menuButton}

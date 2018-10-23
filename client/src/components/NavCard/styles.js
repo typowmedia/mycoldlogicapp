@@ -1,9 +1,11 @@
 const styles = theme => ({
   navCard: {
     flex: 1,
+    height: '100%',
+    alignSelf: 'stretch',
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'stretch',
+    justifyContent: 'space-around',
     padding: '1rem',
     boxShadow: '1px 3px 4rem rgba(0,0,0,.4)',
     borderRadius: '1rem',
