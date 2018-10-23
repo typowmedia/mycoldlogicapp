@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Grid, withStyles, Typography } from '@material-ui/core';
-import RequestPassword from './RequestPassword';
 import ColdLogic from '../../assets/ColdLogicLogo';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styles from './styles';
+import RequestPasswordForm from '../../components/Forms/RequestPasswordForm';
 
 class RequestPasswordPage extends Component {
   constructor(props) {
@@ -26,7 +26,7 @@ class RequestPasswordPage extends Component {
     const { classes, history } = this.props;
     const { requestSent } = this.state;
     return (
-      <Grid container className={classes.root} justify="center">
+      <Grid container className={classes.requestContainer} justify="center">
         <Grid item xs={12} sm={12} md={6}>
           <ColdLogic color="#0D3C55" />
           {requestSent ? (
@@ -35,7 +35,7 @@ class RequestPasswordPage extends Component {
               will get in contact with a password soon!
             </Typography>
           ) : (
-            <RequestPassword
+            <RequestPasswordForm
               history={history}
               requestSuccess={this.requestSuccessful}
             />
