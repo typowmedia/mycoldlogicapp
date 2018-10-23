@@ -43,6 +43,7 @@ export default () => (
       return (
         <Fragment>
           <NavigationBar user={user} logout={logout} />
+
           <Switch>
             <Route exact path={DASHBOARD} component={DashboardPage} />
             <Route

@@ -2,26 +2,27 @@ const styles = theme => ({
   menuItem: {
     '&:hover': {
       cursor: 'pointer',
-      backgroundColor: theme.palette.secondary.main
-    }
+      backgroundColor: theme.palette.secondary.main,
+    },
   },
   menu: {
     flex: 1,
-    backgroundColor: theme.palette.primary.main
+    backgroundColor: theme.palette.primary.main,
   },
   primary: {
-    color: '#f4f4f4'
+    color: theme.palette.white.dark,
+    fontSize: '1.6rem',
   },
   icons: {
-    width: 25,
-    height: 25
+    width: '2.5rem',
+    height: '2.5rem',
   },
   currentUserLogo: {
-    color: theme.palette.secondary.main
+    color: theme.palette.secondary.main,
   },
   divider: {
-    backgroundColor: theme.palette.secondary.main
-  }
-})
+    backgroundColor: theme.palette.secondary.main,
+  },
+});
 
-export default styles
+export default styles;

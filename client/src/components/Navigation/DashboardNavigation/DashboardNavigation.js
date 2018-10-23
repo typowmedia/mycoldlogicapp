@@ -1,48 +1,23 @@
 import React from 'react';
-import {
-  Grid,
-  Typography,
-  Paper,
-  withStyles,
-} from '@material-ui/core';
+import { withStyles } from '@material-ui/core';
 import styles from './styles';
 import PropTypes from 'prop-types';
 import { navigation } from '../config';
-import { withRouter } from 'react-router-dom';
+import NavCard from '../../NavCard';
 
-const DashboardNavigation = ({ classes, history }) => {
+const DashboardNavigation = ({ classes }) => {
   return (
-    <Grid container spacing={24}>
+    <div className={classes.navFlexContainer}>
       {navigation.map(nav => (
-        <Grid
-          className={classes.navLinkContainer}
-          key={nav.name}
-          item
-          xs={8}
-          sm={6}
-          md={6}
-          lg={6}
-        >
-            <Paper
-                className={classes.root}
-                elevation={2}
-                onClick={() => history.push(nav.route)}
-            >
-                <div className={classes.navLink}>{nav.icon}</div>
-                <Typography variant="headline" component="h3">
-                    {nav.name}
-                </Typography>
-                <Typography component="p">
-                    {nav.description}
-                </Typography>
-            </Paper>
-        </Grid>
+        <div key={nav.name} className={classes.flexContainerItem}>
+          <NavCard nav={nav} />
+        </div>
       ))}
-    </Grid>
+    </div>
   );
 };
 
 DashboardNavigation.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-export default withRouter(withStyles(styles)(DashboardNavigation));
+export default withStyles(styles)(DashboardNavigation);

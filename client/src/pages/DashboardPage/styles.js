@@ -1,78 +1,35 @@
 const styles = theme => ({
-  root: {
-    flex: 1,
-    height: '100%',
-    padding: theme.spacing.unit * 4,
+  sectionDashboard: {
+    paddingTop: '2rem',
+    height: '94vh',
+    display: 'flex',
   },
-  formContainer: {
-    textAlign: 'center',
+  dashboardGridItem: {
+    paddingBottom: '5rem',
+  },
+  navContainer: {
+    width: '100%',
+    height: '100%',
   },
   formTitle: {
-    paddingTop: theme.spacing.unit * 5,
+    textAlign: 'center',
+    paddingTop: theme.spacing.unit * 2,
   },
-  formControl: {
-    marginBottom: theme.spacing.unit * 2,
-    width: '100%',
-  },
-  formButton: {
-    width: '100%',
-  },
-  formToggle: {
-    background: 'none',
-    border: 'none',
-    textDecoration: 'underline',
-    '&:hover': {
-      cursor: 'pointer',
-    },
-  },
-  accountForm: {
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      width: '500px',
-    },
-  },
-  errorMessage: {
-    color: 'firebrick',
-  },
-  form: {
-    marginTop: theme.spacing.unit * 5,
+  managerFormContainer: {
+    height: '100%',
     display: 'flex',
-    justifyContent: 'center',
-  },
-  buttons: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
     alignItems: 'center',
-    height: 40,
+    justifyContent: 'center',
   },
-  chipError: {
-    background: theme.palette.error.main,
-    color: theme.palette.white.main,
-    transition: 'all .2s',
-    '&:hover': {
-      background: theme.palette.error.dark,
-      transform: 'translateY(-3px)',
-      boxShadow: '0 2px 10px #000',
-    },
-    '&:active': {
-      background: theme.palette.error.dark,
-      transform: 'translateY(0)',
-      boxShadow: '0 1px 5px #000',
-    },
-  },
-  chipSuccess: {
-    background: theme.palette.success.main,
-    color: theme.palette.white.main,
-    '&:hover': {
-      background: theme.palette.success.dark,
-      transform: 'translateY(-3px)',
-      boxShadow: '0 2px 10px #000',
-    },
-    '&:active': {
-      background: theme.palette.success.dark,
-      transform: 'translateY(0)',
-      boxShadow: '0 1px 5px #000',
+  formContainer: {
+    padding: '2rem',
+    width: '100%',
+    margin: '0 auto',
+    border: `2px solid ${theme.palette.secondary.main}`,
+    boxShadow: '1px 2px 4rem rgba(0,0,0,0.4), -1px -2px 4rem rgba(0,0,0,0.4)',
+    [theme.breakpoints.up('sm')]: {
+      padding: '3rem',
+      maxWidth: '80%',
     },
   },
 });

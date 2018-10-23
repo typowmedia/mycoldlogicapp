@@ -18,6 +18,12 @@ export default createMuiTheme({
     },
     white: {
       main: '#FFFFFF',
+      dark: '#f4f4f4',
+    },
+    grey: {
+      main: '#EEEEEE',
+      light: '#a0a0a0',
+      dark: '777777',
     },
   },
 });
