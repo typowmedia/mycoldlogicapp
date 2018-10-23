@@ -1,35 +1,40 @@
 const styles = theme => ({
-  sectionDashboard: {
-    paddingTop: '2rem',
-    height: '94vh',
-    display: 'flex',
+  dashboardContainer: {
+    minHeight: '100vh',
+    paddingTop: '6rem',
+
+    '& > *': {
+      padding: '1rem',
+      display: 'flex',
+    },
   },
-  dashboardGridItem: {
-    paddingBottom: '5rem',
+  coldlogic: {
+    flex: 1,
+
+    display: 'none',
+    [theme.breakpoints.down('xs')]: {
+      display: 'flex',
+    },
   },
-  navContainer: {
-    width: '100%',
-    height: '100%',
+  logoContainer: {
+    flex: 1,
+    height: '10rem',
   },
-  formTitle: {
-    textAlign: 'center',
-    paddingTop: theme.spacing.unit * 2,
-  },
-  managerFormContainer: {
-    height: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  formContainer: {
-    padding: '2rem',
-    width: '100%',
-    margin: '0 auto',
-    border: `2px solid ${theme.palette.secondary.main}`,
-    boxShadow: '1px 2px 4rem rgba(0,0,0,0.4), -1px -2px 4rem rgba(0,0,0,0.4)',
-    [theme.breakpoints.up('sm')]: {
+  dashboardNavContainer: {
+    [theme.breakpoints.down('sm')]: {
       padding: '3rem',
-      maxWidth: '80%',
+    },
+    [theme.breakpoints.down('xs')]: {
+      padding: '1rem',
+    },
+  },
+  dashboardAskManager: {
+    [theme.breakpoints.down('sm')]: {
+      padding: '3rem',
+    },
+    [theme.breakpoints.down('xs')]: {
+      padding: 0,
+      marginTop: '2rem',
     },
   },
 });
