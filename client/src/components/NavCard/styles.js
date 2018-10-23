@@ -1,22 +1,19 @@
 const styles = theme => ({
   navCard: {
-    height: '100%',
-    width: '80%',
+    flex: 1,
     display: 'flex',
-    alignItems: 'center',
-    textAlign: 'right',
-    margin: '0 auto',
-    marginBottom: '1rem',
-    padding: theme.spacing.unit,
+    flexDirection: 'column',
+    alignItems: 'stretch',
+    padding: '1rem',
     boxShadow: '1px 3px 4rem rgba(0,0,0,.4)',
-    borderRadius: theme.spacing.unit * 5,
+    borderRadius: '1rem',
     transition: 'all .2s',
-    [theme.breakpoints.up('sm')]: {
-      width: '90%',
-      marginBottom: '10%',
-      width: '97%',
-      flexDirection: 'column',
-      justifyContent: 'center',
+
+    [theme.breakpoints.down('xs')]: {
+      flexDirection: 'row',
+      padding: '.5rem',
+      borderRadius: 100,
+      marginBottom: '1rem',
     },
 
     '&:hover': {
@@ -29,59 +26,64 @@ const styles = theme => ({
       boxShadow: '1px 3px 2rem rgba(0,0,0,.6)',
     },
   },
-  navCardFlexItemOne: {
-    width: '40%',
-    [theme.breakpoints.up('sm')]: {
-      width: '100%',
-    },
-  },
-  navCardFlexItemTwo: {
-    width: '60%',
-    [theme.breakpoints.up('sm')]: {
-      width: '100%',
-    },
-  },
-  navCardImage: {
-    width: '43%',
-    height: 'auto',
-    backgroundColor: theme.palette.secondary.main,
-    boxShadow: '1px 3px 1rem rgba(0,0,0,.8)',
-    borderRadius: '100%',
-    padding: '1.3rem',
-    [theme.breakpoints.up('sm')]: {
-      margin: 'auto',
-      padding: '2rem',
-    },
-  },
-  navCardTitle: {
-    textTransform: 'capitalize',
-    [theme.breakpoints.up('sm')]: {
-      width: '100%',
-      margin: '2rem 0',
-    },
-  },
-  navCardTitleText: {
-    fontSize: '1.6rem',
-    fontWeight: '700',
-    [theme.breakpoints.up('sm')]: {
-      fontSize: '1.9rem',
+
+  navCardImageContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '1rem',
+    flex: 1,
+    [theme.breakpoints.down('xs')]: {
+      flex: '0',
     },
   },
 
-  navCardDescription: {
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'block',
-      marginBottom: '1rem',
-      width: '75%',
-      textAlign: 'center',
-      margin: '0 auto',
+  navCardImage: {
+    width: '11rem',
+    height: '11rem',
+    padding: '2rem',
+    backgroundColor: theme.palette.secondary.main,
+    boxShadow: '1px 3px 1rem rgba(0,0,0,.8)',
+    borderRadius: '50%',
+    [theme.breakpoints.down('xs')]: {
+      width: '6rem',
+      height: '6rem',
+      padding: '1rem',
+    },
+  },
+
+  navCardTextContainer: {
+    display: 'flex',
+    fontSize: '1.6rem',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    padding: '2rem',
+
+    flex: 1,
+    [theme.breakpoints.down('xs')]: {
+      flexDirection: 'row',
+      justifyContent: 'flex-end',
+      padding: '1rem',
+    },
+  },
+
+  navCardTitleText: {
+    textTransform: 'capitalize',
+    fontSize: '1.9rem',
+    fontWeight: '700',
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'right',
+      fontSize: '1.4rem',
     },
   },
 
   navCardDescriptionText: {
-    fontSize: '1.6rem',
+    fontSize: '1.7rem',
     fontWeight: '400',
+    [theme.breakpoints.down('xs')]: {
+      display: 'none',
+    },
   },
 });
 

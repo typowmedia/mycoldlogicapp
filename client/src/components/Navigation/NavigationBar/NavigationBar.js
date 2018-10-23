@@ -6,6 +6,7 @@ import {
   Toolbar,
   Typography,
   IconButton,
+  Hidden,
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import ColdLogic from '../../../assets/ColdLogicLogo';
@@ -45,14 +46,16 @@ class NavigationBar extends Component {
             >
               Welcome {user.FirstName}
             </Typography>
-            <div
-              className={classes.logo}
-              onClick={() => {
-                history.push('/dashboard');
-              }}
-            >
-              <ColdLogic color="#f4f4f4" />
-            </div>
+            <Hidden xsDown>
+              <div
+                className={classes.logo}
+                onClick={() => {
+                  history.push('/dashboard');
+                }}
+              >
+                <ColdLogic color="#f4f4f4" />
+              </div>
+            </Hidden>
           </Toolbar>
         </AppBar>
         <DrawerNav

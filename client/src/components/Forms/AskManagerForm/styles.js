@@ -1,6 +1,6 @@
 const styles = theme => ({
   form: {
-    marginTop: theme.spacing.unit * 5,
+    flex: 1,
     display: 'flex',
     justifyContent: 'center',
   },

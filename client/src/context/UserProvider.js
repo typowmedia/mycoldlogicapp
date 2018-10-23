@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import Spinner from '../components/UI/Spinner';
 import { COLDLOGIC_TOKEN } from '../config/tokens';
+import { formatQuestion } from '../lib/formatReport';
+import { submitReport } from '../lib/submitReport';
 
 export const UserContext = React.createContext();
 
@@ -16,6 +18,13 @@ class UserProvider extends Component {
       error: null,
     };
   }
+
+  _submitQuestion = async (values, user) => {
+    const token = await localStorage.getItem(COLDLOGIC_TOKEN);
+    const question = await formatQuestion(values, user);
+    const url = '/QuesAnswers';
+    return submitReport(question, url, token);
+  };
 
   componentDidMount = async () => {
     const userToken = await localStorage.getItem(COLDLOGIC_TOKEN);
@@ -78,6 +87,7 @@ class UserProvider extends Component {
           user: this.state.user,
           login: user => this._logUserIn(user),
           logout: () => this._logout(),
+          submitQuestion: (values, user) => this._submitQuestion(values, user),
         }}
       >
         {this.state.loading ? <Spinner size={40} color="primary" /> : children}
