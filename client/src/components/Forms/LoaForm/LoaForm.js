@@ -14,13 +14,13 @@ import {
 import { Form, Field } from 'react-final-form';
 import styles from './styles';
 import PropTypes from 'prop-types';
-import Spinner from '../../components/UI/Spinner';
-import { maxCharLength } from '../../lib/maxCharLength';
-import { formatLeaveOfAbsence } from '../../lib/formatReport';
-import { submitReport } from '../../lib/submitReport';
-import { COLDLOGIC_TOKEN } from '../../config/tokens';
+import Spinner from '../../UI/Spinner';
+import { maxCharLength } from '../../../lib/maxCharLength';
+import { formatLeaveOfAbsence } from '../../../lib/formatReport';
+import { submitReport } from '../../../lib/submitReport';
+import { COLDLOGIC_TOKEN } from '../../../config/tokens';
 
-class LeaveOfAbsenceRequest extends Component {
+class LoaForm extends Component {
   constructor(props) {
     super(props);
 
@@ -213,7 +213,7 @@ class LeaveOfAbsenceRequest extends Component {
   }
 }
 
-LeaveOfAbsenceRequest.propTypes = {
+LoaForm.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-export default withStyles(styles)(LeaveOfAbsenceRequest);
+export default withStyles(styles)(LoaForm);

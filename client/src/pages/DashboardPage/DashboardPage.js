@@ -21,7 +21,6 @@ class DashboardPage extends Component {
 
   componentWillUnmount = () => {
     window.removeEventListener('resize', this._updateWidth);
-    console.log('removed');
   };
 
   _updateWidth = () => {

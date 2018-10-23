@@ -2,9 +2,7 @@ import React from 'react';
 import { Grid, withStyles } from '@material-ui/core';
 import LeaveOfAbsenceIcon from '../../assets/LeaveOfAbsenceIcon';
 import TitleBar from '../../components/TitleBar';
-import LeaveOfAbsenceRequest from './LeaveOfAbsenceRequest';
-import Spinner from '../../components/UI/Spinner';
-import LoadContent from '../../hoc/LoadContent';
+import LoaRequest from '../../components/LoaRequest';
 import LeaveOfAbsenceData from '../../components/LeaveOfAbsenceData';
 import { UserContext } from '../../context/UserProvider';
 import styles from './styles';
@@ -21,13 +19,7 @@ const LeaveOfAbsenceRequestPage = ({ classes }) => (
           />
         </Grid>
         <Grid item>
-          <LoadContent url="/LeaveAbsReasons">
-            {({ data, error, loading }) => {
-              if (loading) return <Spinner color="secondary" size={100} />;
-              if (error) return <p>Error</p>;
-              return <LeaveOfAbsenceRequest reasons={data} user={user} />;
-            }}
-          </LoadContent>
+          <LoaRequest user={user} />
         </Grid>
         <Grid item>
           <LeaveOfAbsenceData />
