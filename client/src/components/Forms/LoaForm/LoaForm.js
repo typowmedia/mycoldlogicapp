@@ -1,10 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import {
   InputLabel,
-  Button,
   withStyles,
   FormControl,
-  Chip,
   TextField,
   Select,
   MenuItem,
@@ -14,11 +12,11 @@ import {
 import { Form, Field } from 'react-final-form';
 import styles from './styles';
 import PropTypes from 'prop-types';
-import Spinner from '../../UI/Spinner';
 import { maxCharLength } from '../../../lib/maxCharLength';
 import { formatLeaveOfAbsence } from '../../../lib/formatReport';
 import { submitReport } from '../../../lib/submitReport';
 import { COLDLOGIC_TOKEN } from '../../../config/tokens';
+import FormControls from '../FormControls';
 
 class LoaForm extends Component {
   constructor(props) {
@@ -70,145 +68,104 @@ class LoaForm extends Component {
 
   render() {
     const { classes, reasons } = this.props;
+    const { loading, error, success } = this.state;
+
     return (
-      <div className={classes.form}>
-        <Form
-          onSubmit={(values, form) => this._onSubmit(values, form.reset())}
-          validate={this._validate}
-          render={({ handleSubmit, invalid, form, pristine, values }) => (
-            <form onSubmit={handleSubmit} className={classes.accountForm}>
-              <FormControl className={classes.formControl}>
-                <div className={classes.dateContainer}>
-                  <Typography>From:</Typography>
-                  <Field name="from">
-                    {({ input, meta }) => (
-                      <TextField
-                        error={
-                          pristine ? false : typeof meta.error === 'string'
-                        }
-                        id="from"
-                        type="date"
-                        {...input}
-                        autoComplete="off"
-                      />
-                    )}
-                  </Field>
-                  <Typography>To:</Typography>
-                  <Field name="to">
-                    {({ input, meta }) => (
-                      <TextField
-                        error={
-                          pristine ? false : typeof meta.error === 'string'
-                        }
-                        id="to"
-                        type="date"
-                        {...input}
-                        autoComplete="off"
-                      />
-                    )}
-                  </Field>
-                </div>
-              </FormControl>
-              <FormControl required className={classes.formControl}>
-                <Field name="reason">
-                  {({ input, meta }) => (
-                    <Fragment>
-                      <InputLabel htmlFor="reasom">
-                        Please Select a Reason
-                      </InputLabel>
-                      <Select
-                        id="reason"
-                        value={input.value}
-                        {...input}
-                        name="Reason"
-                      >
-                        <MenuItem value="">
-                          <em>None</em>
-                        </MenuItem>
-                        {reasons.map(reason => (
-                          <MenuItem key={reason.id} value={reason.id}>
-                            {reason.name}
-                          </MenuItem>
-                        ))}
-                      </Select>
-                      <FormHelperText>Required</FormHelperText>
-                    </Fragment>
-                  )}
-                </Field>
-              </FormControl>
-              <FormControl fullWidth required className={classes.formControl}>
-                <Field name="message">
+      <Form
+        onSubmit={(values, form) => this._onSubmit(values, form.reset())}
+        validate={this._validate}
+        render={({ handleSubmit, invalid, form, pristine, values }) => (
+          <form onSubmit={handleSubmit} className={classes.accountForm}>
+            <FormControl className={classes.formControl}>
+              <div className={classes.dateContainer}>
+                <Typography>From:</Typography>
+                <Field name="from">
                   {({ input, meta }) => (
                     <TextField
-                      id="message"
+                      error={pristine ? false : typeof meta.error === 'string'}
+                      id="from"
+                      type="date"
                       {...input}
-                      onChange={e => {
-                        const value = maxCharLength(300, e.target.value);
-                        input.onChange(value);
-                      }}
-                      label="Reason Details"
-                      required
                       autoComplete="off"
-                      multiline
-                      rows="4"
                     />
                   )}
                 </Field>
-                <FormHelperText>Required</FormHelperText>
-              </FormControl>
-              <FormControl fullWidth className={classes.formControl}>
-                <div className={classes.buttons}>
-                  {this.state.loading ? (
-                    <div>
-                      <Spinner size={30} color="secondary" />
-                    </div>
-                  ) : (
-                    <Fragment>
-                      {this.state.success && (
-                        <Chip
-                          label="Message sent! Your manager will get back to you shortly."
-                          onClick={() => {
-                            this.setState({ success: false });
-                          }}
-                          onDelete={() => {
-                            this.setState({ success: false });
-                          }}
-                          className={classes.chipSuccess}
-                        />
-                      )}
-                      {this.state.error && (
-                        <Chip
-                          label="Oops something went wrong! Please try again later."
-                          onClick={() => {
-                            this.setState({ error: false });
-                          }}
-                          onDelete={() => {
-                            this.setState({ error: false });
-                          }}
-                          className={classes.chipError}
-                        />
-                      )}
-                      {this.state.error || this.state.success ? null : (
-                        <Button
-                          type="submit"
-                          className={classes.formButton}
-                          variant="contained"
-                          size="large"
-                          color="secondary"
-                          disabled={pristine || invalid}
-                        >
-                          Submit
-                        </Button>
-                      )}
-                    </Fragment>
+                <Typography>To:</Typography>
+                <Field name="to">
+                  {({ input, meta }) => (
+                    <TextField
+                      error={pristine ? false : typeof meta.error === 'string'}
+                      id="to"
+                      type="date"
+                      {...input}
+                      autoComplete="off"
+                    />
                   )}
-                </div>
-              </FormControl>
-              <pre>{JSON.stringify(values, 0, 2)}</pre>
-            </form>
-          )}
-        />
-      </div>
+                </Field>
+              </div>
+            </FormControl>
+            <FormControl required className={classes.formControl}>
+              <Field name="reason">
+                {({ input, meta }) => (
+                  <Fragment>
+                    <InputLabel htmlFor="reasom">
+                      Please Select a Reason
+                    </InputLabel>
+                    <Select
+                      id="reason"
+                      value={input.value}
+                      {...input}
+                      name="Reason"
+                    >
+                      <MenuItem value="">
+                        <em>None</em>
+                      </MenuItem>
+                      {reasons.map(reason => (
+                        <MenuItem key={reason.id} value={reason.id}>
+                          {reason.name}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                    <FormHelperText>Required</FormHelperText>
+                  </Fragment>
+                )}
+              </Field>
+            </FormControl>
+            <FormControl fullWidth required className={classes.formControl}>
+              <Field name="message">
+                {({ input, meta }) => (
+                  <TextField
+                    id="message"
+                    {...input}
+                    onChange={e => {
+                      const value = maxCharLength(300, e.target.value);
+                      input.onChange(value);
+                    }}
+                    label="Reason Details"
+                    required
+                    autoComplete="off"
+                    multiline
+                    rows="4"
+                  />
+                )}
+              </Field>
+              <FormHelperText>Required</FormHelperText>
+            </FormControl>
+            <FormControl fullWidth className={classes.formControl}>
+              <FormControls
+                loading={loading}
+                error={error}
+                success={success}
+                successClicked={() => this.setState({ success: false })}
+                errorClicked={() => this.setState({ error: false })}
+                invalid={invalid}
+                pristine={pristine}
+              />
+            </FormControl>
+            <pre>{JSON.stringify(values, 0, 2)}</pre>
+          </form>
+        )}
+      />
     );
   }
 }

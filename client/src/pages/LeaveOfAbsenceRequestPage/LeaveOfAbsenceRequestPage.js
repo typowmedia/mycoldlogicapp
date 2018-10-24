@@ -11,17 +11,17 @@ import PropTypes from 'prop-types';
 const LeaveOfAbsenceRequestPage = ({ classes }) => (
   <UserContext.Consumer>
     {({ user }) => (
-      <Grid container justify="center" className={classes.root}>
-        <Grid item xs={12}>
+      <Grid container justify="center" className={classes.loaContainer}>
+        <Grid item xs={12} className={classes.loaTitle}>
           <TitleBar
             icon={<LeaveOfAbsenceIcon color={'#0D3C55'} />}
             title="Request Leave of Absence"
           />
         </Grid>
-        <Grid item>
+        <Grid item sm={12} md={6} className={classes.loaRequest}>
           <LoaRequest user={user} />
         </Grid>
-        <Grid item>
+        <Grid item sm={12} md={6} className={classes.loaStats}>
           <LeaveOfAbsenceData />
         </Grid>
       </Grid>
