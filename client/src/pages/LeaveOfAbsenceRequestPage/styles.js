@@ -2,7 +2,6 @@ const styles = theme => ({
   loaContainer: {
     minHeight: '100vh',
     paddingTop: '6rem',
-    alignContent: 'flex-start',
 
     '& > *': {
       padding: '2rem',

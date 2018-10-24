@@ -1,13 +1,13 @@
 const styles = theme => ({
   container: {
     display: 'flex',
-    flex: 1,
+    flex: '0 0 90%',
+    margin: '0 auto',
     flexDirection: 'column',
     padding: '.5rem',
     fontSize: '1.6rem',
   },
 
-  heading: {},
   row: {
     display: 'flex',
     alignItems: 'baseline',
@@ -25,14 +25,23 @@ const styles = theme => ({
 
       padding: '.5rem',
     },
-    '& h3': {
-      fontSize: '1.8rem',
-    },
   },
   cellReason: {
-    flex: 3,
+    flex: 2,
   },
-  cell: {},
+  cellHeading: {
+    ...theme.typography.display1,
+    fontWeight: '500',
+    color: theme.palette.primary.main,
+    // [theme.breakpoints.up('sm')]: {
+    //   ...theme.typography.display2,
+    // },
+  },
+  cell: {
+    ...theme.typography.headline,
+    fontWeight: '500',
+    color: theme.palette.grey.dark,
+  },
 });
 
 export default styles;

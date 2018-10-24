@@ -8,6 +8,7 @@ import {
   MenuItem,
   FormHelperText,
   Typography,
+  Input,
 } from '@material-ui/core';
 import { Form, Field } from 'react-final-form';
 import styles from './styles';
@@ -17,6 +18,10 @@ import { formatLeaveOfAbsence } from '../../../lib/formatReport';
 import { submitReport } from '../../../lib/submitReport';
 import { COLDLOGIC_TOKEN } from '../../../config/tokens';
 import FormControls from '../FormControls';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+
+import 'react-datepicker/dist/react-datepicker.css';
 
 class LoaForm extends Component {
   constructor(props) {
@@ -26,6 +31,8 @@ class LoaForm extends Component {
       loading: false,
       error: false,
       success: false,
+
+      startDate: moment(),
     };
   }
 
@@ -75,40 +82,46 @@ class LoaForm extends Component {
         onSubmit={(values, form) => this._onSubmit(values, form.reset())}
         validate={this._validate}
         render={({ handleSubmit, invalid, form, pristine, values }) => (
-          <form onSubmit={handleSubmit} className={classes.accountForm}>
-            <FormControl className={classes.formControl}>
-              <div className={classes.dateContainer}>
-                <Typography>From:</Typography>
-                <Field name="from">
-                  {({ input, meta }) => (
-                    <TextField
-                      error={pristine ? false : typeof meta.error === 'string'}
-                      id="from"
-                      type="date"
-                      {...input}
-                      autoComplete="off"
-                    />
-                  )}
-                </Field>
-                <Typography>To:</Typography>
-                <Field name="to">
-                  {({ input, meta }) => (
-                    <TextField
-                      error={pristine ? false : typeof meta.error === 'string'}
-                      id="to"
-                      type="date"
-                      {...input}
-                      autoComplete="off"
-                    />
-                  )}
-                </Field>
-              </div>
-            </FormControl>
+          <form onSubmit={handleSubmit} className={classes.loaForm}>
+            <div className={classes.dateContainer}>
+              <span>From:</span>
+              <Field name="from">
+                {({ input, meta }) => (
+                  <DatePicker
+                    className={classes.datePicker}
+                    selected={input.value}
+                    selectsStart
+                    startDate={values.from}
+                    endDate={values.to}
+                    onChange={input.onChange}
+                    withPortal
+                    allowSameDay
+                    placeholderText="Select a start date"
+                  />
+                )}
+              </Field>
+              <span>To:</span>
+              <Field name="to">
+                {({ input, meta }) => (
+                  <DatePicker
+                    className={classes.datePicker}
+                    selected={input.value}
+                    selectsEnd
+                    startDate={values.from}
+                    endDate={values.to}
+                    onChange={input.onChange}
+                    withPortal
+                    allowSameDay
+                    placeholderText="Select an end date"
+                  />
+                )}
+              </Field>
+            </div>
             <FormControl required className={classes.formControl}>
               <Field name="reason">
                 {({ input, meta }) => (
                   <Fragment>
-                    <InputLabel htmlFor="reasom">
+                    <InputLabel htmlFor="reason">
                       Please Select a Reason
                     </InputLabel>
                     <Select
@@ -117,16 +130,19 @@ class LoaForm extends Component {
                       {...input}
                       name="Reason"
                     >
-                      <MenuItem value="">
+                      <MenuItem value="" className={classes.loaSelectItem}>
                         <em>None</em>
                       </MenuItem>
                       {reasons.map(reason => (
-                        <MenuItem key={reason.id} value={reason.id}>
+                        <MenuItem
+                          key={reason.id}
+                          value={reason.id}
+                          className={classes.loaSelectItem}
+                        >
                           {reason.name}
                         </MenuItem>
                       ))}
                     </Select>
-                    <FormHelperText>Required</FormHelperText>
                   </Fragment>
                 )}
               </Field>
@@ -141,6 +157,12 @@ class LoaForm extends Component {
                       const value = maxCharLength(300, e.target.value);
                       input.onChange(value);
                     }}
+                    InputLabelProps={{
+                      className: classes.loaReasonInput,
+                    }}
+                    inputProps={{
+                      className: classes.loaReasonInput,
+                    }}
                     label="Reason Details"
                     required
                     autoComplete="off"
@@ -149,7 +171,6 @@ class LoaForm extends Component {
                   />
                 )}
               </Field>
-              <FormHelperText>Required</FormHelperText>
             </FormControl>
             <FormControl fullWidth className={classes.formControl}>
               <FormControls

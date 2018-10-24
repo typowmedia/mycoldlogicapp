@@ -14,18 +14,19 @@ const LeaveOfAbsenceData = ({ classes }) => (
       return (
         <div className={classes.container}>
           <div className={classes.row}>
-            <h3 className={classes.cellReason}>Reason</h3>
-            <h3 className={classes.cell}>From </h3>
-            <h3 className={classes.cell}>To</h3>
-            <h3 className={classes.cell}>Status</h3>
+            <h3 className={`${classes.cellReason} ${classes.cellHeading}`}>
+              Reason
+            </h3>
+            <h3 className={classes.cellHeading}>From </h3>
+            <h3 className={classes.cellHeading}>To</h3>
+            <h3 className={classes.cellHeading}>Status</h3>
           </div>
           {data.map(loa => {
-            const regex = /(_)/gi;
-            if (loa.reason === '') return null;
-            const reason = loa.reason.replace(regex, ' ');
             return (
               <div className={classes.row} key={loa.id}>
-                <p className={classes.cellReason}>{reason}</p>
+                <p className={`${classes.cellReason} ${classes.cell}`}>
+                  {loa.reason}
+                </p>
                 <p className={classes.cell}>{loa.to}</p>
                 <p className={classes.cell}>{loa.from}</p>
                 <p className={classes.cell}>{loa.status}</p>

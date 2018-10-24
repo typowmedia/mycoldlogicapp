@@ -13,11 +13,10 @@ const styles = theme => ({
     width: '8rem',
   },
   title: {
-    ...theme.typography.headline,
-    color: theme.palette.primary.main,
+    ...theme.typography.display3,
     textDecoration: 'underline',
-    [theme.breakpoints.up('sm')]: {
-      ...theme.typography.display2,
+    [theme.breakpoints.down('xs')]: {
+      ...theme.typography.display1,
     },
   },
 });
