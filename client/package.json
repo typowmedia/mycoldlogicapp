@@ -10,6 +10,7 @@
     "moment": "^2.22.2",
     "prop-types": "^15.6.0",
     "react": "^16.4.1",
+    "react-datepicker": "^1.7.0",
     "react-dom": "^16.4.1",
     "react-final-form": "^3.6.5",
     "react-router-dom": "^4.3.1",
