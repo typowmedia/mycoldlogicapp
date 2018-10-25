@@ -6,6 +6,9 @@ const styles = theme => ({
     flexDirection: 'column',
     padding: '.5rem',
     fontSize: '1.6rem',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '1.4rem',
+    },
   },
 
   row: {
@@ -33,9 +36,6 @@ const styles = theme => ({
     ...theme.typography.display1,
     fontWeight: '500',
     color: theme.palette.primary.main,
-    // [theme.breakpoints.up('sm')]: {
-    //   ...theme.typography.display2,
-    // },
   },
   cell: {
     ...theme.typography.headline,

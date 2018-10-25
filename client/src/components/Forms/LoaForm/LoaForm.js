@@ -6,20 +6,19 @@ import {
   TextField,
   Select,
   MenuItem,
-  FormHelperText,
-  Typography,
-  Input,
 } from '@material-ui/core';
 import { Form, Field } from 'react-final-form';
 import styles from './styles';
 import PropTypes from 'prop-types';
 import { maxCharLength } from '../../../lib/maxCharLength';
+import { checkDates } from '../../../lib/checkDates';
 import { formatLeaveOfAbsence } from '../../../lib/formatReport';
 import { submitReport } from '../../../lib/submitReport';
 import { COLDLOGIC_TOKEN } from '../../../config/tokens';
 import FormControls from '../FormControls';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
+import DateButton from '../DateButton';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -46,26 +45,15 @@ class LoaForm extends Component {
     } else this.setState({ loading: false, error: true });
   };
   _validate = values => {
-    const today = new Date().setHours(0, 0, 0, 0);
     const from = new Date(values.from).setHours(0, 0, 0, 0);
     const to = new Date(values.to).setHours(0, 0, 0, 0);
 
-    console.log(today, to, from);
     let errors = {};
-
     if (!values.from) errors.from = 'Please choose when to start your leave.';
-    if (from) {
-      if (from < today)
-        errors.from = 'Please select a date that has not already passed';
-      if (from > to)
-        errors.from = 'The date chosen happens after your return date.';
-    }
     if (!values.to) errors.to = 'Please choose when to end your leave.';
-    if (to) {
-      if (to < today)
-        errors.to = 'Please select a date that has not already passed';
-      if (to < from)
-        errors.to = 'The date chosen happens before your leave starts.';
+    const dateCheck = checkDates(from, to);
+    if (dateCheck !== true) {
+      errors[dateCheck.error] = dateCheck.message;
     }
     if (!values.message) errors.message = 'Please enter some details.';
     if (!values.reason) errors.reason = 'Please select a reason.';
@@ -84,36 +72,66 @@ class LoaForm extends Component {
         render={({ handleSubmit, invalid, form, pristine, values }) => (
           <form onSubmit={handleSubmit} className={classes.loaForm}>
             <div className={classes.dateContainer}>
-              <span>From:</span>
               <Field name="from">
                 {({ input, meta }) => (
-                  <DatePicker
-                    className={classes.datePicker}
-                    selected={input.value}
-                    selectsStart
-                    startDate={values.from}
-                    endDate={values.to}
-                    onChange={input.onChange}
-                    withPortal
-                    allowSameDay
-                    placeholderText="Select a start date"
-                  />
+                  <div className={classes.datePicker}>
+                    <span className={classes.datePickerTitle}>From</span>
+                    <DatePicker
+                      customInput={
+                        <DateButton
+                          placeHolder={'Select a start date'}
+                          error={
+                            pristine ? false : meta.error ? meta.error : false
+                          }
+                        />
+                      }
+                      openToDate={moment()}
+                      className={classes.datePicker}
+                      selected={input.value}
+                      selectsStart
+                      startDate={values.from}
+                      endDate={values.to}
+                      onChange={input.onChange}
+                      withPortal
+                      allowSameDay
+                      dateFormat="MMMM DD YYYY"
+                      minDate={moment()}
+                      showDisabledMonthNavigation
+                      placeholderText="Select a start date"
+                      required
+                    />
+                  </div>
                 )}
               </Field>
-              <span>To:</span>
               <Field name="to">
                 {({ input, meta }) => (
-                  <DatePicker
-                    className={classes.datePicker}
-                    selected={input.value}
-                    selectsEnd
-                    startDate={values.from}
-                    endDate={values.to}
-                    onChange={input.onChange}
-                    withPortal
-                    allowSameDay
-                    placeholderText="Select an end date"
-                  />
+                  <div className={classes.datePicker}>
+                    <span className={classes.datePickerTitle}>To</span>
+                    <DatePicker
+                      customInput={
+                        <DateButton
+                          placeHolder={'Select an end date'}
+                          error={
+                            pristine ? false : meta.error ? meta.error : false
+                          }
+                        />
+                      }
+                      className={classes.datePicker}
+                      selected={input.value}
+                      selectsEnd
+                      startDate={values.from}
+                      endDate={values.to}
+                      onChange={input.onChange}
+                      withPortal
+                      popperClassName={classes.popper}
+                      allowSameDay
+                      dateFormat="MMMM DD YYYY"
+                      minDate={moment()}
+                      showDisabledMonthNavigation
+                      placeholderText="Select an end date"
+                      required
+                    />
+                  </div>
                 )}
               </Field>
             </div>

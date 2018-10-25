@@ -44,30 +44,3 @@ LeaveOfAbsenceData.propTypes = {
 };
 
 export default withStyles(styles)(LeaveOfAbsenceData);
-
-{
-  /* <Table className={classes.table}>
-          <TableHead>
-            <TableRow>
-              <TableCell className={classes.Cell}>Reason</TableCell>
-              <TableCell className={classes.Cell}>From</TableCell>
-              <TableCell className={classes.Cell}>To</TableCell>
-              <TableCell className={classes.Cell}>Status</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {data.map(d => {
-              if (d.reason === '') return null;
-              //if (d.reason.length > 40) return null;
-              return (
-                <TableRow key={d.id}>
-                  <TableCell className={classes.Cell}>{d.reason}</TableCell>
-                  <TableCell className={classes.Cell}>{d.from}</TableCell>
-                  <TableCell className={classes.Cell}>{d.to}</TableCell>
-                  <TableCell className={classes.Cell}>{d.status}</TableCell>
-                </TableRow>
-              );
-            })}
-          </TableBody>
-        </Table> */
-}

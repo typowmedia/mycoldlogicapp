@@ -6,9 +6,13 @@ const styles = theme => ({
     flexDirection: 'column',
     padding: '.8rem',
     fontSize: '1.6rem',
+
+    [theme.breakpoints.down('xs')]: {
+      flex: 1,
+    },
   },
   formControl: {
-    marginBottom: theme.spacing.unit * 2,
+    marginBottom: '4rem',
     width: '100%',
     '& > *': {
       fontSize: 'inherit',
@@ -19,24 +23,26 @@ const styles = theme => ({
   },
   dateContainer: {
     display: 'flex',
-    alignItems: 'center',
+    justifyContent: 'space-evenly',
     fontSize: '1.8rem',
-    marginBottom: '.8rem',
+    marginBottom: '2rem',
 
-    '& > *': {
-      marginRight: 5,
+    [theme.breakpoints.down('xs')]: {
+      justifyContent: 'space-between',
     },
   },
-  datePicker: {
-    padding: '.5rem 1.5rem',
-    flex: 1,
-
-    '&:hover': {
-      cursor: 'pointer',
-    },
-  },
+  datePicker: {},
   loaSelectItem: {
     fontSize: '1.6rem',
+  },
+  popper: {
+    fontSize: '1.8rem',
+  },
+  datePickerTitle: {
+    ...theme.typography.display1,
+    fontWeight: '400',
+    color: theme.palette.primary.main,
+    paddingBottom: 4,
   },
 });
 
