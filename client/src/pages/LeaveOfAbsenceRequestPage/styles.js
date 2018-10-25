@@ -10,6 +10,7 @@ const styles = theme => ({
       alignItems: 'flex-start',
     },
   },
+
   loaTitle: {
     padding: '4rem 2rem',
   },

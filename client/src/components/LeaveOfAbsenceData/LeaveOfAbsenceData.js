@@ -1,13 +1,7 @@
 import React from 'react';
 import LoadLeaveOfAbsence from '../../hoc/LoadLeaveOfAbsence';
 import Spinner from '../UI/Spinner';
-import {
-  withStyles,
-  withTheme,
-  Card,
-  CardContent,
-  Typography,
-} from '@material-ui/core';
+import { withStyles } from '@material-ui/core';
 import styles from './styles';
 import PropTypes from 'prop-types';
 
@@ -81,4 +75,4 @@ LeaveOfAbsenceData.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withTheme()(withStyles(styles)(LeaveOfAbsenceData));
+export default withStyles(styles)(LeaveOfAbsenceData);
