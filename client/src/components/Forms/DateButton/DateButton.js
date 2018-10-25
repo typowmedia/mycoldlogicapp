@@ -27,7 +27,14 @@ class DateButton extends Component {
   };
 
   render() {
-    const { onClick, value, classes, placeHolder, error } = this.props;
+    const {
+      onClick,
+      value,
+      classes,
+      placeHolder,
+      error,
+      pristine,
+    } = this.props;
     return (
       <div
         className={classes.dateButtonContainer}
@@ -54,7 +61,7 @@ class DateButton extends Component {
           className={`${classes.dateButton} ${error && classes.dateError}`}
           onClick={onClick}
         >
-          {value === '' ? placeHolder : value}
+          {pristine ? placeHolder : value}
         </Button>
       </div>
     );
@@ -62,5 +69,3 @@ class DateButton extends Component {
 }
 
 export default withStyles(styles)(DateButton);
-
-// All styling is located in LoaForm stylesheet

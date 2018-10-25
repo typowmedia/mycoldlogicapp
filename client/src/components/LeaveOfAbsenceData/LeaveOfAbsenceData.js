@@ -1,18 +1,56 @@
 import React from 'react';
 import LoadLeaveOfAbsence from '../../hoc/LoadLeaveOfAbsence';
 import Spinner from '../UI/Spinner';
-import { withStyles } from '@material-ui/core';
+import {
+  withStyles,
+  withTheme,
+  Card,
+  CardContent,
+  Typography,
+} from '@material-ui/core';
 import styles from './styles';
 import PropTypes from 'prop-types';
 
-const LeaveOfAbsenceData = ({ classes }) => (
+const LeaveOfAbsenceData = ({ classes, mobile }) => (
   <LoadLeaveOfAbsence>
     {({ data, error, loading }) => {
       if (loading) return <Spinner color="secondary" size={100} />;
       if (error) return <p>Error</p>;
-      data.sort((a, b) => b.from > a.from);
+      data.sort(
+        (a, b) =>
+          new Date(b.from).setHours(0, 0, 0, 0) -
+          new Date(a.from).setHours(0, 0, 0, 0),
+      );
+      if (mobile) {
+        return (
+          <div className={classes.mobileLoaContainer}>
+            {data.map(loa => {
+              return (
+                <div className={classes.mobileCard} key={loa.id}>
+                  <div className={classes.mobileCardRow}>
+                    <h3 className={classes.mobileCardHeader}>Reason</h3>
+                    <p className={classes.mobileCardText}>{loa.reason}</p>
+                  </div>
+                  <div className={classes.mobileCardRow}>
+                    <h3 className={classes.mobileCardHeader}>From</h3>
+                    <p className={classes.mobileCardText}>{loa.from}</p>
+                  </div>
+                  <div className={classes.mobileCardRow}>
+                    <h3 className={classes.mobileCardHeader}>To</h3>
+                    <p className={classes.mobileCardText}>{loa.to}</p>
+                  </div>
+                  <div className={classes.mobileCardRow}>
+                    <h3 className={classes.mobileCardHeader}>Status</h3>
+                    <p className={classes.mobileCardText}>{loa.status}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        );
+      }
       return (
-        <div className={classes.container}>
+        <div className={classes.loaStatusContainer}>
           <div className={classes.row}>
             <h3 className={`${classes.cellReason} ${classes.cellHeading}`}>
               Reason
@@ -43,4 +81,4 @@ LeaveOfAbsenceData.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(LeaveOfAbsenceData);
+export default withTheme()(withStyles(styles)(LeaveOfAbsenceData));

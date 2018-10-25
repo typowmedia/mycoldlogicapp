@@ -33,6 +33,7 @@ class LeaveOfAbsenceRequestPage extends Component {
     const { classes, theme } = this.props;
     const { screenWidth } = this.state;
     const tabletScreen = theme.breakpoints.width('md');
+    const mobileScreen = theme.breakpoints.width('sm');
     return (
       <UserContext.Consumer>
         {({ user }) => (
@@ -53,7 +54,7 @@ class LeaveOfAbsenceRequestPage extends Component {
               <LoaRequest user={user} />
             </Grid>
             <Grid item sm={12} md={6} className={classes.loaStats}>
-              <LeaveOfAbsenceData />
+              <LeaveOfAbsenceData mobile={screenWidth <= mobileScreen} />
             </Grid>
           </Grid>
         )}

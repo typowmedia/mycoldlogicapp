@@ -20,6 +20,7 @@ export default createMuiTheme({
       main: '#FFFFFF',
       dark: '#f4f4f4',
     },
+    black: '#000000',
     grey: {
       main: '#EEEEEE',
       light: '#a0a0a0',

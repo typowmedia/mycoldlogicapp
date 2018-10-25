@@ -83,11 +83,12 @@ class LoaForm extends Component {
                           error={
                             pristine ? false : meta.error ? meta.error : false
                           }
+                          pristine={meta.pristine}
                         />
                       }
                       openToDate={moment()}
                       className={classes.datePicker}
-                      selected={input.value}
+                      selected={meta.pristine ? moment() : moment(input.value)}
                       selectsStart
                       startDate={values.from}
                       endDate={values.to}
@@ -114,10 +115,11 @@ class LoaForm extends Component {
                           error={
                             pristine ? false : meta.error ? meta.error : false
                           }
+                          pristine={meta.pristine}
                         />
                       }
                       className={classes.datePicker}
-                      selected={input.value}
+                      selected={meta.pristine ? moment() : moment(input.value)}
                       selectsEnd
                       startDate={values.from}
                       endDate={values.to}
