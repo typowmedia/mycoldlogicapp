@@ -12,15 +12,20 @@ const BestSite = ({ step, classes, nextStep, submitReport, loading }) => {
     case 1:
       content = (
         <Fragment>
-          <Typography>
-            We would like to recognize and share your suggestions that improve
-            our organization. Please note that your user's full name will be
-            taken so that we can acknowledge you and include you in discussions
-            of your great idea!
-          </Typography>
+          <div className={classes.contentStepOneContainer}>
+            <p className={classes.contentStepOneText}>
+              We would like to recognize and share your suggestions that improve
+              our organization.
+            </p>
+            <p className={classes.contentStepOneText}>
+              Please note that your user's full name will be taken so that we
+              can acknowledge you and include you in discussions of your great
+              idea!
+            </p>
+          </div>
           <Button
             variant="extendedFab"
-            className={classes.button}
+            className={classes.bestSiteButton}
             color="secondary"
             onClick={() => nextStep.forward()}
           >
@@ -41,7 +46,11 @@ const BestSite = ({ step, classes, nextStep, submitReport, loading }) => {
       );
       break;
   }
-  return loading ? <Spinner size={40} color="secondary" /> : content;
+  return loading ? (
+    <Spinner size={40} color="secondary" />
+  ) : (
+    <div className={classes.bestSiteContentContainer}>{content}</div>
+  );
 };
 
 BestSite.propTypes = {

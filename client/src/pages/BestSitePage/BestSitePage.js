@@ -44,14 +44,19 @@ class BestSitePage extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <Grid container justify="center" className={classes.root}>
-        <Grid item xs={12} md={8}>
+      <Grid
+        container
+        justify="center"
+        alignContent="flex-start"
+        className={classes.bestSiteContainer}
+      >
+        <Grid item xs={12} md={8} className={classes.bestSiteTitle}>
           <TitleBar
             icon={<MyBestSiteIcon color={'#0D3C55'} />}
             title="My Best Site Suggestions"
           />
         </Grid>
-        <Grid item xs={12} md={8}>
+        <Grid item xs={12} md={8} className={classes.bestSiteContent}>
           <BestSite
             step={this.state.step}
             nextStep={{
