@@ -2,9 +2,9 @@ import React, { Fragment } from 'react';
 import { withStyles, Typography, Button } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import styles from './styles';
-import BestSiteForm from './BestSiteForm';
-import Spinner from '../../components/UI/Spinner';
-import ReportSuccess from '../../components/ReportSuccess';
+import BestSiteForm from '../Forms/BestSiteForm';
+import Spinner from '../UI/Spinner';
+import ReportSuccess from '../ReportSuccess';
 
 const BestSite = ({ step, classes, nextStep, submitReport, loading }) => {
   let content;

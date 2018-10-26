@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import BestSite from './BestSite';
+import BestSite from '../../components/BestSite';
 import MyBestSiteIcon from '../../assets/MyBestSiteIcon';
 import TitleBar from '../../components/TitleBar';
 import { withStyles, Grid } from '@material-ui/core';

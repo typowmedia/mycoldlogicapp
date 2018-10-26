@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import Spinner from '../../components/UI/Spinner';
+import Spinner from '../../UI/Spinner';
 import {
   withStyles,
   FormControl,
