@@ -15,6 +15,8 @@ import {
   REQUEST_TIME_OFF,
   BONUS_RECOGNITIONS,
   BEST_SITE_REPORT,
+  BEST_SITE_REPORT_2,
+  BEST_SITE_REPORT_3,
   SAFE_SITE_REPORT,
   HOME,
   REQUEST_PASSWORD,
@@ -57,6 +59,8 @@ export default () => (
               component={() => <BonusRecognitionPage user={user} />}
             />
             <Route exact path={BEST_SITE_REPORT} component={BestSitePage} />
+            <Route exact path={BEST_SITE_REPORT_2} component={BestSitePage} />
+            <Route exact path={BEST_SITE_REPORT_3} component={BestSitePage} />
             <Route exact path={SAFE_SITE_REPORT} component={SafeSitePage} />
             <Redirect to={DASHBOARD} />
           </Switch>

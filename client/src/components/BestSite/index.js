@@ -1,3 +1,4 @@
-import BestSite from './BestSite';
+import BestSiteWelcome from './BestSiteWelcome';
+import BestSiteForm from '../Forms/BestSiteForm';
 
-export default BestSite;
+export { BestSiteWelcome, BestSiteForm };

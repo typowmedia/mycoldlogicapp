@@ -1,15 +1,20 @@
 const styles = theme => ({
-  bestSiteContentContainer: {
-    background: 'yellowgreen',
+  bestSiteWelcome: {
+    padding: '6rem',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+
+  bestSiteWelcomeTextContainer: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    padding: '3rem',
-    minHeight: '40vh',
+    paddingBottom: '3rem',
   },
-  contentStepOneText: {
-    fontSize: '2rem',
+  bestSiteWelcomeText: {
+    fontSize: '2.2rem',
     width: '50%',
     margin: '0 auto',
     textAlign: 'center',
@@ -22,7 +27,7 @@ const styles = theme => ({
       marginBottom: '.8rem',
     },
   },
-  bestSiteButton: {
+  bestSiteWelcomeButton: {
     fontSize: '1.6rem',
   },
 });
