@@ -1,7 +1,11 @@
 export const DASHBOARD = '/dashboard';
 export const REQUEST_TIME_OFF = '/leave-of-absence-request';
 export const BONUS_RECOGNITIONS = '/my-bonus-recognitions';
-export const BEST_SITE_REPORT = '/my-best-site-report';
+export const BEST_SITE_REPORT = '/best-site-report';
+export const BEST_SITE_REPORT_2 = '/best-site-report/my-report';
+export const BEST_SITE_REPORT_3 = '/best-site-report/success';
 export const SAFE_SITE_REPORT = '/safe-site-report';
+export const SAFE_SITE_REPORT_2 = '/safe-site-report/my-report';
+export const SAFE_SITE_REPORT_3 = '/safe-site-report/success';
 export const REQUEST_PASSWORD = '/request-password';
 export const HOME = '/';

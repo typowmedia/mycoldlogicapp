@@ -37,7 +37,7 @@ class DashboardPage extends Component {
             >
               <DashboardNavigation />
             </Grid>
-            <Grid item sm={12} md={5} className={classes.dashboardAskManager}>
+            <Grid item sm={12} md={6} className={classes.dashboardAskManager}>
               <AskManager />
             </Grid>
           </Grid>
