@@ -1,30 +1,25 @@
 const styles = theme => ({
-  bestSiteForm: {
-    paddingTop: '3rem',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    fontSize: '1.6rem',
-
-    [theme.breakpoints.down('md')]: {},
-  },
-  bestSiteFormInputContainer: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-evenly',
-  },
   suggestionContainer: {
-    padding: '1rem 4rem',
-  },
-  suggestionCheckboxContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    padding: '1rem 4rem',
+    padding: '0 4rem',
+
+    [theme.breakpoints.down('sm')]: {
+      padding: '0 1rem',
+    },
   },
   suggestionCheckboxTitle: {
     ...theme.typography.display1,
+    fontSize: '2.5rem',
+    fontWeight: '500',
+    color: theme.palette.primary.main,
     marginBottom: '2rem',
+
+    [theme.breakpoints.down('sm')]: {
+      margin: '1.2rem 0',
+    },
+    [theme.breakpoints.down('xs')]: {
+      margin: '1.2rem 0',
+      fontSize: '1.8rem',
+    },
   },
   formControl: {
     padding: '1rem',
@@ -33,19 +28,27 @@ const styles = theme => ({
       marginBottom: '1rem',
     },
   },
-  bestSiteInputLabel: {
-    fontSize: '1.5rem',
-  },
   bestSiteInput: {
     fontSize: '1.6rem',
+    lineHeight: 1.3,
+  },
+  bestSiteCheckboxContainer: {
+    display: 'flex',
+    alignItems: 'center',
   },
   bestSiteCheckboxInputLabel: {
-    fontSize: '2.3rem',
-    lineHeight: 1,
-    margin: '-0.8rem',
+    fontSize: '1.6rem',
     cursor: 'pointer',
+    height: '100%',
   },
-  bestSiteButtonContainer: {},
+  bestSiteFormButtonContainer: {
+    margin: '1.5rem 0',
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  checkbox: {
+    height: '3.5rem',
+  },
 });
 
 export default styles;

@@ -1,5 +1,7 @@
 import React, { Fragment } from 'react';
-import { withStyles, Typography, Button } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import styles from './styles';
 import SafeSiteForm from './SafeSiteForm';
@@ -34,7 +36,15 @@ const SafeSite = ({ step, classes, nextStep, submitReport, loading }) => {
       break;
 
     default:
-      content = <ReportSuccess safesite />;
+      content = (
+        <ReportSuccess
+          leftButtonTitle="Exit Coldlogic Portal"
+          leftButtonClick={() => {}}
+          message="Thank you for helping us keep our work safe for everyone and
+      creating this report thru Your ColdLogic portal. This report will
+      be carefully investigated."
+        />
+      );
       break;
   }
   return loading ? <Spinner size={40} color="secondary" /> : content;

@@ -8,6 +8,8 @@ import { Form, Field } from 'react-final-form';
 import styles from './styles';
 import PropTypes from 'prop-types';
 import FormControls from '../FormControls';
+import { Grid } from '@material-ui/core';
+import { validate } from './helpers';
 
 const checkboxes = [
   'Make work more fun or interesting',
@@ -52,7 +54,7 @@ class BestSiteForm extends Component {
                     className: this.props.classes.bestSiteInput,
                   }}
                   InputLabelProps={{
-                    className: this.props.classes.bestSiteInputLabel,
+                    className: this.props.classes.bestSiteInput,
                   }}
                 />
               )}
@@ -66,36 +68,23 @@ class BestSiteForm extends Component {
     return null;
   };
 
-  _onSubmit = async values => {
-    this.props.submitReport(values);
-  };
-
-  _validate = values => {
-    let errors = {};
-    if (!values.suggestion) errors.suggestion = 'Please enter a suggestion.';
-    if (!values.details)
-      errors.details = 'Please explain some details of your suggestion.';
-    if (!values.reasons)
-      errors.reasons = 'Please select a minimum of one reason.';
-    if (values.reasons) {
-      if (values.reasons.length < 1)
-        errors.reasons = 'Please select a minimum of one reason.';
-      if (values.reasons.find(reason => reason === 'Other')) {
-        if (!values.other) errors.other = 'Please specify';
-      }
-    }
-    return errors;
-  };
   render() {
     const { classes, loading, error } = this.props;
     return (
       <Form
-        onSubmit={this._onSubmit}
-        validate={this._validate}
+        onSubmit={values => this.props.submitReport(values)}
+        validate={values => validate(values)}
         render={({ handleSubmit, invalid, pristine, values }) => (
           <form onSubmit={handleSubmit} className={classes.bestSiteForm}>
-            <div className={classes.bestSiteFormInputContainer}>
-              <div className={classes.suggestionContainer}>
+            <Grid container>
+              <Grid
+                item
+                xs={12}
+                sm={12}
+                md={6}
+                xl={8}
+                className={classes.suggestionContainer}
+              >
                 <FormControl fullWidth required className={classes.formControl}>
                   <Field name="suggestion">
                     {({ input, meta }) => (
@@ -111,7 +100,7 @@ class BestSiteForm extends Component {
                           className: classes.bestSiteInput,
                         }}
                         InputLabelProps={{
-                          className: classes.bestSiteInputLabel,
+                          className: classes.bestSiteInput,
                         }}
                       />
                     )}
@@ -132,50 +121,66 @@ class BestSiteForm extends Component {
                           className: classes.bestSiteInput,
                         }}
                         InputLabelProps={{
-                          className: classes.bestSiteInputLabel,
+                          className: classes.bestSiteInput,
                         }}
                       />
                     )}
                   </Field>
                 </FormControl>
-              </div>
-              <div className={classes.suggestionCheckboxContainer}>
-                <h2 className={classes.suggestionCheckboxTitle}>
-                  This has the potential to improve ColdLogic by:
-                </h2>
-                {checkboxes.map((checkbox, i) => (
-                  <Field
-                    name="reasons"
-                    type="checkbox"
-                    value={checkbox}
-                    key={i}
-                  >
-                    {({ input, meta }) => {
-                      return (
-                        <InputLabel
-                          shrink
-                          className={classes.bestSiteCheckboxInputLabel}
-                        >
-                          <Checkbox {...input} />
-                          {checkbox}
-                        </InputLabel>
-                      );
-                    }}
-                  </Field>
-                ))}
-                {this._otherReason(values)}
-              </div>
-            </div>
-
-            <div className={classes.bestSiteButtonContainer}>
-              <FormControls
-                loading={loading}
-                error={error}
-                errorClicked={() => this.setState({ error: false })}
-                invalid={invalid}
-                pristine={pristine}
-              />
-            </div>
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                sm={12}
+                md={6}
+                xl={4}
+                className={classes.suggestionContainer}
+              >
+                <div className={classes.suggestionCheckboxContainer}>
+                  <h2 className={classes.suggestionCheckboxTitle}>
+                    This has the potential to improve ColdLogic by:
+                  </h2>
+                  {checkboxes.map((checkbox, index) => (
+                    <Field
+                      name="reasons"
+                      type="checkbox"
+                      value={checkbox}
+                      key={index}
+                    >
+                      {({ input, meta }) => {
+                        return (
+                          <div className={classes.bestSiteCheckboxContainer}>
+                            <Checkbox
+                              {...input}
+                              id={`checkbox${index}`}
+                              classes={{ root: classes.checkbox }}
+                            />
+                            <InputLabel
+                              htmlFor={`checkbox${index}`}
+                              className={classes.bestSiteCheckboxInputLabel}
+                            >
+                              {checkbox}
+                            </InputLabel>
+                          </div>
+                        );
+                      }}
+                    </Field>
+                  ))}
+                  {this._otherReason(values)}
+                </div>
+              </Grid>
+              <Grid item xs={12}>
+                <div className={classes.bestSiteFormButtonContainer}>
+                  <FormControls
+                    loading={loading}
+                    error={error}
+                    errorClicked={() => this.setState({ error: false })}
+                    invalid={invalid}
+                    pristine={pristine}
+                  />
+                </div>
+              </Grid>
+            </Grid>
           </form>
         )}
       />
@@ -189,40 +194,3 @@ BestSiteForm.propTypes = {
 };
 
 export default withStyles(styles)(BestSiteForm);
-
-{
-  /* <div className={classes.buttons}>
-                  {this.state.loading ? (
-                    <div>
-                      <Spinner size={30} color="secondary" />
-                    </div>
-                  ) : (
-                    <Fragment>
-                      {this.state.error && (
-                        <Chip
-                          label="Oops something went wrong! Please try again later."
-                          onClick={() => {
-                            this.setState({ error: false });
-                          }}
-                          onDelete={() => {
-                            this.setState({ error: false });
-                          }}
-                          className={classes.chipError}
-                        />
-                      )}
-                      {this.state.error || this.state.success ? null : (
-                        <Button
-                          type="submit"
-                          className={classes.formButton}
-                          variant="contained"
-                          size="large"
-                          color="secondary"
-                          disabled={pristine || invalid || submitting}
-                        >
-                          Submit
-                        </Button>
-                      )}
-                    </Fragment>
-                  )}
-                </div> */
-}

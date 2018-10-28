@@ -56,8 +56,9 @@ class BestSitePage extends Component {
       case BEST_SITE_REPORT_3:
         return (
           <ReportSuccess
-            leftBtnTitle="New Report"
+            leftBtnTitle="Submit A New Report"
             leftBtnClick={() => this.props.history.push(BEST_SITE_REPORT)}
+            message="Thank you for helping us improve your place of work submitting this Best Site Suggestion using the ColdLogic portal. This suggestion will be"
           />
         );
       default:

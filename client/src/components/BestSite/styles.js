@@ -4,6 +4,10 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+
+    [theme.breakpoints.down('sm')]: {
+      padding: '2rem',
+    },
   },
 
   bestSiteWelcomeTextContainer: {
@@ -25,6 +29,13 @@ const styles = theme => ({
 
     '&:not(:last-child)': {
       marginBottom: '.8rem',
+    },
+
+    [theme.breakpoints.down('sm')]: {
+      width: '80%',
+    },
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '1.6rem',
     },
   },
   bestSiteWelcomeButton: {
