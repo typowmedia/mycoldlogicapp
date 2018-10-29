@@ -29,8 +29,6 @@ class BestSiteForm extends Component {
     this.state = {
       other: false,
       otherReason: null,
-      loading: false,
-      error: false,
     };
   }
   _otherReason = values => {
@@ -69,7 +67,7 @@ class BestSiteForm extends Component {
   };
 
   render() {
-    const { classes, loading, error } = this.props;
+    const { classes, loading, error, resetError } = this.props;
     return (
       <Form
         onSubmit={values => this.props.submitReport(values)}
@@ -174,7 +172,7 @@ class BestSiteForm extends Component {
                   <FormControls
                     loading={loading}
                     error={error}
-                    errorClicked={() => this.setState({ error: false })}
+                    errorClicked={() => resetError()}
                     invalid={invalid}
                     pristine={pristine}
                   />
@@ -191,6 +189,9 @@ class BestSiteForm extends Component {
 BestSiteForm.propTypes = {
   classes: PropTypes.object.isRequired,
   submitReport: PropTypes.func.isRequired,
+  resetError: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+  error: PropTypes.bool.isRequired,
 };
 
 export default withStyles(styles)(BestSiteForm);

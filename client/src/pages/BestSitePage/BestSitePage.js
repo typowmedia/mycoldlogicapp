@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { BestSiteWelcome, BestSiteForm } from '../../components/BestSite';
+import BestSiteForm from '../../components/Forms/BestSiteForm';
+import SiteReportWelcomeScreen from '../../components/SiteReportWelcomeScreen';
 import ReportSuccess from '../../components/ReportSuccess';
 import MyBestSiteIcon from '../../assets/MyBestSiteIcon';
 import TitleBar from '../../components/TitleBar';
@@ -25,6 +26,10 @@ class BestSitePage extends Component {
       error: false,
     };
   }
+  _resetError = () => {
+    this.setState({ error: false });
+  };
+
   _submitReport = async report => {
     this.setState({ loading: true });
     const token = await localStorage.getItem(COLDLOGIC_TOKEN);
@@ -43,7 +48,7 @@ class BestSitePage extends Component {
     }
     return true;
   };
-  _showBestSitePage = route => {
+  _showSitePage = route => {
     switch (route) {
       case BEST_SITE_REPORT_2:
         return (
@@ -51,6 +56,7 @@ class BestSitePage extends Component {
             submitReport={this._submitReport}
             loading={this.state.loading}
             error={this.state.error}
+            resetError={this._resetError}
           />
         );
       case BEST_SITE_REPORT_3:
@@ -63,7 +69,12 @@ class BestSitePage extends Component {
         );
       default:
         return (
-          <BestSiteWelcome
+          <SiteReportWelcomeScreen
+            firstParagraph="We would like to recognize and share your suggestions that improve our
+          organization."
+            secondParagraph="Please note that your user's full name will be taken so that we can
+            acknowledge you and include you in discussions of your great idea!"
+            buttonText="Start My Suggestion"
             clicked={() => this.props.history.push(BEST_SITE_REPORT_2)}
           />
         );
@@ -85,7 +96,7 @@ class BestSitePage extends Component {
           />
         </Grid>
         <Grid item xs={12} className={classes.bestSiteContent}>
-          {this._showBestSitePage(match.path)}
+          {this._showSitePage(match.path)}
         </Grid>
       </Grid>
     );

@@ -1,33 +1,20 @@
-import React, { Component, Fragment } from 'react';
-import Spinner from '../../components/UI/Spinner';
+import React, { Component } from 'react';
+
 import {
   withStyles,
   FormControl,
   Typography,
   TextField,
-  Chip,
-  Button,
 } from '@material-ui/core';
 import { Form, Field } from 'react-final-form';
 import styles from './styles';
 import PropTypes from 'prop-types';
+import FormControls from '../FormControls';
 
 class SafeSiteForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      loading: false,
-      error: false,
-    };
   }
-
-  _onSubmit = async values => {
-    this.setState({ loading: true });
-    const success = await this.props.submitReport(values);
-    if (success.status === 201) {
-      this.setState({ loading: false });
-    } else this.setState({ loading: false, error: true });
-  };
 
   _validate = values => {
     let errors = {};
@@ -41,11 +28,11 @@ class SafeSiteForm extends Component {
     return errors;
   };
   render() {
-    const { classes } = this.props;
+    const { classes, submitReport, loading, error, resetError } = this.props;
     return (
       <div className={classes.form}>
         <Form
-          onSubmit={this._onSubmit}
+          onSubmit={values => submitReport(values)}
           validate={this._validate}
           render={({ handleSubmit, invalid, submitting, pristine }) => (
             <form onSubmit={handleSubmit} className={classes.accountForm}>
@@ -92,40 +79,13 @@ class SafeSiteForm extends Component {
               </FormControl>
 
               <FormControl fullWidth className={classes.formControl}>
-                <div className={classes.buttons}>
-                  {this.state.loading ? (
-                    <div>
-                      <Spinner size={30} color="secondary" />
-                    </div>
-                  ) : (
-                    <Fragment>
-                      {this.state.error && (
-                        <Chip
-                          label="Oops something went wrong! Please try again later."
-                          onClick={() => {
-                            this.setState({ error: false });
-                          }}
-                          onDelete={() => {
-                            this.setState({ error: false });
-                          }}
-                          className={classes.chipError}
-                        />
-                      )}
-                      {this.state.error || this.state.success ? null : (
-                        <Button
-                          type="submit"
-                          className={classes.formButton}
-                          variant="contained"
-                          size="large"
-                          color="secondary"
-                          disabled={pristine || invalid || submitting}
-                        >
-                          Submit
-                        </Button>
-                      )}
-                    </Fragment>
-                  )}
-                </div>
+                <FormControls
+                  loading={loading}
+                  error={error}
+                  errorClicked={() => resetError()}
+                  invalid={invalid}
+                  pristine={pristine}
+                />
               </FormControl>
             </form>
           )}
@@ -138,6 +98,9 @@ class SafeSiteForm extends Component {
 SafeSiteForm.propTypes = {
   classes: PropTypes.object.isRequired,
   submitReport: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+  error: PropTypes.bool.isRequired,
+  errorReset: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(SafeSiteForm);
