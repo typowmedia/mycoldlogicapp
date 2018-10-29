@@ -1,5 +1,5 @@
 const styles = theme => ({
-  bestSiteWelcome: {
+  SiteReportWelcomeScreen: {
     padding: '6rem',
     display: 'flex',
     flexDirection: 'column',
@@ -10,14 +10,14 @@ const styles = theme => ({
     },
   },
 
-  bestSiteWelcomeTextContainer: {
+  SiteReportWelcomeScreenTextContainer: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-evenly',
     alignItems: 'center',
     paddingBottom: '3rem',
   },
-  bestSiteWelcomeText: {
+  SiteReportWelcomeScreenText: {
     fontSize: '2.2rem',
     width: '50%',
     margin: '0 auto',
@@ -38,7 +38,7 @@ const styles = theme => ({
       fontSize: '1.6rem',
     },
   },
-  bestSiteWelcomeButton: {
+  SiteReportWelcomeScreenButton: {
     fontSize: '1.6rem',
   },
 });

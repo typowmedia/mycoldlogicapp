@@ -18,6 +18,8 @@ import {
   BEST_SITE_REPORT_2,
   BEST_SITE_REPORT_3,
   SAFE_SITE_REPORT,
+  SAFE_SITE_REPORT_2,
+  SAFE_SITE_REPORT_3,
   HOME,
   REQUEST_PASSWORD,
 } from './routes';
@@ -62,6 +64,8 @@ export default () => (
             <Route exact path={BEST_SITE_REPORT_2} component={BestSitePage} />
             <Route exact path={BEST_SITE_REPORT_3} component={BestSitePage} />
             <Route exact path={SAFE_SITE_REPORT} component={SafeSitePage} />
+            <Route exact path={SAFE_SITE_REPORT_2} component={SafeSitePage} />
+            <Route exact path={SAFE_SITE_REPORT_3} component={SafeSitePage} />
             <Redirect to={DASHBOARD} />
           </Switch>
         </Fragment>
