@@ -9,7 +9,7 @@ import styles from './styles';
 import { submitReport } from '../../lib/submitReport';
 import { formatSafetyReport } from '../../lib/formatReport';
 import { COLDLOGIC_TOKEN } from '../../config/tokens';
-import { SAFE_SITE_REPORT_2, SAFE_SITE_REPORT_3 } from '../../routes/routes';
+import { SAFE_SITE_REPORT_2, SAFE_SITE_REPORT_3,SAFE_SITE_REPORT } from '../../routes/routes';
 import PropTypes from 'prop-types';
 import { UserContext } from '../../context/UserProvider';
 
@@ -41,8 +41,8 @@ class SafeSitePage extends Component {
           <UserContext.Consumer>
             {({ logout }) => (
               <ReportSuccess
-                leftBtnTitle="Exit ColdLogic"
-                leftBtnClick={() => logout()}
+                leftBtnTitle="Submit A New Report"
+                leftBtnClick={() => this.props.history.push(SAFE_SITE_REPORT)}
                 message="Thank you for helping us improve your place of work submitting this Best Site Suggestion using the ColdLogic portal. This suggestion will be"
               />
             )}
