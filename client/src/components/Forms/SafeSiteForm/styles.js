@@ -1,70 +1,53 @@
 const styles = theme => ({
-  formButton: {
-    marginTop: theme.spacing.unit * 5,
-    width: '100%',
-  },
-  formToggle: {
-    background: 'none',
-    border: 'none',
-    textDecoration: 'underline',
-    '&:hover': {
-      cursor: 'pointer',
+  safeSiteForm: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: '80%',
+    margin: '0 auto',
+    padding: '4rem',
+
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+      padding: '1rem',
     },
   },
-  accountForm: {
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      width: '500px',
+  safeSiteDatePlaceContainer: {
+    width: '50%',
+    marginBottom: '1rem',
+  },
+  whereContainer: {
+    padding: '1rem 0',
+  },
+  datePickerContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    marginBottom: '1rem',
+  },
+  messageContainer: {
+    marginTop: '1rem',
+  },
+  safeSiteLabel: {
+    fontSize: '1.6rem',
+  },
+  safeSiteInput: {
+    fontSize: '1.6rem',
+  },
+  dateLabel: {
+    fontSize: '1.6rem',
+    paddingBottom: 3,
+  },
+  formButtonContainer: {
+    padding: '3rem',
+    width: '50%',
+    margin: '0 auto',
+
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
     },
   },
   errorMessage: {
-    color: 'firebrick',
-  },
-  form: {
-    marginTop: theme.spacing.unit * 5,
-    display: 'flex',
-    justifyContent: 'center',
-  },
-  dateContainer: {
-    display: 'flex',
-    justifyContent: 'space-evenly',
-  },
-  buttons: {
-    marginTop: theme.spacing.unit * 2,
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: 40,
-  },
-  chipError: {
-    background: theme.palette.error.main,
-    color: theme.palette.white.main,
-    transition: 'all .2s',
-    '&:hover': {
-      background: theme.palette.error.dark,
-      transform: 'translateY(-3px)',
-      boxShadow: '0 2px 10px #000',
-    },
-    '&:active': {
-      background: theme.palette.error.dark,
-      transform: 'translateY(0)',
-      boxShadow: '0 1px 5px #000',
-    },
-  },
-  chipSuccess: {
-    background: theme.palette.success.main,
-    color: theme.palette.white.main,
-    '&:hover': {
-      background: theme.palette.success.dark,
-      transform: 'translateY(-3px)',
-      boxShadow: '0 2px 10px #000',
-    },
-    '&:active': {
-      background: theme.palette.success.dark,
-      transform: 'translateY(0)',
-      boxShadow: '0 1px 5px #000',
-    },
+    color: 'red',
   },
 });
 

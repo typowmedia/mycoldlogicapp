@@ -88,7 +88,7 @@ class SafeSitePage extends Component {
             title="Safe Site Report"
           />
         </Grid>
-        <Grid item xs={12} className={classes.safeSiteContent}>
+        <Grid item xs={12} sm={8} className={classes.safeSiteContent}>
           {this._showSitePage(match.path)}
         </Grid>
       </Grid>
