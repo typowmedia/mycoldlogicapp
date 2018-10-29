@@ -7,6 +7,12 @@ import styles from './styles';
 import SafeSiteForm from './SafeSiteForm';
 import Spinner from '../../components/UI/Spinner';
 import ReportSuccess from '../../components/ReportSuccess';
+import {
+    BEST_SITE_REPORT,
+    SAFE_SITE_REPORT,
+    SAFE_SITE_REPORT_2,
+    SAFE_SITE_REPORT_3
+} from '../../routes/routes';
 
 const SafeSite = ({ step, classes, nextStep, submitReport, loading }) => {
   let content;
@@ -38,8 +44,8 @@ const SafeSite = ({ step, classes, nextStep, submitReport, loading }) => {
     default:
       content = (
         <ReportSuccess
-          leftButtonTitle="Exit Coldlogic Portal"
-          leftButtonClick={() => {}}
+          leftBtnTitle="Submit A New Report"
+          leftBtnClick={() => this.props.history.push(SAFE_SITE_REPORT)}
           message="Thank you for helping us keep our work safe for everyone and
       creating this report thru Your ColdLogic portal. This report will
       be carefully investigated."
