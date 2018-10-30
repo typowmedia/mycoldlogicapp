@@ -4,7 +4,7 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingBottom: '1rem',
+    padding: '1rem 0',
   },
   feedbackButton: {
     border: 'none',
