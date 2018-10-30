@@ -11,7 +11,6 @@ import { Form, Field } from 'react-final-form';
 import styles from './styles';
 import PropTypes from 'prop-types';
 import { maxCharLength } from '../../../lib/maxCharLength';
-import { checkDates } from '../../../lib/checkDates';
 import { formatLeaveOfAbsence } from '../../../lib/formatReport';
 import { submitReport } from '../../../lib/submitReport';
 import { COLDLOGIC_TOKEN } from '../../../config/tokens';
@@ -19,6 +18,7 @@ import FormControls from '../FormControls';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import DateButton from '../DateButton';
+import { validate } from './helpers';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -30,35 +30,18 @@ class LoaForm extends Component {
       loading: false,
       error: false,
       success: false,
-
-      startDate: moment(),
     };
   }
 
   _onSubmit = async (values, resetForm) => {
     const Token = await localStorage.getItem(COLDLOGIC_TOKEN);
     const report = await formatLeaveOfAbsence(values, this.props.user);
+
     const success = await submitReport(report, '/LeaveAbs', Token);
     if (success.status === 201) {
       this.setState({ loading: false, success: true });
       resetForm();
     } else this.setState({ loading: false, error: true });
-  };
-  _validate = values => {
-    const from = new Date(values.from).setHours(0, 0, 0, 0);
-    const to = new Date(values.to).setHours(0, 0, 0, 0);
-
-    let errors = {};
-    if (!values.from) errors.from = 'Please choose when to start your leave.';
-    if (!values.to) errors.to = 'Please choose when to end your leave.';
-    const dateCheck = checkDates(from, to);
-    if (dateCheck !== true) {
-      errors[dateCheck.error] = dateCheck.message;
-    }
-    if (!values.message) errors.message = 'Please enter some details.';
-    if (!values.reason) errors.reason = 'Please select a reason.';
-
-    return errors;
   };
 
   render() {
@@ -67,84 +50,100 @@ class LoaForm extends Component {
 
     return (
       <Form
-        onSubmit={(values, form) => this._onSubmit(values, form.reset())}
-        validate={this._validate}
+        onSubmit={(values, form) => this._onSubmit(values, () => form.reset())}
+        validate={values => validate(values)}
         render={({ handleSubmit, invalid, form, pristine, values }) => (
           <form onSubmit={handleSubmit} className={classes.loaForm}>
             <div className={classes.dateContainer}>
               <Field name="from">
-                {({ input, meta }) => (
-                  <div className={classes.datePicker}>
-                    <span className={classes.datePickerTitle}>From</span>
-                    <DatePicker
-                      customInput={
-                        <DateButton
-                          placeHolder={'Select a start date'}
-                          error={
-                            pristine ? false : meta.error ? meta.error : false
-                          }
-                          pristine={meta.pristine}
-                        />
-                      }
-                      openToDate={moment()}
-                      className={classes.datePicker}
-                      selected={meta.pristine ? moment() : moment(input.value)}
-                      selectsStart
-                      startDate={values.from}
-                      endDate={values.to}
-                      onChange={input.onChange}
-                      withPortal
-                      allowSameDay
-                      dateFormat="MMMM DD YYYY"
-                      minDate={moment()}
-                      showDisabledMonthNavigation
-                      placeholderText="Select a start date"
-                      required
-                    />
-                  </div>
-                )}
+                {({ input, meta }) => {
+                  let error = '';
+                  if (pristine ? false : meta.error ? meta.error : false)
+                    error = classes.errorMessage;
+                  return (
+                    <div className={classes.datePicker}>
+                      <span className={`${classes.datePickerTitle} ${error}`}>
+                        From*
+                      </span>
+                      <DatePicker
+                        customInput={
+                          <DateButton
+                            placeHolder={'Select a start date'}
+                            pristine={meta.pristine}
+                          />
+                        }
+                        openToDate={moment()}
+                        className={classes.datePicker}
+                        selected={
+                          meta.pristine ? moment() : moment(input.value)
+                        }
+                        selectsStart
+                        startDate={values.from}
+                        endDate={values.to}
+                        onChange={input.onChange}
+                        withPortal
+                        allowSameDay
+                        dateFormat="MMMM DD YYYY"
+                        minDate={moment()}
+                        showDisabledMonthNavigation
+                        placeholderText="Select a start date"
+                        required
+                      />
+                    </div>
+                  );
+                }}
               </Field>
               <Field name="to">
-                {({ input, meta }) => (
-                  <div className={classes.datePicker}>
-                    <span className={classes.datePickerTitle}>To</span>
-                    <DatePicker
-                      customInput={
-                        <DateButton
-                          placeHolder={'Select an end date'}
-                          error={
-                            pristine ? false : meta.error ? meta.error : false
-                          }
-                          pristine={meta.pristine}
-                        />
-                      }
-                      className={classes.datePicker}
-                      selected={meta.pristine ? moment() : moment(input.value)}
-                      selectsEnd
-                      startDate={values.from}
-                      endDate={values.to}
-                      onChange={input.onChange}
-                      withPortal
-                      popperClassName={classes.popper}
-                      allowSameDay
-                      dateFormat="MMMM DD YYYY"
-                      minDate={moment()}
-                      showDisabledMonthNavigation
-                      placeholderText="Select an end date"
-                      required
-                    />
-                  </div>
-                )}
+                {({ input, meta }) => {
+                  let error = '';
+                  if (pristine ? false : meta.error ? meta.error : false)
+                    error = classes.errorMessage;
+                  return (
+                    <div className={classes.datePicker}>
+                      <span className={`${classes.datePickerTitle} ${error}`}>
+                        To*
+                      </span>
+                      <DatePicker
+                        customInput={
+                          <DateButton
+                            placeHolder={'Select an end date'}
+                            pristine={meta.pristine}
+                          />
+                        }
+                        className={classes.datePicker}
+                        selected={
+                          meta.pristine ? moment() : moment(input.value)
+                        }
+                        selectsEnd
+                        startDate={values.from}
+                        endDate={values.to}
+                        onChange={input.onChange}
+                        withPortal
+                        popperClassName={classes.popper}
+                        allowSameDay
+                        dateFormat="MMMM DD YYYY"
+                        minDate={moment()}
+                        showDisabledMonthNavigation
+                        placeholderText="Select an end date"
+                        required
+                      />
+                    </div>
+                  );
+                }}
               </Field>
             </div>
             <FormControl required className={classes.formControl}>
               <Field name="reason">
                 {({ input, meta }) => (
                   <Fragment>
-                    <InputLabel htmlFor="reason">
+                    <InputLabel
+                      htmlFor="reason"
+                      error={pristine ? false : meta.error ? true : false}
+                    >
                       Please Select a Reason
                     </InputLabel>
                     <Select
+                      error={pristine ? false : meta.error ? true : false}
                       id="reason"
                       value={input.value}
                       {...input}
@@ -171,6 +170,7 @@ class LoaForm extends Component {
               <Field name="message">
                 {({ input, meta }) => (
                   <TextField
+                    error={pristine ? false : meta.error ? true : false}
                     id="message"
                     {...input}
                     onChange={e => {

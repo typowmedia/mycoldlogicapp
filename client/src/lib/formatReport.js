@@ -45,14 +45,36 @@ export const formatQuestion = (report, user) => {
 };
 
 export const formatLeaveOfAbsence = (report, user) => {
+  let timeOffBeg = new Date(report.from).setHours(0, 0, 0, 0);
+  timeOffBeg = moment
+    .parseZone(timeOffBeg)
+    .local()
+    .format();
+  let timeOffEnd = new Date(report.to).setHours(0, 0, 0, 0);
+  timeOffEnd = moment
+    .parseZone(timeOffEnd)
+    .local()
+    .format();
+  const timeOffDays = moment(timeOffEnd).diff(moment(timeOffBeg), 'days') + 1;
+  const returnDate = moment
+    .parseZone(timeOffEnd)
+    .local()
+    .add(1, 'days')
+    .format();
   return {
     employeeId:
       user[
         'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'
       ],
+    distCenterId: 1, //hardcoded
+    position: '', //hardcoded
+    shiftId: 1, //hardcoded
+    departmentId: 1, //hardcoded
     leaveAbsReasonId: report.reason,
     reasonDetail: report.message,
-    timeOffBeg: new Date(report.from),
-    timeOffEnd: new Date(report.to),
+    timeOffBeg,
+    timeOffEnd,
+    timeOffDays,
+    returnDate,
   };
 };
