@@ -10,7 +10,6 @@ const styles = theme => ({
     [theme.breakpoints.down('md')]: {
       flex: 1,
       maxWidth: '100%',
-      padding: '3rem 1rem',
     },
     [theme.breakpoints.down('xs')]: {
       border: 'none',
