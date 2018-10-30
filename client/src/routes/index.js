@@ -6,6 +6,8 @@ import DashboardPage from '../pages/DashboardPage';
 import LeaveOfAbsenceRequestPage from '../pages/LeaveOfAbsenceRequestPage';
 import SafeSitePage from '../pages/SafeSitePage';
 import BestSitePage from '../pages/BestSitePage';
+import FeedbackPage from '../pages/FeedbackPage';
+import FeedbackButtons from '../components/FeedbackButtons';
 import BonusRecognitionPage from '../pages/BonusRecognitionPage';
 import { UserContext } from '../context/UserProvider';
 import Header from '../components/Header';
@@ -21,6 +23,7 @@ import {
   SAFE_SITE_REPORT_2,
   SAFE_SITE_REPORT_3,
   HOME,
+  FEEDBACK,
   REQUEST_PASSWORD,
 } from './routes';
 
@@ -47,7 +50,6 @@ export default () => (
       return (
         <Fragment>
           <NavigationBar user={user} logout={logout} />
-
           <Switch>
             <Route exact path={DASHBOARD} component={DashboardPage} />
             <Route
@@ -66,8 +68,10 @@ export default () => (
             <Route exact path={SAFE_SITE_REPORT} component={SafeSitePage} />
             <Route exact path={SAFE_SITE_REPORT_2} component={SafeSitePage} />
             <Route exact path={SAFE_SITE_REPORT_3} component={SafeSitePage} />
+            <Route exact path={FEEDBACK} component={FeedbackPage} />
             <Redirect to={DASHBOARD} />
           </Switch>
+          <FeedbackButtons />
         </Fragment>
       );
     }}

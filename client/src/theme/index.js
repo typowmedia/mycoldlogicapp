@@ -26,6 +26,7 @@ export default createMuiTheme({
       light: '#a0a0a0',
       dark: '#777777',
       darker: '#1e1e1e',
+      feedback: '#95989A',
     },
   },
 });
