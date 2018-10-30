@@ -44,6 +44,9 @@ const styles = theme => ({
     color: theme.palette.primary.main,
     paddingBottom: 4,
   },
+  errorMessage: {
+    color: 'red',
+  },
 });
 
 export default styles;
