@@ -1,11 +1,12 @@
 import React from 'react';
-import LoadLeaveOfAbsence from '../../hoc/LoadLeaveOfAbsence';
-import Spinner from '../UI/Spinner';
 import { withStyles } from '@material-ui/core';
 import styles from './styles';
 import PropTypes from 'prop-types';
+import NothingFoundScreen from '../UI/NothingFoundScreen';
 
 const LeaveOfAbsenceData = ({ classes, mobile, data }) => {
+  if (data.length < 1)
+    return <NothingFoundScreen messageTop="No current requests to show" />;
   if (mobile) {
     return (
       <div className={classes.mobileLoaContainer}>

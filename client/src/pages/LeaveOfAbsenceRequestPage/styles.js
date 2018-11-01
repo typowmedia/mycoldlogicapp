@@ -15,7 +15,10 @@ const styles = theme => ({
     padding: '4rem 2rem',
   },
   loaRequest: {},
-  loaStats: {},
+  loaStats: {
+    maxHeight: '60vh',
+    overflowY: 'scroll'
+  },
 });
 
 export default styles;
