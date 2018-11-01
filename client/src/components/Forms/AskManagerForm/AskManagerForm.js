@@ -63,8 +63,14 @@ class AskManagerForm extends Component {
                 <Field name="manager">
                   {({ input, meta }) => (
                     <Fragment>
-                      <InputLabel htmlFor="manager">Manager</InputLabel>
+                      <InputLabel
+                        htmlFor="manager"
+                        error={pristine ? false : meta.error ? true : false}
+                      >
+                        Manager
+                      </InputLabel>
                       <Select
+                        error={pristine ? false : meta.error ? true : false}
                         id="manager"
                         value={input.value}
                         {...input}
@@ -95,6 +101,7 @@ class AskManagerForm extends Component {
                 <Field name="subject">
                   {({ input, meta }) => (
                     <TextField
+                      error={pristine ? false : meta.error ? true : false}
                       id="subject"
                       {...input}
                       onChange={e => {
@@ -113,6 +120,7 @@ class AskManagerForm extends Component {
                 <Field name="question">
                   {({ input, meta }) => (
                     <TextField
+                      error={pristine ? false : meta.error ? true : false}
                       id="question"
                       {...input}
                       onChange={e => {
