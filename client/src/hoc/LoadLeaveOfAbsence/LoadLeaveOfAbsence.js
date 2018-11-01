@@ -27,6 +27,7 @@ class LoadLeaveOfAbsence extends Component {
           );
           this.setState({
             data,
+            reasons: reasons.data,
             loading: false,
           });
         }),
