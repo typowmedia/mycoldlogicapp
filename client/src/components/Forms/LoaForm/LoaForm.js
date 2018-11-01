@@ -203,7 +203,6 @@ class LoaForm extends Component {
                 pristine={pristine}
               />
             </FormControl>
-            <pre>{JSON.stringify(values, 0, 2)}</pre>
           </form>
         )}
       />

@@ -87,6 +87,7 @@ class BestSiteForm extends Component {
                   <Field name="suggestion">
                     {({ input, meta }) => (
                       <TextField
+                        error={pristine ? false : meta.error ? true : false}
                         id="suggestion"
                         {...input}
                         label="My Suggestion is:"
@@ -108,6 +109,7 @@ class BestSiteForm extends Component {
                   <Field name="details">
                     {({ input, meta }) => (
                       <TextField
+                        error={pristine ? false : meta.error ? true : false}
                         id="details"
                         {...input}
                         label="This will make Cold Logic the best site by:"
@@ -154,6 +156,9 @@ class BestSiteForm extends Component {
                               classes={{ root: classes.checkbox }}
                             />
                             <InputLabel
+                              error={
+                                pristine ? false : meta.error ? true : false
+                              }
                               htmlFor={`checkbox${index}`}
                               className={classes.bestSiteCheckboxInputLabel}
                             >
