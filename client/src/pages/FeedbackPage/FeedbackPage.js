@@ -5,6 +5,9 @@ import styles from './styles';
 import FeedbackForm from '../../components/Forms/FeedbackForm';
 
 class FeedbackPage extends Component {
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
   render() {
     const { classes } = this.props;
     return (

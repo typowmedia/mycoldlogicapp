@@ -26,6 +26,9 @@ class SafeSitePage extends Component {
       error: false,
     };
   }
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
   _resetError = () => {
     this.setState({ error: false });
   };

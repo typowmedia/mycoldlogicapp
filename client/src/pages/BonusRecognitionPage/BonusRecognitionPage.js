@@ -10,6 +10,9 @@ import LoadingScreen from '../../components/UI/LoadingScreen';
 import PropTypes from 'prop-types';
 
 class BonusRecognitionPage extends Component {
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
   render() {
     const { classes } = this.props;
     return (

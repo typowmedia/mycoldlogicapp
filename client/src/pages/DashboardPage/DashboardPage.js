@@ -10,6 +10,9 @@ import LoadContent from '../../hoc/LoadContent';
 import LoadingScreen from '../../components/UI/LoadingScreen';
 
 class DashboardPage extends Component {
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
   render() {
     const { classes } = this.props;
     return (

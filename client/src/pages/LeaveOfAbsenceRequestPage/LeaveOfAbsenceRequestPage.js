@@ -12,6 +12,9 @@ import LoadLeaveOfAbsence from '../../hoc/LoadLeaveOfAbsence';
 import LoadingScreen from '../../components/UI/LoadingScreen';
 
 class LeaveOfAbsenceRequestPage extends Component {
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
   render() {
     const { classes } = this.props;
 
