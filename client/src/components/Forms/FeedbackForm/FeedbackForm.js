@@ -68,10 +68,14 @@ const FeedbackForm = ({ classes }) => (
                 <Field name="liked">
                   {({ input, meta }) => (
                     <Fragment>
-                      <InputLabel htmlFor="liked">
+                      <InputLabel
+                        htmlFor="liked"
+                        error={pristine ? false : meta.error ? true : false}
+                      >
                         What feature do you like the most
                       </InputLabel>
                       <Select
+                        error={pristine ? false : meta.error ? true : false}
                         id="liked"
                         value={input.value}
                         {...input}
@@ -101,10 +105,14 @@ const FeedbackForm = ({ classes }) => (
                 <Field name="disliked">
                   {({ input, meta }) => (
                     <Fragment>
-                      <InputLabel htmlFor="disliked">
+                      <InputLabel
+                        htmlFor="disliked"
+                        error={pristine ? false : meta.error ? true : false}
+                      >
                         What feature do you like the least
                       </InputLabel>
                       <Select
+                        error={pristine ? false : meta.error ? true : false}
                         id="disliked"
                         value={input.value}
                         {...input}
@@ -135,6 +143,7 @@ const FeedbackForm = ({ classes }) => (
               <Field name="message">
                 {({ input, meta }) => (
                   <TextField
+                    error={pristine ? false : meta.error ? true : false}
                     id="question"
                     {...input}
                     onChange={e => {
