@@ -5,29 +5,30 @@ export const formatSafetyReport = (report, user) => {
     report: `
   Employee Name: ${
     report.anon ? 'anonymous' : `${user.FirstName} ${user.LastName}`
-  }
-  Date of Incident: ${moment(report.date).format('MMMMMM DD YYYY')} \r
-  Place of Incident: ${report.where} \r
+  } \n\r
+  Date of Incident: ${moment(report.date).format('MMMMMM DD YYYY')} \n\r
+  Place of Incident: ${report.where} \n\r
   Details: ${report.message}
   `,
   };
   return formattedReport;
 };
 
-export const formatBestSiteReport = report => {
+export const formatBestSiteReport = (report, user) => {
   const reasons = report.reasons
     .map(reason => {
       if (reason === 'Other') {
         return `${reason}: ${report.other}`;
       }
-      return `${reason} \n`;
+      return `${reason} \n\r`;
     })
     .join('');
   const formattedReport = {
     report: `
-  Suggestion: ${report.suggestion} \r
-  This improves ColdLogic by: ${report.details} \r
-  Potential to improve the following: \r ${reasons}
+    Employee: ${user.FirstName} ${user.LastName} \n\r
+  Suggestion: ${report.suggestion} \n\r
+  This improves ColdLogic by: ${report.details} \n\r
+  Potential to improve the following: \n\r ${reasons}
   `,
   };
   return formattedReport;

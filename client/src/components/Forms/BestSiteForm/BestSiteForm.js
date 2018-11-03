@@ -67,10 +67,10 @@ class BestSiteForm extends Component {
   };
 
   render() {
-    const { classes, loading, error, resetError } = this.props;
+    const { classes, loading, error, resetError, submitReport } = this.props;
     return (
       <Form
-        onSubmit={values => this.props.submitReport(values)}
+        onSubmit={values => submitReport(values)}
         validate={values => validate(values)}
         render={({ handleSubmit, invalid, pristine, values }) => (
           <form onSubmit={handleSubmit} className={classes.bestSiteForm}>
@@ -112,7 +112,7 @@ class BestSiteForm extends Component {
                         error={pristine ? false : meta.error ? true : false}
                         id="details"
                         {...input}
-                        label="This will make Cold Logic the best site by:"
+                        label="This will make ColdLogic the best site by:"
                         required
                         autoComplete="off"
                         multiline

@@ -36,7 +36,10 @@ class BestSitePage extends Component {
   _submitReport = async report => {
     this.setState({ loading: true });
     const token = await localStorage.getItem(COLDLOGIC_TOKEN);
-    const formattedResponse = await formatBestSiteReport(report);
+    const formattedResponse = await formatBestSiteReport(
+      report,
+      this.props.user,
+    );
     const response = await submitReport(
       formattedResponse,
       '/BestSiteVms',
