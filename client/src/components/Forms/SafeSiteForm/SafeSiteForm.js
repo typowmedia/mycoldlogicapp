@@ -21,7 +21,7 @@ class SafeSiteForm extends Component {
         onSubmit={values => submitReport(values)}
         validate={values => validate(values)}
         initialValues={{ anon: false }}
-        render={({ handleSubmit, invalid, pristine, values }) => (
+        render={({ handleSubmit, invalid, pristine }) => (
           <form onSubmit={handleSubmit} className={classes.safeSiteForm}>
             <FormControl fullWidth required className={classes.formControl}>
               <Field name="date">
@@ -132,7 +132,6 @@ class SafeSiteForm extends Component {
                 pristine={pristine}
               />
             </FormControl>
-            <pre>{JSON.stringify(values, 0, 2)}</pre>
           </form>
         )}
       />

@@ -63,7 +63,11 @@ export default () => (
               component={() => <BonusRecognitionPage user={user} />}
             />
             <Route exact path={BEST_SITE_REPORT} component={BestSitePage} />
-            <Route exact path={BEST_SITE_REPORT_2} component={BestSitePage} />
+            <Route
+              exact
+              path={BEST_SITE_REPORT_2}
+              component={props => <BestSitePage user={user} {...props} />}
+            />
             <Route exact path={BEST_SITE_REPORT_3} component={BestSitePage} />
             <Route exact path={SAFE_SITE_REPORT} component={SafeSitePage} />
             <Route
