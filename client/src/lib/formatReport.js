@@ -1,8 +1,11 @@
 import moment from 'moment';
 
-export const formatSafetyReport = report => {
+export const formatSafetyReport = (report, user) => {
   const formattedReport = {
     report: `
+  Employee Name: ${
+    report.anon ? 'anonymous' : `${user.FirstName} ${user.LastName}`
+  }
   Date of Incident: ${moment(report.date).format('MMMMMM DD YYYY')} \r
   Place of Incident: ${report.where} \r
   Details: ${report.message}

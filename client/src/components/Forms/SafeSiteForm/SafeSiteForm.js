@@ -1,7 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
+import InputLabel from '@material-ui/core/InputLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 import { Form, Field } from 'react-final-form';
 import styles from './styles';
 import PropTypes from 'prop-types';
@@ -18,7 +20,8 @@ class SafeSiteForm extends Component {
       <Form
         onSubmit={values => submitReport(values)}
         validate={values => validate(values)}
-        render={({ handleSubmit, invalid, pristine }) => (
+        initialValues={{ anon: false }}
+        render={({ handleSubmit, invalid, pristine, values }) => (
           <form onSubmit={handleSubmit} className={classes.safeSiteForm}>
             <FormControl fullWidth required className={classes.formControl}>
               <Field name="date">
@@ -96,7 +99,30 @@ class SafeSiteForm extends Component {
                 )}
               </Field>
             </FormControl>
-
+            <div className={classes.safeSiteAnonContainer}>
+              <Field name="anon" type="checkbox">
+                {({ input, meta }) => {
+                  return (
+                    <Fragment>
+                      <Checkbox
+                        value={input.value ? 'true' : 'false'}
+                        onChange={event => {
+                          input.onChange(!input.value);
+                        }}
+                        id={`anon`}
+                        classes={{ root: classes.safeSiteCheckbox }}
+                      />
+                      <InputLabel
+                        htmlFor={`anon`}
+                        className={classes.safeSiteCheckboxInputLabel}
+                      >
+                        send report anonymously
+                      </InputLabel>
+                    </Fragment>
+                  );
+                }}
+              </Field>
+            </div>
             <FormControl className={classes.formButtonContainer}>
               <FormControls
                 loading={loading}
@@ -106,6 +132,7 @@ class SafeSiteForm extends Component {
                 pristine={pristine}
               />
             </FormControl>
+            <pre>{JSON.stringify(values, 0, 2)}</pre>
           </form>
         )}
       />

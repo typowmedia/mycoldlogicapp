@@ -66,7 +66,11 @@ export default () => (
             <Route exact path={BEST_SITE_REPORT_2} component={BestSitePage} />
             <Route exact path={BEST_SITE_REPORT_3} component={BestSitePage} />
             <Route exact path={SAFE_SITE_REPORT} component={SafeSitePage} />
-            <Route exact path={SAFE_SITE_REPORT_2} component={SafeSitePage} />
+            <Route
+              exact
+              path={SAFE_SITE_REPORT_2}
+              component={props => <SafeSitePage user={user} {...props} />}
+            />
             <Route exact path={SAFE_SITE_REPORT_3} component={SafeSitePage} />
             <Route exact path={FEEDBACK} component={FeedbackPage} />
             <Redirect to={DASHBOARD} />
