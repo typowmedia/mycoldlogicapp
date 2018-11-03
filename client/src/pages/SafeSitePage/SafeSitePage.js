@@ -66,7 +66,7 @@ class SafeSitePage extends Component {
   _submitReport = async report => {
     this.setState({ loading: true });
     const token = await localStorage.getItem(COLDLOGIC_TOKEN);
-    const formattedReport = await formatSafetyReport(report);
+    const formattedReport = await formatSafetyReport(report, this.props.user);
     const response = await submitReport(formattedReport, '/SafeSiteVms', token);
     if (response.status === 201) {
       this.setState({ loading: false });

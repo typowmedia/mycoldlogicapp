@@ -49,6 +49,17 @@ const styles = theme => ({
   errorMessage: {
     color: 'red',
   },
+  safeSiteAnonContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    padding: '1rem 0',
+  },
+  safeSiteCheckbox: {
+    marginLeft: -13,
+  },
+  safeSiteCheckboxInputLabel: {
+    fontSize: '1.4rem',
+  },
 });
 
 export default styles;
