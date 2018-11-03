@@ -21,7 +21,7 @@ const FeedbackForm = ({ classes }) => (
     render={({ handleSubmit, pristine, invalid }) => (
       <Grid
         container
-        justifyContent="center"
+        justify="center"
         alignContent="flex-start"
         className={classes.feedbackFormContainer}
       >
