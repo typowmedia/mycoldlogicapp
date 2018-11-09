@@ -47,7 +47,7 @@ class LeaveOfAbsenceRequestPage extends Component {
                       <Grid item xs={12} className={classes.loaTitle}>
                         <TitleBar
                           icon={<LeaveOfAbsenceIcon color={'#0D3C55'} />}
-                          title="Request Leave of Absence"
+                          title="Unpaid Time Off Request"
                         />
                       </Grid>
                       <Grid item sm={12} md={6} className={classes.loaRequest}>

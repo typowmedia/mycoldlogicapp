@@ -65,7 +65,7 @@ class AccountForm extends Component {
                             htmlFor="pin"
                             className={meta.error ? classes.error : ``}
                           >
-                            {meta.error ? `${meta.error}` : 'Pin'}
+                            {meta.error ? `${meta.error}` : 'Employee ID'}
                           </InputLabel>
                           <Input
                             error={typeof meta.error === 'string'}

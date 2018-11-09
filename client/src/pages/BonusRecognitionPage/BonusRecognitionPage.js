@@ -34,7 +34,7 @@ class BonusRecognitionPage extends Component {
                   <Grid item xs={12} className={classes.bonusTitle}>
                     <TitleBar
                       icon={<BonusRecognitionIcon color={'#0D3C55'} />}
-                      title="Bonus Recognitions"
+                      title="Incentive Recognitions"
                     />
                   </Grid>
                   <Grid item xs={12}>
