@@ -1,5 +1,6 @@
 export const DASHBOARD = '/dashboard';
 export const REQUEST_TIME_OFF = '/unpaid-time-off-request';
+export const REQUEST_TIME_OFF_2 = '/unpaid-time-off-request/success';
 export const BONUS_RECOGNITIONS = '/my-incentive-recognitions';
 export const BEST_SITE_REPORT = '/best-site-report';
 export const BEST_SITE_REPORT_2 = '/best-site-report/my-report';

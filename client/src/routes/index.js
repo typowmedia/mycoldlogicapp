@@ -25,6 +25,7 @@ import {
   HOME,
   FEEDBACK,
   REQUEST_PASSWORD,
+  REQUEST_TIME_OFF_2,
 } from './routes';
 
 export default () => (
@@ -55,6 +56,11 @@ export default () => (
             <Route
               exact
               path={REQUEST_TIME_OFF}
+              component={LeaveOfAbsenceRequestPage}
+            />
+            <Route
+              exact
+              path={REQUEST_TIME_OFF_2}
               component={LeaveOfAbsenceRequestPage}
             />
             <Route

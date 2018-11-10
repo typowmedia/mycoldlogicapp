@@ -17,7 +17,7 @@ const styles = theme => ({
   loaRequest: {},
   loaStats: {
     maxHeight: '60vh',
-    overflowY: 'scroll'
+    overflowY: 'scroll',
   },
 });
 

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Grid, withStyles } from '@material-ui/core';
 import LeaveOfAbsenceIcon from '../../assets/LeaveOfAbsenceIcon';
 import TitleBar from '../../components/TitleBar';
@@ -10,13 +10,15 @@ import PropTypes from 'prop-types';
 import ScreenSize from '../../hoc/ScreenSize';
 import LoadLeaveOfAbsence from '../../hoc/LoadLeaveOfAbsence';
 import LoadingScreen from '../../components/UI/LoadingScreen';
+import { REQUEST_TIME_OFF, REQUEST_TIME_OFF_2 } from '../../routes/routes';
+import ReportSuccess from '../../components/ReportSuccess';
 
 class LeaveOfAbsenceRequestPage extends Component {
   componentDidMount() {
     window.scrollTo(0, 0);
   }
   render() {
-    const { classes } = this.props;
+    const { classes, match, history } = this.props;
 
     return (
       <LoadLeaveOfAbsence>
@@ -42,6 +44,7 @@ class LeaveOfAbsenceRequestPage extends Component {
                       alignItems={
                         screenWidth <= tabletScreen ? 'stretch' : 'flex-start'
                       }
+                      alignContent="flex-start"
                       className={classes.loaContainer}
                     >
                       <Grid item xs={12} className={classes.loaTitle}>
@@ -50,15 +53,37 @@ class LeaveOfAbsenceRequestPage extends Component {
                           title="Unpaid Time Off Request"
                         />
                       </Grid>
-                      <Grid item sm={12} md={6} className={classes.loaRequest}>
-                        <LoaForm reasons={reasons} user={user} />
-                      </Grid>
-                      <Grid item sm={12} md={6} className={classes.loaStats}>
-                        <LeaveOfAbsenceData
-                          mobile={screenWidth <= mobileScreen}
-                          data={data}
-                        />
-                      </Grid>
+                      {match.path === REQUEST_TIME_OFF_2 ? (
+                        <Grid item sm={12} className={classes.loaSuccess}>
+                          <ReportSuccess
+                            leftBtnClick={() => history.push(REQUEST_TIME_OFF)}
+                            leftBtnTitle="Back to Unpaid Leave"
+                            message="Your Request has been sent. Your supervisor will be in contact with you shortly."
+                          />
+                        </Grid>
+                      ) : (
+                        <Fragment>
+                          <Grid
+                            item
+                            sm={12}
+                            md={6}
+                            className={classes.loaRequest}
+                          >
+                            <LoaForm reasons={reasons} user={user} />
+                          </Grid>
+                          <Grid
+                            item
+                            sm={12}
+                            md={6}
+                            className={classes.loaStats}
+                          >
+                            <LeaveOfAbsenceData
+                              mobile={screenWidth <= mobileScreen}
+                              data={data}
+                            />
+                          </Grid>
+                        </Fragment>
+                      )}
                     </Grid>
                   )}
                 </ScreenSize>
