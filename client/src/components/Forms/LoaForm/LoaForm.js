@@ -19,8 +19,10 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import DateButton from '../DateButton';
 import { validate } from './helpers';
+import { withRouter } from 'react-router-dom';
 
 import 'react-datepicker/dist/react-datepicker.css';
+import { REQUEST_TIME_OFF_2 } from '../../../routes/routes';
 
 class LoaForm extends Component {
   constructor(props) {
@@ -29,7 +31,6 @@ class LoaForm extends Component {
     this.state = {
       loading: false,
       error: false,
-      success: false,
     };
   }
 
@@ -39,8 +40,9 @@ class LoaForm extends Component {
 
     const success = await submitReport(report, '/LeaveAbs', Token);
     if (success.status === 201) {
-      this.setState({ loading: false, success: true });
+      this.setState({ loading: false });
       resetForm();
+      this.props.history.push(REQUEST_TIME_OFF_2);
     } else this.setState({ loading: false, error: true });
   };
 
@@ -196,8 +198,6 @@ class LoaForm extends Component {
               <FormControls
                 loading={loading}
                 error={error}
-                success={success}
-                successClicked={() => this.setState({ success: false })}
                 errorClicked={() => this.setState({ error: false })}
                 invalid={invalid}
                 pristine={pristine}
@@ -213,4 +213,4 @@ class LoaForm extends Component {
 LoaForm.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-export default withStyles(styles)(LoaForm);
+export default withRouter(withStyles(styles)(LoaForm));

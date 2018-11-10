@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Grid, withStyles } from '@material-ui/core';
 import LeaveOfAbsenceIcon from '../../assets/LeaveOfAbsenceIcon';
 import TitleBar from '../../components/TitleBar';
@@ -10,14 +10,16 @@ import PropTypes from 'prop-types';
 import ScreenSize from '../../hoc/ScreenSize';
 import LoadLeaveOfAbsence from '../../hoc/LoadLeaveOfAbsence';
 import LoadingScreen from '../../components/UI/LoadingScreen';
+import { REQUEST_TIME_OFF, REQUEST_TIME_OFF_2} from '../../routes/routes';
+import ReportSuccess from '../../components/ReportSuccess';
 
 class LeaveOfAbsenceRequestPage extends Component {
   componentDidMount() {
     window.scrollTo(0, 0);
   }
   render() {
-    const { classes } = this.props;
-
+    const { classes, match, history } = this.props;
+    
     return (
       <LoadLeaveOfAbsence>
         {({ data, reasons, error, loading }) => {
@@ -50,6 +52,11 @@ class LeaveOfAbsenceRequestPage extends Component {
                           title="Unpaid Time Off Request"
                         />
                       </Grid>
+                      {
+                        match.pathname === REQUEST_TIME_OFF_2 ? (
+                          <ReportSuccess leftBtnClick={props => props.history.push(REQUEST_TIME_OFF)} leftBtnTitle="Back to Unpaid Leave" message="Your Request has been sent. Your supervisor will be in contact with you shortly."/>
+                        ) : (
+                          <Fragment>
                       <Grid item sm={12} md={6} className={classes.loaRequest}>
                         <LoaForm reasons={reasons} user={user} />
                       </Grid>
@@ -59,6 +66,11 @@ class LeaveOfAbsenceRequestPage extends Component {
                           data={data}
                         />
                       </Grid>
+
+                          </Fragment>
+
+                        )
+                      }
                     </Grid>
                   )}
                 </ScreenSize>
