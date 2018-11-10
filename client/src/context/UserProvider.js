@@ -33,7 +33,6 @@ class UserProvider extends Component {
         const user = await this._getUser(userToken);
         if (user.status === 200) {
           this.setState({ user: user.data, loading: false });
-          console.log('User Already Logged in!');
         } else {
           this.setState({ user: null, loading: false });
         }

@@ -48,7 +48,7 @@ class LoaForm extends Component {
 
   render() {
     const { classes, reasons } = this.props;
-    const { loading, error, success } = this.state;
+    const { loading, error } = this.state;
 
     return (
       <Form
