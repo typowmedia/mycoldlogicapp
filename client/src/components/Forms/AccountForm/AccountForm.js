@@ -13,6 +13,7 @@ import styles from './styles';
 import Spinner from '../../UI/Spinner';
 import { UserContext } from '../../../context/UserProvider';
 import PropTypes from 'prop-types';
+import { REQUEST_PASSWORD } from '../../../routes/routes';
 
 class AccountForm extends Component {
   constructor(props) {
@@ -65,7 +66,7 @@ class AccountForm extends Component {
                             htmlFor="pin"
                             className={meta.error ? classes.error : ``}
                           >
-                            {meta.error ? `${meta.error}` : 'Pin'}
+                            {meta.error ? `${meta.error}` : 'Employee ID'}
                           </InputLabel>
                           <Input
                             error={typeof meta.error === 'string'}
@@ -118,10 +119,10 @@ class AccountForm extends Component {
                           type="button"
                           onClick={() => {
                             form.reset();
-                            this.props.history.push('/request-password');
+                            this.props.history.push(REQUEST_PASSWORD);
                           }}
                         >
-                          Request a password
+                          How to reset password
                         </button>
                       </Typography>
                       {loading ? (

@@ -1,6 +1,6 @@
 export const DASHBOARD = '/dashboard';
-export const REQUEST_TIME_OFF = '/leave-of-absence-request';
-export const BONUS_RECOGNITIONS = '/my-bonus-recognitions';
+export const REQUEST_TIME_OFF = '/unpaid-time-off-request';
+export const BONUS_RECOGNITIONS = '/my-incentive-recognitions';
 export const BEST_SITE_REPORT = '/best-site-report';
 export const BEST_SITE_REPORT_2 = '/best-site-report/my-report';
 export const BEST_SITE_REPORT_3 = '/best-site-report/success';

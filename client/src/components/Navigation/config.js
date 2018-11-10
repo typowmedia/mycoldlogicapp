@@ -12,13 +12,13 @@ import SafeSiteIcon from '../../assets/SafeSiteIcon';
 
 export const navigation = [
   {
-    name: 'Request Leave of Absence',
+    name: 'Unpaid Time Off Request',
     route: REQUEST_TIME_OFF,
     icon: <LeaveOfAbsenceIcon color={'#f4f4f4'} />,
     description: 'Submit a leave of absence and follow up on them.',
   },
   {
-    name: 'Bonus Recognitions',
+    name: 'Incentive Recognitions',
     route: BONUS_RECOGNITIONS,
     icon: <BonusRecognitionIcon color={'#f4f4f4'} />,
     description: 'View your upcoming bonus recognitions.',
