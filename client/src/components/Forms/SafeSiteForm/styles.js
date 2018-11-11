@@ -15,8 +15,24 @@ const styles = theme => ({
     width: '50%',
     marginBottom: '1rem',
   },
+  locationContainer: {
+    padding: '1rem 0',
+    '& > *': {
+      fontSize: '1.6rem',
+    },
+  },
   whereContainer: {
     padding: '1rem 0',
+  },
+  safeSiteDateContainer: {
+    display: 'flex',
+    justifyContent: 'space-evenly',
+    fontSize: '1.8rem',
+    marginBottom: '2rem',
+
+    [theme.breakpoints.down('xs')]: {
+      justifyContent: 'space-between',
+    },
   },
   datePickerContainer: {
     display: 'flex',

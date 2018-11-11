@@ -16,6 +16,8 @@ import {
   SAFE_SITE_REPORT,
 } from '../../routes/routes';
 import PropTypes from 'prop-types';
+import LoadContent from '../../hoc/LoadContent';
+import LoadingScreen from '../../components/UI/LoadingScreen';
 
 class SafeSitePage extends Component {
   constructor(props) {
@@ -32,7 +34,7 @@ class SafeSitePage extends Component {
   _resetError = () => {
     this.setState({ error: false });
   };
-  _showSitePage = route => {
+  _showSitePage = (route, data) => {
     switch (route) {
       case SAFE_SITE_REPORT_2:
         return (
@@ -41,6 +43,7 @@ class SafeSitePage extends Component {
             loading={this.state.loading}
             error={this.state.error}
             errorReset={this._resetError}
+            distCenters={data}
           />
         );
       case SAFE_SITE_REPORT_3:
@@ -80,22 +83,30 @@ class SafeSitePage extends Component {
   render() {
     const { classes, match } = this.props;
     return (
-      <Grid
-        container
-        justify="center"
-        alignContent="flex-start"
-        className={classes.safeSiteContainer}
-      >
-        <Grid item xs={12} md={8} className={classes.safeSiteTitle}>
-          <TitleBar
-            icon={<SafeSiteIcon color={'#0D3C55'} />}
-            title="Safe Site Report"
-          />
-        </Grid>
-        <Grid item xs={12} sm={8} className={classes.safeSiteContent}>
-          {this._showSitePage(match.path)}
-        </Grid>
-      </Grid>
+      <LoadContent url="/DistCenters">
+        {({ error, loading, data }) => {
+          if (loading) return <LoadingScreen />;
+          if (error) return <p>error</p>;
+          return (
+            <Grid
+              container
+              justify="center"
+              alignContent="flex-start"
+              className={classes.safeSiteContainer}
+            >
+              <Grid item xs={12} md={8} className={classes.safeSiteTitle}>
+                <TitleBar
+                  icon={<SafeSiteIcon color={'#0D3C55'} />}
+                  title="Safe Site Report"
+                />
+              </Grid>
+              <Grid item xs={12} sm={8} className={classes.safeSiteContent}>
+                {this._showSitePage(match.path, data)}
+              </Grid>
+            </Grid>
+          );
+        }}
+      </LoadContent>
     );
   }
 }

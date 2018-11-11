@@ -7,6 +7,8 @@ export const formatSafetyReport = (report, user) => {
     report.anon ? 'anonymous' : `${user.FirstName} ${user.LastName}`
   } \n\r
   Date of Incident: ${moment(report.date).format('MMMMMM DD YYYY')} \n\r
+  Time of Incident: ${moment(report.time).format('LT')} \n\r
+  Location of Incident: ${report.location} \n\r
   Place of Incident: ${report.where} \n\r
   Details: ${report.message}
   `,

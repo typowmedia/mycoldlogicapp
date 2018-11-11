@@ -4,6 +4,8 @@ import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 import { Form, Field } from 'react-final-form';
 import styles from './styles';
 import PropTypes from 'prop-types';
@@ -15,7 +17,15 @@ import { validate } from './helpers';
 
 class SafeSiteForm extends Component {
   render() {
-    const { classes, submitReport, loading, error, resetError } = this.props;
+    const {
+      classes,
+      submitReport,
+      loading,
+      error,
+      resetError,
+      distCenters,
+    } = this.props;
+
     return (
       <Form
         onSubmit={values => submitReport(values)}
@@ -23,11 +33,12 @@ class SafeSiteForm extends Component {
         initialValues={{ anon: false }}
         render={({ handleSubmit, invalid, pristine }) => (
           <form onSubmit={handleSubmit} className={classes.safeSiteForm}>
-            <FormControl fullWidth required className={classes.formControl}>
+            <div className={classes.safeSiteDateContainer}>
               <Field name="date">
                 {({ input, meta }) => {
                   let error = '';
-                  if (!pristine && meta.error) error = classes.errorMessage;
+                  if (pristine ? false : meta.error ? meta.error : false)
+                    error = classes.errorMessage;
                   return (
                     <div className={classes.datePickerContainer}>
                       <span className={`${classes.dateLabel} ${error}`}>
@@ -50,12 +61,83 @@ class SafeSiteForm extends Component {
                         allowSameDay
                         dateFormat="MMMM DD YYYY"
                         required
+                        className={classes.time}
                       />
                     </div>
                   );
                 }}
               </Field>
+              <Field name="time">
+                {({ input, meta }) => {
+                  let error = '';
+                  if (pristine ? false : meta.error ? meta.error : false)
+                    error = classes.errorMessage;
+                  return (
+                    <div className={classes.datePickerContainer}>
+                      <span className={`${classes.dateLabel} ${error}`}>
+                        Time of Incident
+                        <span>&nbsp;*</span>
+                      </span>
+                      <DatePicker
+                        customInput={
+                          <DateButton
+                            placeHolder={'Select Time Of Incident'}
+                            pristine={meta.pristine}
+                          />
+                        }
+                        showTimeSelect
+                        showTimeSelectOnly
+                        timeIntervals={15}
+                        dateFormat="LT"
+                        timeCaption="Time"
+                        selected={
+                          meta.pristine ? moment() : moment(input.value)
+                        }
+                        onChange={input.onChange}
+                        withPortal
+                        required
+                      />
+                    </div>
+                  );
+                }}
+              </Field>
+            </div>
+            <FormControl required className={classes.locationContainer}>
+              <Field name="location">
+                {({ input, meta }) => (
+                  <Fragment>
+                    <InputLabel
+                      htmlFor="manager"
+                      error={pristine ? false : meta.error ? true : false}
+                      className={classes.safeSiteLabel}
+                    >
+                      Location of Incident
+                    </InputLabel>
+                    <Select
+                      error={pristine ? false : meta.error ? true : false}
+                      id="manager"
+                      value={input.value}
+                      {...input}
+                      name="manager"
+                    >
+                      <MenuItem value="" className={classes.safeSiteInput}>
+                        <em>None</em>
+                      </MenuItem>
+                      {distCenters.map(center => (
+                        <MenuItem
+                          className={classes.safeSiteInput}
+                          key={center.id}
+                          value={center.location}
+                        >
+                          {center.location}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </Fragment>
+                )}
+              </Field>
             </FormControl>
+
             <FormControl required className={classes.whereContainer}>
               <Field name="where">
                 {({ input, meta }) => (
