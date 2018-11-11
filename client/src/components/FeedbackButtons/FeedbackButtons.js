@@ -20,8 +20,6 @@ const FeedbackButtons = ({ classes, history, location }) => {
           ? 'Thank you for being with us'
           : 'Give us your feedback'}
       </button>
-      <span className={classes.circle}>&nbsp;</span>
-      <button className={classes.feedbackButton}>Rate this App</button>
     </div>
   );
 };
