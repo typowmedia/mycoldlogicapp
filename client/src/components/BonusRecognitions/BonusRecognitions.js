@@ -3,11 +3,19 @@ import { withStyles } from '@material-ui/core';
 import styles from './styles';
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import NothingFoundScreen from '../UI/NothingFoundScreen';
 
 const BonusRecognitions = ({ classes, mobile, bonuses }) => {
   if (bonuses.length < 1) {
-    return <NothingFoundScreen messageTop="There doesn't appear to be any data at this moment." messageBottom="Please try again later."/>;
+    bonuses = [
+      {
+        id: 'no data',
+        bbsFactor: 0,
+        dlyIncTot: 0,
+        wklyIncTot: 0,
+        grssInc: 0,
+        netInc: 0,
+      },
+    ];
   }
   if (mobile) {
     return (
