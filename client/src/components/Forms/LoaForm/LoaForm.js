@@ -35,6 +35,7 @@ class LoaForm extends Component {
   }
 
   _onSubmit = async (values, resetForm) => {
+    this.setState({ loading: true });
     const Token = await localStorage.getItem(COLDLOGIC_TOKEN);
     const report = await formatLeaveOfAbsence(values, this.props.user);
 

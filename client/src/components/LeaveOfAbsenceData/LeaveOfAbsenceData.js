@@ -51,8 +51,8 @@ const LeaveOfAbsenceData = ({ classes, mobile, data }) => {
             <p className={`${classes.cellReason} ${classes.cell}`}>
               {loa.reason}
             </p>
-            <p className={classes.cell}>{loa.to}</p>
             <p className={classes.cell}>{loa.from}</p>
+            <p className={classes.cell}>{loa.to}</p>
             <p className={classes.cell}>{loa.status}</p>
           </div>
         );
