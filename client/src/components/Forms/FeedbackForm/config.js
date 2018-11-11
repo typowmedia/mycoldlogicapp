@@ -51,4 +51,12 @@ export const features = [
     id: 4,
     name: 'Safe Site Report',
   },
+  {
+    id: 5,
+    name: 'None of the Above',
+  },
+  {
+    id: 6,
+    name: 'All of the Above',
+  },
 ];

@@ -41,11 +41,18 @@ const FeedbackForm = ({ classes }) => (
                   value={r.rating}
                 >
                   {({ input, meta }) => {
+                    let error = '';
+                    if (meta.error && !pristine) {
+                      error = <span>choose one</span>;
+                    }
                     let color = 'grey';
                     if (input.checked) color = r.color;
                     return (
                       <div className={classes.ratingBox}>
-                        <label htmlFor={`rating${r.rating}`}>
+                        <label
+                          htmlFor={`rating${r.rating}`}
+                          className={classes.feedbackIcon}
+                        >
                           {r.icon(color)}
                         </label>
                         <input
@@ -57,6 +64,7 @@ const FeedbackForm = ({ classes }) => (
                           checked={input.checked}
                           onChange={() => input.onChange(r.rating)}
                         />
+                        {error}
                       </div>
                     );
                   }}
@@ -150,7 +158,7 @@ const FeedbackForm = ({ classes }) => (
                       const value = maxCharLength(300, e.target.value);
                       input.onChange(value);
                     }}
-                    label="Additional Comments"
+                    label="Are there any features you would like to see added to the ColdLogic platform?"
                     required
                     autoComplete="off"
                     multiline

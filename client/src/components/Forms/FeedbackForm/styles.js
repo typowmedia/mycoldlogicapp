@@ -44,14 +44,17 @@ const styles = theme => ({
     fontSize: '1.6rem',
   },
   ratingBox: {
+    textAlign: 'center',
     width: '8%',
-
-    '&:hover': {
-      cursor: 'pointer',
-    },
+    color: 'red',
 
     [theme.breakpoints.down('xs')]: {
       width: '14%',
+    },
+  },
+  feedbackIcon: {
+    '&:hover': {
+      cursor: 'pointer',
     },
   },
   radioButton: {
