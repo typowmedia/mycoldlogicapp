@@ -27,6 +27,30 @@ const styles = theme => ({
       fontSize: '1.4rem',
     },
   },
+  askManagerSuccess: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  askManagerSuccessText: {
+    padding: '3rem',
+    fontSize: '1.8rem',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: theme.palette.success.main,
+  },
+  askManagerError: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  askManagerErrorText: {
+    padding: '3rem',
+    fontSize: '1.8rem',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: theme.palette.error.main,
+  },
 });
 
 export default styles;
