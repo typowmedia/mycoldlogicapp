@@ -18,9 +18,7 @@ const FormControls = ({
 }) => (
   <div className={classes.buttons}>
     {loading ? (
-      <div>
-        <Spinner size={30} color="secondary" />
-      </div>
+      <Spinner size={30} color="secondary" />
     ) : (
       <Fragment>
         {success && (

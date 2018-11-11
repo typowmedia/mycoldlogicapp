@@ -1,56 +1,47 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { withStyles, CircularProgress, Grid } from '@material-ui/core'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { withStyles, CircularProgress } from '@material-ui/core';
 
-import styles from './styles'
+import styles from './styles';
 
 class Spinner extends Component {
-  timer = null
+  timer = null;
 
   state = {
-    completed: 0
-  }
+    completed: 0,
+  };
 
   componentDidMount() {
-    this.timer = setInterval(this.progress, 20)
+    this.timer = setInterval(this.progress, 20);
   }
 
   componentWillUnmount() {
-    clearInterval(this.timer)
+    clearInterval(this.timer);
   }
 
   progress = () => {
-    const { completed } = this.state
-    this.setState({ completed: completed >= 100 ? 0 : completed + 1 })
-  }
+    const { completed } = this.state;
+    this.setState({ completed: completed >= 100 ? 0 : completed + 1 });
+  };
 
   render() {
-    const { classes } = this.props
+    const { classes } = this.props;
     return (
-      <Grid
-        container
-        justify="center"
-        alignItems="center"
-        className={classes.root}
-      >
-        <Grid item>
-          <CircularProgress
-            className={classes.progress}
-            color={this.props.color}
-            variant="determinate"
-            size={this.props.size}
-            value={this.state.completed}
-          />
-        </Grid>
-      </Grid>
-    )
+      <CircularProgress
+        className={classes.progress}
+        color={this.props.color}
+        variant="determinate"
+        size={this.props.size}
+        value={this.state.completed}
+      />
+    );
   }
 }
 
 Spinner.propTypes = {
   classes: PropTypes.object.isRequired,
   color: PropTypes.string.isRequired,
-  size: PropTypes.number.isRequired
-}
+  size: PropTypes.number.isRequired,
+};
 
-export default withStyles(styles)(Spinner)
+export default withStyles(styles)(Spinner);
