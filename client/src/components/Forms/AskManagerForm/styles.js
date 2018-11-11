@@ -38,6 +38,10 @@ const styles = theme => ({
     fontWeight: 'bold',
     textAlign: 'center',
     color: theme.palette.success.main,
+
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '1.4rem',
+    },
   },
   askManagerError: {
     display: 'flex',
@@ -50,6 +54,10 @@ const styles = theme => ({
     fontWeight: 'bold',
     textAlign: 'center',
     color: theme.palette.error.main,
+
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '1.4rem',
+    },
   },
 });
 
