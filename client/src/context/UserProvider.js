@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import Spinner from '../components/UI/Spinner';
+import LoadingScreen from '../components/UI/LoadingScreen';
 import { COLDLOGIC_TOKEN } from '../config/tokens';
 import { formatQuestion } from '../lib/formatReport';
 import { submitReport } from '../lib/submitReport';
@@ -89,7 +89,7 @@ class UserProvider extends Component {
           submitQuestion: (values, user) => this._submitQuestion(values, user),
         }}
       >
-        {this.state.loading ? <Spinner size={40} color="primary" /> : children}
+        {this.state.loading ? <LoadingScreen /> : children}
       </UserContext.Provider>
     );
   }
