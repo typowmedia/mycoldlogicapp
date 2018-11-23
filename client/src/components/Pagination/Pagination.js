@@ -55,18 +55,20 @@ class Pagination extends Component {
     this.setState({ pages });
   };
   _formatLeaveOfAbsence = (loa, stat, reasons) => {
-    const data = loa.reduce((acc, curr) => {
-      const status = stat.find(s => s.id === curr.torLoaStatusId);
-      const reason = reasons.find(r => r.id === curr.leaveAbsReasonId);
-      acc.push({
-        id: curr.id,
-        reason: reason.name,
-        status: status.name,
-        from: moment(curr.timeOffBeg).format('YYYY/MM/DD'),
-        to: moment(curr.timeOffEnd).format('YYYY/MM/DD'),
-      });
-      return acc;
-    }, []);
+    const data = loa
+      .reduce((acc, curr) => {
+        const status = stat.find(s => s.id === curr.torLoaStatusId);
+        const reason = reasons.find(r => r.id === curr.leaveAbsReasonId);
+        acc.push({
+          id: curr.id,
+          reason: reason.name,
+          status: status.name,
+          from: moment(curr.timeOffBeg).format('YYYY/MM/DD'),
+          to: moment(curr.timeOffEnd).format('YYYY/MM/DD'),
+        });
+        return acc;
+      }, [])
+      .reverse();
     return data;
   };
 

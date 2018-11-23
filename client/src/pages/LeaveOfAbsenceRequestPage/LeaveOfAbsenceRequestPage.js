@@ -3,7 +3,6 @@ import { Grid, withStyles } from '@material-ui/core';
 import LeaveOfAbsenceIcon from '../../assets/LeaveOfAbsenceIcon';
 import TitleBar from '../../components/TitleBar';
 import LoaForm from '../../components/Forms/LoaForm';
-import LeaveOfAbsenceData from '../../components/LeaveOfAbsenceData';
 import { UserContext } from '../../context/UserProvider';
 import styles from './styles';
 import PropTypes from 'prop-types';
@@ -73,10 +72,6 @@ class LeaveOfAbsenceRequestPage extends Component {
                             md={6}
                             className={classes.loaStats}
                           >
-                            {/* <LeaveOfAbsenceData
-                              mobile={screenWidth <= mobileScreen}
-                              data={data}
-                            /> */}
                             <Pagination
                               reasons={reasons}
                               torLoaStat={torLoaStat}
