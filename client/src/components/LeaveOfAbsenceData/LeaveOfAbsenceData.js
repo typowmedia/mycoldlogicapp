@@ -3,6 +3,7 @@ import { withStyles } from '@material-ui/core';
 import styles from './styles';
 import PropTypes from 'prop-types';
 import NothingFoundScreen from '../UI/NothingFoundScreen';
+import MobileCard from '../MobileCard';
 
 const LeaveOfAbsenceData = ({ classes, mobile, data }) => {
   if (data.length < 1)
@@ -11,26 +12,7 @@ const LeaveOfAbsenceData = ({ classes, mobile, data }) => {
     return (
       <div className={classes.mobileLoaContainer}>
         {data.map(loa => {
-          return (
-            <div className={classes.mobileCard} key={loa.id}>
-              <div className={classes.mobileCardRow}>
-                <h3 className={classes.mobileCardHeader}>Reason</h3>
-                <p className={classes.mobileCardText}>{loa.reason}</p>
-              </div>
-              <div className={classes.mobileCardRow}>
-                <h3 className={classes.mobileCardHeader}>From</h3>
-                <p className={classes.mobileCardText}>{loa.from}</p>
-              </div>
-              <div className={classes.mobileCardRow}>
-                <h3 className={classes.mobileCardHeader}>To</h3>
-                <p className={classes.mobileCardText}>{loa.to}</p>
-              </div>
-              <div className={classes.mobileCardRow}>
-                <h3 className={classes.mobileCardHeader}>Status</h3>
-                <p className={classes.mobileCardText}>{loa.status}</p>
-              </div>
-            </div>
-          );
+          return <MobileCard loa={loa} key={loa.id} />;
         })}
       </div>
     );

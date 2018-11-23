@@ -12,6 +12,7 @@ import LoadLeaveOfAbsence from '../../hoc/LoadLeaveOfAbsence';
 import LoadingScreen from '../../components/UI/LoadingScreen';
 import { REQUEST_TIME_OFF, REQUEST_TIME_OFF_2 } from '../../routes/routes';
 import ReportSuccess from '../../components/ReportSuccess';
+import Pagination from '../../components/Pagination';
 
 class LeaveOfAbsenceRequestPage extends Component {
   componentDidMount() {
@@ -22,14 +23,9 @@ class LeaveOfAbsenceRequestPage extends Component {
 
     return (
       <LoadLeaveOfAbsence>
-        {({ data, reasons, error, loading }) => {
+        {({ reasons, torLoaStat, loaCount, error, loading }) => {
           if (loading) return <LoadingScreen />;
           if (error) return <p>Error</p>;
-          data.sort(
-            (a, b) =>
-              new Date(b.from).setHours(0, 0, 0, 0) -
-              new Date(a.from).setHours(0, 0, 0, 0),
-          );
           return (
             <UserContext.Consumer>
               {({ user }) => (
@@ -77,9 +73,15 @@ class LeaveOfAbsenceRequestPage extends Component {
                             md={6}
                             className={classes.loaStats}
                           >
-                            <LeaveOfAbsenceData
+                            {/* <LeaveOfAbsenceData
                               mobile={screenWidth <= mobileScreen}
                               data={data}
+                            /> */}
+                            <Pagination
+                              reasons={reasons}
+                              torLoaStat={torLoaStat}
+                              loaCount={loaCount}
+                              mobile={screenWidth <= mobileScreen}
                             />
                           </Grid>
                         </Fragment>
