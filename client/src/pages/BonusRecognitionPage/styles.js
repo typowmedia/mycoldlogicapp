@@ -1,10 +1,10 @@
 const styles = theme => ({
   bonusRecognitionContainer: {
     minHeight: '100vh',
-    paddingTop: '6rem',
+    paddingTop: theme.spacing.unit * 6,
   },
   bonusTitle: {
-    padding: '4rem 2rem',
+    padding: '40px 20px',
   },
   heading: {},
   details: {
@@ -20,17 +20,17 @@ const styles = theme => ({
     flex: '0 0 90%',
     margin: '0 auto',
     flexDirection: 'column',
-    padding: '.5rem',
-    fontSize: '1.6rem',
+    padding: theme.spacing.unit / 2,
+    fontSize: 16,
     [theme.breakpoints.down('xs')]: {
-      fontSize: '1.4rem',
+      fontSize: 14,
     },
   },
   row: {
     display: 'flex',
     alignItems: 'baseline',
     justifyContent: 'flex-end',
-    padding: '1rem 0',
+    padding: '10px 0',
 
     '&:not(:last-child)': {
       borderBottom: '1px solid #ccc',
@@ -41,7 +41,7 @@ const styles = theme => ({
       wordWrap: 'break-word',
       fontSize: 'inherit',
 
-      padding: '.5rem',
+      padding: theme.spacing.unit / 2,
     },
   },
   cellReason: {

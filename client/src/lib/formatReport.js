@@ -84,3 +84,17 @@ export const formatLeaveOfAbsence = (report, user) => {
     returnDate,
   };
 };
+
+export const formatFeedbackReport = report => {
+  console.log(report);
+  return {
+    report: `
+      A Coldlogic employee has provided feedback on the Coldlogic Portal. \r\n
+      They rated the app ${report.rating} out of 5. \r\n
+      feature(s) liked most: "${report.liked}" \r\n
+      feature(s) likes least "${report.disliked}" \r\n
+      additional comments: \r\n
+      ${report.message}
+    `,
+  };
+};

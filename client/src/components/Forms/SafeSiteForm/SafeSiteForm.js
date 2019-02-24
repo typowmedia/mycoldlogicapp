@@ -48,7 +48,7 @@ class SafeSiteForm extends Component {
                       <DatePicker
                         customInput={
                           <DateButton
-                            placeHolder={'Select Incident Date'}
+                            placeHolder={'Select Date'}
                             pristine={meta.pristine}
                           />
                         }
@@ -81,7 +81,7 @@ class SafeSiteForm extends Component {
                       <DatePicker
                         customInput={
                           <DateButton
-                            placeHolder={'Select Time Of Incident'}
+                            placeHolder={'Select Time'}
                             pristine={meta.pristine}
                           />
                         }

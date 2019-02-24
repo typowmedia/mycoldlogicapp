@@ -5,7 +5,7 @@ import styles from './styles';
 const Header = ({ classes }) => {
   return (
     <AppBar position="static" className={classes.root}>
-      <Typography variant="display1" color="inherit" component="h2">
+      <Typography variant="h6" color="inherit" component="h2">
         Welcome to My ColdLogic
       </Typography>
     </AppBar>

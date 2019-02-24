@@ -5,43 +5,47 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-around',
-    boxShadow: '1px 3px 4rem rgba(0,0,0,.4)',
-    borderRadius: '1rem',
+    boxShadow: '1px 3px 40px rgba(0,0,0,.4)',
+    borderRadius: theme.spacing.unit,
     transition: 'all .2s',
-    fontSize: '1.6rem',
-    padding: '1rem',
+    fontSize: theme.spacing.unit + 6,
+    padding: theme.spacing.unit,
 
     [theme.breakpoints.down('xs')]: {
       flexDirection: 'row',
-      padding: '.5rem',
+      padding: theme.spacing.unit / 2,
       borderRadius: 100,
       height: '83%',
+      backgroundColor: 'white',
+      boxShadow: '1px 3px 1px rgba(0,0,0,.4)',
+      border: '1px solid #cccccc',
     },
 
     '&:hover': {
       cursor: 'pointer',
       transform: 'translateY(-3px)',
-      boxShadow: '1px 3px 4rem rgba(0,0,0,.6)',
+      boxShadow: '1px 3px 40px rgba(0,0,0,.6)',
     },
     '&:active': {
       transform: 'translateY(0)',
-      boxShadow: '1px 3px 2rem rgba(0,0,0,.6)',
+      boxShadow: '1px 3px 20px rgba(0,0,0,.6)',
     },
   },
 
   navCardImage: {
-    width: '11rem',
-    height: '11rem',
-    padding: '2rem',
+    width: theme.spacing.unit * 11,
+    height: theme.spacing.unit * 11,
+    padding: theme.spacing.unit * 2,
     alignSelf: 'center',
     backgroundColor: theme.palette.secondary.main,
-    boxShadow: '1px 3px 1rem rgba(0,0,0,.8)',
+    boxShadow: '1px 3px 10px rgba(0,0,0,.8)',
     borderRadius: '50%',
-    margin: '1rem 0',
+    margin: '10px 5px',
     [theme.breakpoints.down('xs')]: {
-      width: '6rem',
-      height: '6rem',
-      padding: '1rem',
+      width: theme.spacing.unit * 6,
+      height: theme.spacing.unit * 6,
+      padding: theme.spacing.unit,
+      boxShadow: 'none',
     },
   },
 
@@ -49,7 +53,7 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    padding: '2rem',
+    padding: theme.spacing.unit * 2,
     flex: 1,
     color: theme.palette.grey.darker,
     [theme.breakpoints.down('xs')]: {
@@ -62,12 +66,12 @@ const styles = theme => ({
   navCardTitleText: {
     textTransform: 'capitalize',
     fontWeight: '500',
-    fontSize: '1.7rem',
+    fontSize: theme.spacing.unit + 7,
   },
 
   navCardDescriptionText: {
     fontWeight: '400',
-    marginTop: '1rem',
+    marginTop: theme.spacing.unit,
     textAlign: 'center',
     [theme.breakpoints.down('xs')]: {
       display: 'none',

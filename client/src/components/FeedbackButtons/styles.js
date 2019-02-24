@@ -4,7 +4,7 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: '1rem 0',
+    padding: '10px 0',
   },
   feedbackButton: {
     border: 'none',
@@ -26,10 +26,10 @@ const styles = theme => ({
     },
   },
   circle: {
-    height: '1rem',
-    width: '1rem',
+    height: '10px',
+    width: '10px',
     background: theme.palette.grey.feedback,
-    margin: '0 2rem',
+    margin: '0 20px',
     borderRadius: '50%',
   },
 });

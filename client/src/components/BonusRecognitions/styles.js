@@ -4,17 +4,17 @@ const styles = theme => ({
     flex: 1,
     margin: '0 auto',
     flexDirection: 'column',
-    padding: ' 2rem 6rem',
-    fontSize: '1.6rem',
+    padding: ' 20px 60px',
+    fontSize: theme.spacing.unit + 6,
     [theme.breakpoints.down('xs')]: {
-      fontSize: '1.4rem',
+      fontSize: theme.spacing.unit + 4,
     },
   },
   bonusRow: {
     display: 'flex',
     alignItems: 'baseline',
     justifyContent: 'flex-end',
-    padding: '1rem 0',
+    padding: '10px 0',
 
     '&:not(:last-child)': {
       borderBottom: '1px solid #ccc',
@@ -25,7 +25,7 @@ const styles = theme => ({
       wordWrap: 'break-word',
       fontSize: 'inherit',
 
-      padding: '.5rem',
+      padding: '5px',
     },
   },
   bonusCellReason: {
@@ -33,7 +33,7 @@ const styles = theme => ({
   },
   bonusCellHeading: {
     ...theme.typography.display1,
-    fontSize: '1.8rem',
+    fontSize: theme.spacing.unit + 8,
     fontWeight: '500',
     color: theme.palette.primary.main,
   },
@@ -48,14 +48,14 @@ const styles = theme => ({
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
-    padding: '1.2rem',
+    padding: theme.spacing.unit + 2,
   },
   bonusMobileCard: {
     flex: 1,
-    boxShadow: '0 .3rem 1rem #000',
-    padding: '2rem',
+    boxShadow: '0 3px 10px #000',
+    padding: '20px',
     '&:not(:last-child)': {
-      marginBottom: '.6rem',
+      marginBottom: '6px',
     },
   },
   bonusMobileCardRow: {
@@ -64,17 +64,18 @@ const styles = theme => ({
     justifyContent: 'space-between',
     alignItems: 'baseline',
     '&:not(:last-child)': {
-      marginBottom: '1rem',
+      marginBottom: theme.spacing.unit,
     },
   },
   bonusMobileCardHeader: {
-    ...theme.typography.headline,
+    ...theme.typography.body1,
+    color: theme.palette.primary.main,
   },
   bonusMobileCardText: {
     flex: 1,
     textAlign: 'right',
     borderBottom: `1px dotted #000`,
-    fontSize: '1.4rem',
+    fontSize: theme.spacing.unit + 4,
   },
 });
 

@@ -2,17 +2,17 @@ const styles = theme => ({
   formContainer: {},
   form: {
     margin: '0 auto',
-    marginTop: '3rem',
-    maxWidth: '70rem',
+    marginTop: theme.spacing.unit * 3,
+    maxWidth: 700,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    padding: '1.5rem',
+    padding: theme.spacing.unit + 5,
   },
   formControl: {
-    marginBottom: '1.6rem',
+    marginBottom: theme.spacing.unit + 6,
     width: '100%',
-    fontSize: '1.8rem',
+    fontSize: theme.spacing.unit + 8,
 
     '& > *': {
       fontSize: 'inherit',
@@ -43,7 +43,7 @@ const styles = theme => ({
   },
   formButton: {
     marginTop: theme.spacing.unit * 2,
-    fontSize: '1.4rem',
+    fontSize: theme.spacing.unit + 4,
   },
   errorContainer: {
     width: '100%',

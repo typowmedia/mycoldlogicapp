@@ -12,8 +12,8 @@ const styles = theme => ({
     color: theme.palette.white.main,
     borderRadius: 3,
     border: 'none',
-    fontSize: '1.6rem',
-    padding: '1rem',
+    fontSize: 16,
+    padding: theme.spacing.unit,
     margin: 3,
 
     '&:hover': {
@@ -22,7 +22,7 @@ const styles = theme => ({
   },
   paginationButtonActive: {
     color: theme.palette.secondary.main,
-    fontSize: '1.8rem',
+    fontSize: 18,
   },
 });
 

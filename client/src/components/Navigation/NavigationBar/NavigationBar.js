@@ -54,7 +54,7 @@ class NavigationBar extends Component {
                   <MenuIcon />
                 </IconButton>
                 <Typography
-                  variant="display1"
+                  variant="h5"
                   color="inherit"
                   className={classes.userWelcome}
                 >

@@ -9,14 +9,15 @@ const styles = theme => ({
     },
   },
   icon: {
-    height: '8rem',
-    width: '8rem',
+    height: 80,
+    width: 80,
   },
   title: {
     ...theme.typography.display3,
     textDecoration: 'underline',
     [theme.breakpoints.down('xs')]: {
       ...theme.typography.display1,
+      marginLeft: theme.spacing.unit,
     },
   },
 });

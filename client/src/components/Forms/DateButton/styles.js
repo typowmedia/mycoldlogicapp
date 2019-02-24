@@ -6,7 +6,7 @@ const styles = theme => ({
     position: 'absolute',
     height: '100%',
     width: '120%',
-    top: '-4rem',
+    top: '-40px',
     backgroundColor: theme.palette.secondary.main,
     left: 0,
     zIndex: 100,
@@ -14,16 +14,16 @@ const styles = theme => ({
     transition: theme.transitions.create('opacity'),
   },
   dateButton: {
-    minWidth: '20rem',
-    fontSize: '1.6rem',
+    minWidth: 200,
+    fontSize: theme.spacing.unit + 6,
 
     '&:not(:last-child)': {
-      marginRight: '1rem',
+      marginRight: theme.spacing.unit,
     },
 
     [theme.breakpoints.down('md')]: {
-      fontSize: '1.4rem',
-      minWidth: '16rem',
+      fontSize: theme.spacing.unit + 4,
+      minWidth: theme.spacing.unit * 16,
     },
   },
   dateError: {
@@ -31,9 +31,9 @@ const styles = theme => ({
   },
   dateButtonErrorPopup: {
     backgroundColor: theme.palette.secondary.main,
-    padding: '.8rem 1.2rem',
+    padding: '8px 12px',
     color: theme.palette.white.main,
-    fontSize: '1.3rem',
+    fontSize: theme.spacing.unit + 3,
     fontWeight: '400',
     textTransform: 'uppercase',
   },

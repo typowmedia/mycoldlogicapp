@@ -1,18 +1,27 @@
 const styles = theme => ({
   loaContainer: {
     minHeight: '100vh',
-    paddingTop: '6rem',
+    width: '100vw',
+    paddingTop: theme.spacing.unit * 6,
 
     '& > *': {
-      padding: '2rem',
+      padding: theme.spacing.unit * 2,
       display: 'flex',
-      justifyContent: 'center',
       alignItems: 'flex-start',
+      justifyContent: 'center',
+    },
+    [theme.breakpoints.down('sm')]: {
+      '& > *': {
+        padding: 0,
+      },
     },
   },
 
   loaTitle: {
-    padding: '4rem 2rem',
+    padding: '40px 20px',
+    [theme.breakpoints.down('sm')]: {
+      padding: '20px 10px',
+    },
   },
   loaRequest: {},
   loaStats: {},

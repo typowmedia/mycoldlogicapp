@@ -29,4 +29,10 @@ export default createMuiTheme({
       feedback: '#95989A',
     },
   },
+  spacing: {
+    unit: 10,
+  },
+  typography: {
+    useNextVariants: true,
+  },
 });

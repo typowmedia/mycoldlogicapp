@@ -35,6 +35,7 @@ class Pagination extends Component {
     this._setPages(end, pageCount);
     this._getLeaveOfAbsenceRange(start, end);
   }
+
   _setPages = (end, pageCount) => {
     const pages = [];
     let rangeEnd = end;
@@ -54,19 +55,22 @@ class Pagination extends Component {
     }
     this.setState({ pages });
   };
+
   _formatLeaveOfAbsence = (loa, stat, reasons) => {
-    const data = loa.reduce((acc, curr) => {
-      const status = stat.find(s => s.id === curr.torLoaStatusId);
-      const reason = reasons.find(r => r.id === curr.leaveAbsReasonId);
-      acc.push({
-        id: curr.id,
-        reason: reason.name,
-        status: status.name,
-        from: moment(curr.timeOffBeg).format('YYYY/MM/DD'),
-        to: moment(curr.timeOffEnd).format('YYYY/MM/DD'),
-      });
-      return acc;
-    }, []);
+    const data = loa
+      .reduce((acc, curr) => {
+        const status = stat.find(s => s.id === curr.torLoaStatusId);
+        const reason = reasons.find(r => r.id === curr.leaveAbsReasonId);
+        acc.push({
+          id: curr.id,
+          reason: reason.name,
+          status: status.name,
+          from: moment(curr.timeOffBeg).format('YYYY/MM/DD'),
+          to: moment(curr.timeOffEnd).format('YYYY/MM/DD'),
+        });
+        return acc;
+      }, [])
+      .reverse();
     return data;
   };
 
@@ -115,6 +119,27 @@ class Pagination extends Component {
     this._goToPage(page);
   };
 
+  pagePlusOrMinusTwo = (page, currPage, lastPage) => {
+    if (
+      +page === +currPage ||
+      +page === +currPage - 1 ||
+      +page === +currPage - 2 ||
+      +page === +currPage + 1 ||
+      +page === +currPage + 2 ||
+      (+currPage === 1 && +page === +currPage + 4) ||
+      (+currPage === 1 && +page === +currPage + 3) ||
+      (+currPage === 2 && +page === +currPage + 3) ||
+      (+currPage === 2 && +page === +currPage + 2) ||
+      (+currPage === +lastPage && +page === +lastPage - 4) ||
+      (+currPage === +lastPage && +page === +lastPage - 3) ||
+      (+currPage === +lastPage - 1 && +page === +lastPage - 4) ||
+      (+currPage === +lastPage - 1 && +page === +lastPage - 3)
+    ) {
+      return true;
+    }
+    return false;
+  };
+
   render() {
     const { classes, mobile } = this.props;
     const { data } = this.state;
@@ -128,105 +153,21 @@ class Pagination extends Component {
             const currPage = this.state.page;
             const lastPage = this.state.pageCount;
 
-            if (this.state.pageCount > 10) {
-              if (page.number === 1) {
-                return (
-                  <button
-                    className={`${classes.paginationButton} ${
-                      page.number === this.state.page
-                        ? classes.paginationButtonActive
-                        : ''
-                    }`}
-                    key={page.id}
-                    onClick={() => this._goToPage(page)}
-                  >
-                    {page.number}
-                  </button>
-                );
-              }
-              if (page.number === lastPage) {
-                return (
-                  <button
-                    className={`${classes.paginationButton} ${
-                      page.number === this.state.page
-                        ? classes.paginationButtonActive
-                        : ''
-                    }`}
-                    key={page.id}
-                    onClick={() => this._goToPage(page)}
-                  >
-                    {page.number}
-                  </button>
-                );
-              }
-
-              if (currPage >= 7) {
-                if (page.number === currPage - 5) {
-                  return (
-                    <button
-                      className={`${classes.paginationButton} ${
-                        page.number === this.state.page
-                          ? classes.paginationButtonActive
-                          : ''
-                      }`}
-                      key={page.id}
-                      onClick={() => this._goToPage(page)}
-                    >
-                      ...
-                    </button>
-                  );
-                }
-              } else {
-                if (page.number === currPage - 1) {
-                  return (
-                    <button
-                      className={`${classes.paginationButton} ${
-                        page.number === this.state.page
-                          ? classes.paginationButtonActive
-                          : ''
-                      }`}
-                      key={page.id}
-                      onClick={() => this._goToPage(page)}
-                    >
-                      ...
-                    </button>
-                  );
-                }
-              }
-
-              if (page.number === currPage + 5) {
-                return (
-                  <button
-                    className={`${classes.paginationButton} ${
-                      page.number === this.state.page
-                        ? classes.paginationButtonActive
-                        : ''
-                    }`}
-                    key={page.id}
-                    onClick={() => this._goToPage(page)}
-                  >
-                    ...
-                  </button>
-                );
-              }
-
-              if (page.number >= currPage + 5) return;
-              if (page.number <= currPage - 1) return;
-            }
-
-            return (
-              <button
-                className={`${classes.paginationButton} ${
-                  page.number === this.state.page
-                    ? classes.paginationButtonActive
-                    : ''
-                }`}
-                key={page.id}
-                onClick={() => this._goToPage(page)}
-              >
-                {page.number}
-              </button>
-            );
+            if (this.pagePlusOrMinusTwo(page.number, currPage, lastPage))
+              return (
+                <button
+                  className={`${classes.paginationButton} ${
+                    page.number === this.state.page
+                      ? classes.paginationButtonActive
+                      : ''
+                  }`}
+                  key={page.id}
+                  onClick={() => this._goToPage(page)}
+                >
+                  {page.number}
+                </button>
+              );
+            return null;
           })}
           <button className={classes.paginationButton} onClick={this._nextPage}>
             &raquo;
@@ -241,3 +182,103 @@ class Pagination extends Component {
 }
 
 export default withStyles(styles)(Pagination);
+
+// if (this.state.pageCount > 10) {
+//   if (page.number === 1) {
+//     return (
+//       <button
+//         className={`${classes.paginationButton} ${
+//           page.number === this.state.page
+//             ? classes.paginationButtonActive
+//             : ''
+//         }`}
+//         key={page.id}
+//         onClick={() => this._goToPage(page)}
+//       >
+//         {page.number}
+//       </button>
+//     );
+//   }
+//   if (page.number === lastPage) {
+//     return (
+//       <button
+//         className={`${classes.paginationButton} ${
+//           page.number === this.state.page
+//             ? classes.paginationButtonActive
+//             : ''
+//         }`}
+//         key={page.id}
+//         onClick={() => this._goToPage(page)}
+//       >
+//         {page.number}
+//       </button>
+//     );
+//   }
+
+//   if (currPage >= 7) {
+//     if (page.number === currPage - 5) {
+//       return (
+//         <button
+//           className={`${classes.paginationButton} ${
+//             page.number === this.state.page
+//               ? classes.paginationButtonActive
+//               : ''
+//           }`}
+//           key={page.id}
+//           onClick={() => this._goToPage(page)}
+//         >
+//           ...
+//         </button>
+//       );
+//     }
+//   } else {
+//     if (page.number === currPage - 1) {
+//       return (
+//         <button
+//           className={`${classes.paginationButton} ${
+//             page.number === this.state.page
+//               ? classes.paginationButtonActive
+//               : ''
+//           }`}
+//           key={page.id}
+//           onClick={() => this._goToPage(page)}
+//         >
+//           ...
+//         </button>
+//       );
+//     }
+//   }
+
+//   if (page.number === currPage + 5) {
+//     return (
+//       <button
+//         className={`${classes.paginationButton} ${
+//           page.number === this.state.page
+//             ? classes.paginationButtonActive
+//             : ''
+//         }`}
+//         key={page.id}
+//         onClick={() => this._goToPage(page)}
+//       >
+//         ...
+//       </button>
+//     );
+//   }
+
+//   if (page.number >= currPage + 5) return;
+//   if (page.number <= currPage - 1) return;
+// }
+
+// return (
+//   <button
+//     className={`${classes.paginationButton} ${
+//       page.number === this.state.page
+//         ? classes.paginationButtonActive
+//         : ''
+//     }`}
+//     key={page.id}
+//     onClick={() => this._goToPage(page)}
+//   >
+//     {page.number}
+//   </button>
+// );

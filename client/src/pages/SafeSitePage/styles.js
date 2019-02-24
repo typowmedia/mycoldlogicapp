@@ -1,10 +1,10 @@
 const styles = theme => ({
   safeSiteContainer: {
     minHeight: '100vh',
-    paddingTop: '6rem',
+    paddingTop: theme.spacing.unit * 6,
   },
   safeSiteTitle: {
-    padding: '4rem 2rem',
+    padding: '40px 20px',
   },
   safeSiteContent: {},
   formControl: {

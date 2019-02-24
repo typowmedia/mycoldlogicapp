@@ -1,10 +1,12 @@
 const styles = theme => ({
   dashboardContainer: {
+    maxWidth: theme.breakpoints.values.lg,
+    margin: '0 auto',
     minHeight: '100vh',
-    paddingTop: '6rem',
+    paddingTop: theme.spacing.unit * 6,
 
     '& > *': {
-      padding: '1rem',
+      padding: theme.spacing.unit,
       display: 'flex',
     },
   },
@@ -18,23 +20,23 @@ const styles = theme => ({
   },
   logoContainer: {
     flex: 1,
-    height: '10rem',
+    height: theme.spacing.unit,
   },
   dashboardNavContainer: {
     [theme.breakpoints.down('sm')]: {
-      padding: '3rem',
+      padding: theme.spacing.unit / 2,
     },
     [theme.breakpoints.down('xs')]: {
-      padding: '1rem',
+      padding: theme.spacing.unit,
     },
   },
   dashboardAskManager: {
     [theme.breakpoints.down('sm')]: {
-      padding: '3rem',
+      padding: theme.spacing.unit / 2,
     },
     [theme.breakpoints.down('xs')]: {
       padding: 0,
-      marginTop: '2rem',
+      marginTop: theme.spacing.unit / 4,
     },
   },
 });
