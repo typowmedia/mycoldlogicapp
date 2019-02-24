@@ -15,11 +15,11 @@ class NothingFoundScreen extends Component {
         alignItems="center"
         className={classes.NothingContainer}
       >
-        <Grid item xs={8} className={classes.NothingItem}>
-          <Typography variant="display3" align="center" gutterBottom>
+        <Grid item xs={8} className={classes.nothingItem}>
+          <Typography variant="headline" align="center" gutterBottom>
             {messageTop}
           </Typography>
-          <Typography variant="display2" align="center">
+          <Typography variant="body1" align="center">
             {messageBottom}
           </Typography>
         </Grid>

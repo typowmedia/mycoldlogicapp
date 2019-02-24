@@ -2,10 +2,10 @@ const styles = theme => ({
   requestContainer: {
     flexGrow: 1,
     height: '100%',
-    paddingTop: '4rem',
-    padding: '.8rem',
+    paddingTop: theme.spacing.unit * 4,
+    padding: theme.spacing.unit - 2,
     [theme.breakpoints.up('sm')]: {
-      padding: '4.8rem',
+      padding: theme.spacing.unit * 4.8,
     },
   },
   message: {
@@ -20,7 +20,7 @@ const styles = theme => ({
     justifyContent: 'center',
   },
   requestButton: {
-    fontSize: '1.6rem',
+    fontSize: 16,
   },
 });
 

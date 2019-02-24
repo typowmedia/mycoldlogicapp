@@ -20,7 +20,7 @@ class RequestPasswordPage extends Component {
           className={classes.requestContainerItem}
         >
           <ColdLogic color="#0D3C55" />
-          <Typography variant="display1" className={classes.message}>
+          <Typography variant="h4" color="primary" className={classes.message}>
             Please contact your direct supervisor for instructions on how to
             reset your password.
           </Typography>

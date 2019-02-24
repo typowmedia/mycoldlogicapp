@@ -1,16 +1,16 @@
 const styles = theme => ({
   reportMessage: {
     ...theme.typography.display2,
-    fontSize: '2rem',
+    fontSize: 20,
     width: '60%',
     marginLeft: 'none',
     margin: '0 auto',
     textAlign: 'center',
-    padding: '6rem',
+    padding: theme.spacing.unit * 6,
 
     [theme.breakpoints.down('sm')]: {
       width: '80%',
-      padding: '2.5rem',
+      padding: theme.spacing.unit * 2.5,
     },
     [theme.breakpoints.down('xs')]: {
       width: '100%',
@@ -30,10 +30,10 @@ const styles = theme => ({
     },
   },
   reportButton: {
-    fontSize: '1.6rem',
+    fontSize: 16,
     [theme.breakpoints.down('sm')]: {
       '&:not(:last-child)': {
-        marginBottom: '2rem',
+        marginBottom: theme.spacing.unit * 2,
       },
     },
   },

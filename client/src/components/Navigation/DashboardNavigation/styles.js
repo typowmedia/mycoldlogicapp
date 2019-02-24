@@ -3,7 +3,7 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: '2rem',
+    padding: theme.spacing.unit * 2,
 
     [theme.breakpoints.down('xs')]: {
       padding: 0,

@@ -14,9 +14,9 @@ import { FormControl } from '@material-ui/core';
 import { features, ratings } from './config';
 import { validate } from './helpers';
 
-const FeedbackForm = ({ classes }) => (
+const FeedbackForm = ({ classes, onSubmit }) => (
   <Form
-    onSubmit={() => {}}
+    onSubmit={onSubmit}
     validate={values => validate(values)}
     render={({ handleSubmit, pristine, invalid }) => (
       <Grid

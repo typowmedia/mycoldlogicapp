@@ -1,12 +1,12 @@
 const styles = theme => ({
   SiteReportWelcomeScreen: {
-    padding: '6rem',
+    padding: theme.spacing.unit * 6,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
 
     [theme.breakpoints.down('sm')]: {
-      padding: '2rem',
+      padding: theme.spacing.unit * 2,
     },
   },
 
@@ -15,10 +15,10 @@ const styles = theme => ({
     flexDirection: 'column',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    paddingBottom: '3rem',
+    paddingBottom: theme.spacing.unit * 3,
   },
   SiteReportWelcomeScreenText: {
-    fontSize: '2.2rem',
+    fontSize: 22,
     width: '50%',
     margin: '0 auto',
     textAlign: 'center',
@@ -28,18 +28,18 @@ const styles = theme => ({
     color: theme.palette.text.secondary,
 
     '&:not(:last-child)': {
-      marginBottom: '.8rem',
+      marginBottom: theme.spacing.unit - 2,
     },
 
     [theme.breakpoints.down('sm')]: {
       width: '80%',
     },
     [theme.breakpoints.down('xs')]: {
-      fontSize: '1.6rem',
+      fontSize: 16,
     },
   },
   SiteReportWelcomeScreenButton: {
-    fontSize: '1.6rem',
+    fontSize: 16,
   },
 });
 

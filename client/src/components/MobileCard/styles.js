@@ -7,11 +7,9 @@ const styles = theme => ({
   },
   mobileCard: {
     flex: 1,
-    boxShadow: '0 .3rem 1rem #000',
-    padding: '2rem',
-    '&:not(:last-child)': {
-      marginBottom: '.6rem',
-    },
+    boxShadow: '0 3px 10px #000',
+    padding: theme.spacing.unit * 2,
+    margin: '8px 15px',
   },
   mobileCardRow: {
     display: 'flex',
@@ -19,17 +17,18 @@ const styles = theme => ({
     justifyContent: 'space-between',
     alignItems: 'baseline',
     '&:not(:last-child)': {
-      marginBottom: '1rem',
+      marginBottom: theme.spacing.unit,
     },
   },
   mobileCardHeader: {
-    ...theme.typography.headline,
+    ...theme.typography.body1,
+    color: theme.palette.primary.main,
   },
   mobileCardText: {
     flex: 1,
     textAlign: 'right',
     borderBottom: `1px dotted #000`,
-    fontSize: '1.4rem',
+    fontSize: theme.spacing.unit + 4,
   },
 });
 

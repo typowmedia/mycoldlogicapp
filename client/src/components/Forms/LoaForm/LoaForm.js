@@ -71,7 +71,7 @@ class LoaForm extends Component {
                       <DatePicker
                         customInput={
                           <DateButton
-                            placeHolder={'Select a start date'}
+                            placeHolder={'Start date'}
                             pristine={meta.pristine}
                           />
                         }
@@ -89,7 +89,7 @@ class LoaForm extends Component {
                         dateFormat="MMMM DD YYYY"
                         minDate={moment()}
                         showDisabledMonthNavigation
-                        placeholderText="Select a start date"
+                        placeholderText="Start date"
                         required
                       />
                     </div>
@@ -109,7 +109,7 @@ class LoaForm extends Component {
                       <DatePicker
                         customInput={
                           <DateButton
-                            placeHolder={'Select an end date'}
+                            placeHolder={'End date'}
                             pristine={meta.pristine}
                           />
                         }
@@ -127,7 +127,7 @@ class LoaForm extends Component {
                         dateFormat="MMMM DD YYYY"
                         minDate={moment()}
                         showDisabledMonthNavigation
-                        placeholderText="Select an end date"
+                        placeholderText="End date"
                         required
                       />
                     </div>

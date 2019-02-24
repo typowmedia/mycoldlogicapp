@@ -7,7 +7,9 @@ const TitleBar = ({ icon, title, classes }) => {
   return (
     <div className={classes.titleBar}>
       <div className={classes.icon}>{icon}</div>
-      <Typography className={classes.title}>{title}</Typography>
+      <Typography className={classes.title} variant="h4">
+        {title}
+      </Typography>
     </div>
   );
 };

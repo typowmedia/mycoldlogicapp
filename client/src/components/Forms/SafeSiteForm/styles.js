@@ -4,33 +4,35 @@ const styles = theme => ({
     flexDirection: 'column',
     width: '80%',
     margin: '0 auto',
-    padding: '4rem',
+    padding: theme.spacing.unit * 4,
 
     [theme.breakpoints.down('sm')]: {
       width: '100%',
-      padding: '1rem',
+      padding: theme.spacing.unit,
     },
   },
   safeSiteDatePlaceContainer: {
     width: '50%',
-    marginBottom: '1rem',
+    marginBottom: theme.spacing.unit,
   },
   locationContainer: {
-    padding: '1rem 0',
+    padding: '10px 0',
     '& > *': {
-      fontSize: '1.6rem',
+      fontSize: 16,
     },
   },
   whereContainer: {
-    padding: '1rem 0',
+    padding: '10px 0',
   },
   safeSiteDateContainer: {
     display: 'flex',
     justifyContent: 'space-evenly',
-    fontSize: '1.8rem',
-    marginBottom: '2rem',
+    fontSize: 18,
+    marginBottom: theme.spacing.unit * 2,
 
     [theme.breakpoints.down('xs')]: {
+      display: 'block',
+      marginBottom: 0,
       justifyContent: 'space-between',
     },
   },
@@ -38,23 +40,23 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
-    marginBottom: '1rem',
+    marginBottom: theme.spacing.unit,
   },
   messageContainer: {
-    marginTop: '1rem',
+    marginTop: theme.spacing.unit,
   },
   safeSiteLabel: {
-    fontSize: '1.6rem',
+    fontSize: 16,
   },
   safeSiteInput: {
-    fontSize: '1.6rem',
+    fontSize: 16,
   },
   dateLabel: {
-    fontSize: '1.6rem',
+    fontSize: 16,
     paddingBottom: 3,
   },
   formButtonContainer: {
-    padding: '3rem',
+    padding: theme.spacing.unit * 3,
     width: '50%',
     margin: '0 auto',
 
@@ -68,13 +70,13 @@ const styles = theme => ({
   safeSiteAnonContainer: {
     display: 'flex',
     alignItems: 'center',
-    padding: '1rem 0',
+    padding: '10px 0',
   },
   safeSiteCheckbox: {
     marginLeft: -13,
   },
   safeSiteCheckboxInputLabel: {
-    fontSize: '1.4rem',
+    fontSize: 14,
   },
 });
 

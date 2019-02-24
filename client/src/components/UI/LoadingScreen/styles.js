@@ -1,10 +1,10 @@
 const styles = theme => ({
   loadingContainer: {
     height: '100vh',
-    padding: '10rem',
+    padding: theme.spacing.unit * 10,
   },
   loadingItem: {
-    padding: '3rem',
+    padding: theme.spacing.unit * 3,
     height: '50vh',
     display: 'flex',
     flexDirection: 'column',

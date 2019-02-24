@@ -66,6 +66,7 @@ class SafeSitePage extends Component {
         );
     }
   };
+
   _submitReport = async report => {
     this.setState({ loading: true });
     const token = await localStorage.getItem(COLDLOGIC_TOKEN);
@@ -80,6 +81,7 @@ class SafeSitePage extends Component {
     }
     return true;
   };
+
   render() {
     const { classes, match } = this.props;
     return (

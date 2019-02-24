@@ -9,7 +9,7 @@ const AskManager = ({ classes, departments }) => (
   <UserContext.Consumer>
     {({ user, submitQuestion }) => (
       <Paper className={classes.formContainer} elevation={0}>
-        <Typography className={classes.formTitle} variant="display3">
+        <Typography className={classes.formTitle} color="primary" variant="h3">
           Ask A Manager
         </Typography>
         <AskManagerForm

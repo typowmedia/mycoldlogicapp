@@ -7,7 +7,7 @@ import MobileCard from '../MobileCard';
 
 const LeaveOfAbsenceData = ({ classes, mobile, data }) => {
   if (data.length < 1)
-    return <NothingFoundScreen messageTop="No current requests to show" />;
+    return <NothingFoundScreen messageTop="No current requests to show"/>;
   if (mobile) {
     return (
       <div className={classes.mobileLoaContainer}>

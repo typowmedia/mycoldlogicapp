@@ -16,10 +16,6 @@ html {
   color: #1e1e1e;
 }
 
-html {
-  font-size: 62.5%;
-}
-
 #root {
   box-sizing: inherit;
 }

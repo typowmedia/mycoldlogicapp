@@ -11,11 +11,11 @@ const styles = theme => ({
   },
   primary: {
     color: theme.palette.white.dark,
-    fontSize: '1.6rem',
+    fontSize: 16,
   },
   icons: {
-    width: '2.5rem',
-    height: '2.5rem',
+    width: 25,
+    height: 25,
   },
   currentUserLogo: {
     color: theme.palette.secondary.main,

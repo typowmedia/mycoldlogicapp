@@ -1,35 +1,35 @@
 const styles = theme => ({
   suggestionContainer: {
-    padding: '0 4rem',
+    padding: '0 40px',
 
     [theme.breakpoints.down('sm')]: {
-      padding: '0 1rem',
+      padding: '0 10px',
     },
   },
   suggestionCheckboxTitle: {
     ...theme.typography.display1,
-    fontSize: '2.5rem',
+    fontSize: 25,
     fontWeight: '500',
     color: theme.palette.primary.main,
-    marginBottom: '2rem',
+    marginBottom: theme.spacing.unit * 2,
 
     [theme.breakpoints.down('sm')]: {
-      margin: '1.2rem 0',
+      margin: '12px 0',
     },
     [theme.breakpoints.down('xs')]: {
-      margin: '1.2rem 0',
-      fontSize: '1.8rem',
+      margin: '12px 0',
+      fontSize: 18,
     },
   },
   formControl: {
-    padding: '1rem',
+    padding: theme.spacing.unit,
 
     '&:not(:last-child)': {
-      marginBottom: '1rem',
+      marginBottom: theme.spacing.unit,
     },
   },
   bestSiteInput: {
-    fontSize: '1.6rem',
+    fontSize: 16,
     lineHeight: 1.3,
   },
   bestSiteCheckboxContainer: {
@@ -37,17 +37,17 @@ const styles = theme => ({
     alignItems: 'center',
   },
   bestSiteCheckboxInputLabel: {
-    fontSize: '1.6rem',
+    fontSize: 16,
     cursor: 'pointer',
     height: '100%',
   },
   bestSiteFormButtonContainer: {
-    margin: '1.5rem 0',
+    margin: '15px 0',
     display: 'flex',
     justifyContent: 'center',
   },
   checkbox: {
-    height: '3.5rem',
+    height: 35,
   },
 });
 

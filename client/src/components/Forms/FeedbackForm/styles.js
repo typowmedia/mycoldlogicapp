@@ -1,26 +1,26 @@
 const styles = theme => ({
   feedbackFormContainer: {
     border: `3px solid ${theme.palette.secondary.main}`,
-    padding: '3rem',
-    boxShadow: '0 1rem 3rem rgba(0,0,0, 0.6)',
+    padding: theme.spacing.unit * 3,
+    boxShadow: '0 10px 30px rgba(0,0,0, 0.6)',
   },
   formTitle: {
-    padding: '3rem',
+    padding: theme.spacing.unit * 3,
   },
   formTitleText: {
     marginLeft: 'none',
     textAlign: 'center',
-    fontSize: '2.8rem',
+    fontSize: 28,
     color: theme.palette.primary.main,
   },
   feedbackForm: {},
   feedbackRatingContainer: {
-    padding: '3rem',
+    padding: theme.spacing.unit * 3,
     display: 'flex',
     justifyContent: 'space-evenly',
 
     [theme.breakpoints.down('sm')]: {
-      padding: '3rem 0',
+      padding: '30px 0',
     },
   },
 
@@ -34,14 +34,14 @@ const styles = theme => ({
   selectBox: {
     marginBottom: theme.spacing.unit * 2,
     flex: '0 0 33.3333%',
-    fontSize: '1.8rem',
+    fontSize: 18,
 
     '& > *': {
       fontSize: 'inherit',
     },
   },
   feedbackSelectItem: {
-    fontSize: '1.6rem',
+    fontSize: 16,
   },
   ratingBox: {
     textAlign: 'center',
@@ -65,16 +65,16 @@ const styles = theme => ({
     margin: '0 auto',
     display: 'flex',
     flexDirection: 'column',
-    padding: '3rem',
+    padding: theme.spacing.unit * 3,
 
     [theme.breakpoints.down('sm')]: {
       width: '100%',
-      padding: '2rem 0',
+      padding: '20px 0',
     },
   },
   feedbackFormButton: {},
   feedbackMessage: {
-    fontSize: '1.6rem',
+    fontSize: 16,
     lineHeight: 1.3,
   },
 });

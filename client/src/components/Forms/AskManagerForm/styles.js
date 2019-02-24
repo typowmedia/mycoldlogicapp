@@ -8,10 +8,10 @@ const styles = theme => ({
   formControl: {
     marginBottom: theme.spacing.unit * 2,
     width: '100%',
-    fontSize: '1.8rem',
+    fontSize: theme.spacing.unit + 8,
 
     [theme.breakpoints.down('xs')]: {
-      fontSize: '1.4rem',
+      fontSize: theme.spacing.unit + 4,
     },
 
     '& > *': {
@@ -22,9 +22,9 @@ const styles = theme => ({
     },
   },
   selectItem: {
-    fontSize: '1.8rem',
+    fontSize: theme.spacing.unit + 8,
     [theme.breakpoints.down('xs')]: {
-      fontSize: '1.4rem',
+      fontSize: theme.spacing.unit + 4,
     },
   },
   askManagerSuccess: {
@@ -33,14 +33,14 @@ const styles = theme => ({
     alignItems: 'center',
   },
   askManagerSuccessText: {
-    padding: '3rem',
-    fontSize: '1.8rem',
+    padding: theme.spacing.unit * 3,
+    fontSize: theme.spacing.unit + 8,
     fontWeight: 'bold',
     textAlign: 'center',
     color: theme.palette.success.main,
 
     [theme.breakpoints.down('xs')]: {
-      fontSize: '1.4rem',
+      fontSize: theme.spacing.unit + 4,
     },
   },
   askManagerError: {
@@ -49,14 +49,14 @@ const styles = theme => ({
     alignItems: 'center',
   },
   askManagerErrorText: {
-    padding: '3rem',
-    fontSize: '1.8rem',
+    padding: theme.spacing.unit * 3,
+    fontSize: theme.spacing.unit + 8,
     fontWeight: 'bold',
     textAlign: 'center',
     color: theme.palette.error.main,
 
     [theme.breakpoints.down('xs')]: {
-      fontSize: '1.4rem',
+      fontSize: theme.spacing.unit + 4,
     },
   },
 });

@@ -39,7 +39,9 @@ class LeaveOfAbsenceRequestPage extends Component {
                       alignItems={
                         screenWidth <= tabletScreen ? 'stretch' : 'flex-start'
                       }
-                      alignContent="flex-start"
+                      alignContent={
+                        screenWidth <= tabletScreen ? 'stretch' : 'flex-start'
+                      }
                       className={classes.loaContainer}
                     >
                       <Grid item xs={12} className={classes.loaTitle}>

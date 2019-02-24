@@ -4,15 +4,15 @@ const styles = theme => ({
     flex: '0 0 90%',
     margin: '0 auto',
     flexDirection: 'column',
-    padding: '.8rem',
-    fontSize: '1.6rem',
+    padding: theme.spacing.unit - 2,
+    fontSize: 16,
 
     [theme.breakpoints.down('xs')]: {
-      flex: 1,
+      padding: 0,
     },
   },
   formControl: {
-    marginBottom: '4rem',
+    marginBottom: theme.spacing.unit * 4,
     width: '100%',
     '& > *': {
       fontSize: 'inherit',
@@ -24,22 +24,22 @@ const styles = theme => ({
   dateContainer: {
     display: 'flex',
     justifyContent: 'space-evenly',
-    fontSize: '1.8rem',
-    marginBottom: '2rem',
+    fontSize: 18,
+    marginBottom: theme.spacing.unit * 2,
 
     [theme.breakpoints.down('xs')]: {
+      display: 'block',
       justifyContent: 'space-between',
     },
   },
-  datePicker: {},
   loaSelectItem: {
-    fontSize: '1.6rem',
+    fontSize: 16,
   },
   popper: {
-    fontSize: '1.8rem',
+    fontSize: 18,
   },
   datePickerTitle: {
-    ...theme.typography.display1,
+    ...theme.typography.body1,
     fontWeight: '400',
     color: theme.palette.primary.main,
     paddingBottom: 4,
