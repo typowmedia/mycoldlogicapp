@@ -20,10 +20,19 @@ export default createMuiTheme({
       main: '#FFFFFF',
       dark: '#f4f4f4',
     },
+    black: '#000000',
     grey: {
       main: '#EEEEEE',
       light: '#a0a0a0',
-      dark: '777777',
+      dark: '#777777',
+      darker: '#1e1e1e',
+      feedback: '#95989A',
     },
+  },
+  spacing: {
+    unit: 10,
+  },
+  typography: {
+    useNextVariants: true,
   },
 });

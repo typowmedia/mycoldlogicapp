@@ -6,7 +6,10 @@ import DashboardPage from '../pages/DashboardPage';
 import LeaveOfAbsenceRequestPage from '../pages/LeaveOfAbsenceRequestPage';
 import SafeSitePage from '../pages/SafeSitePage';
 import BestSitePage from '../pages/BestSitePage';
+import FeedbackPage from '../pages/FeedbackPage';
+import FeedbackButtons from '../components/FeedbackButtons';
 import BonusRecognitionPage from '../pages/BonusRecognitionPage';
+import ErrorPage from '../pages/ErrorPage';
 import { UserContext } from '../context/UserProvider';
 import Header from '../components/Header';
 import NavigationBar from '../components/Navigation/NavigationBar';
@@ -15,9 +18,16 @@ import {
   REQUEST_TIME_OFF,
   BONUS_RECOGNITIONS,
   BEST_SITE_REPORT,
+  BEST_SITE_REPORT_2,
+  BEST_SITE_REPORT_3,
   SAFE_SITE_REPORT,
+  SAFE_SITE_REPORT_2,
+  SAFE_SITE_REPORT_3,
   HOME,
+  FEEDBACK,
   REQUEST_PASSWORD,
+  REQUEST_TIME_OFF_2,
+  ERROR,
 } from './routes';
 
 export default () => (
@@ -43,7 +53,6 @@ export default () => (
       return (
         <Fragment>
           <NavigationBar user={user} logout={logout} />
-
           <Switch>
             <Route exact path={DASHBOARD} component={DashboardPage} />
             <Route
@@ -53,13 +62,33 @@ export default () => (
             />
             <Route
               exact
+              path={REQUEST_TIME_OFF_2}
+              component={LeaveOfAbsenceRequestPage}
+            />
+            <Route
+              exact
               path={BONUS_RECOGNITIONS}
               component={() => <BonusRecognitionPage user={user} />}
             />
             <Route exact path={BEST_SITE_REPORT} component={BestSitePage} />
+            <Route
+              exact
+              path={BEST_SITE_REPORT_2}
+              component={props => <BestSitePage user={user} {...props} />}
+            />
+            <Route exact path={BEST_SITE_REPORT_3} component={BestSitePage} />
             <Route exact path={SAFE_SITE_REPORT} component={SafeSitePage} />
+            <Route
+              exact
+              path={SAFE_SITE_REPORT_2}
+              component={props => <SafeSitePage user={user} {...props} />}
+            />
+            <Route exact path={SAFE_SITE_REPORT_3} component={SafeSitePage} />
+            <Route exact path={FEEDBACK} component={FeedbackPage} />
+            <Route exact path={ERROR} component={ErrorPage} />
             <Redirect to={DASHBOARD} />
           </Switch>
+          <FeedbackButtons />
         </Fragment>
       );
     }}

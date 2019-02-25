@@ -1,23 +1,35 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core';
-import styles from './styles';
+import { Grid, withStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { navigation } from '../config';
 import NavCard from '../../NavCard';
+import styles from './styles';
 
 const DashboardNavigation = ({ classes }) => {
   return (
-    <div className={classes.navFlexContainer}>
+    <Grid
+      container
+      zeroMinWidth
+      spacing={0}
+      className={classes.dashboardNavigation}
+    >
       {navigation.map(nav => (
-        <div key={nav.name} className={classes.flexContainerItem}>
+        <Grid
+          item
+          xs={12}
+          sm={6}
+          key={nav.name}
+          className={classes.dashboardNavigationFlexItem}
+        >
           <NavCard nav={nav} />
-        </div>
+        </Grid>
       ))}
-    </div>
+    </Grid>
   );
 };
 
 DashboardNavigation.propTypes = {
   classes: PropTypes.object.isRequired,
 };
+
 export default withStyles(styles)(DashboardNavigation);

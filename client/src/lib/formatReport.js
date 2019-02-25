@@ -1,30 +1,36 @@
 import moment from 'moment';
 
-export const formatSafetyReport = report => {
+export const formatSafetyReport = (report, user) => {
   const formattedReport = {
     report: `
-  Date of Incident: ${moment(report.date).format('MMMMMM DD YYYY')} \r
-  Place of Incident: ${report.where} \r
+  Employee Name: ${
+    report.anon ? 'anonymous' : `${user.FirstName} ${user.LastName}`
+  } \n\r
+  Date of Incident: ${moment(report.date).format('MMMMMM DD YYYY')} \n\r
+  Time of Incident: ${moment(report.time).format('LT')} \n\r
+  Location of Incident: ${report.location} \n\r
+  Place of Incident: ${report.where} \n\r
   Details: ${report.message}
   `,
   };
   return formattedReport;
 };
 
-export const formatBestSiteReport = report => {
+export const formatBestSiteReport = (report, user) => {
   const reasons = report.reasons
     .map(reason => {
       if (reason === 'Other') {
         return `${reason}: ${report.other}`;
       }
-      return `${reason} \n`;
+      return `${reason} \n\r`;
     })
     .join('');
   const formattedReport = {
     report: `
-  Suggestion: ${report.suggestion} \r
-  This improves ColdLogic by: ${report.details} \r
-  Potential to improve the following: \r ${reasons}
+    Employee: ${user.FirstName} ${user.LastName} \n\r
+  Suggestion: ${report.suggestion} \n\r
+  This improves ColdLogic by: ${report.details} \n\r
+  Potential to improve the following: \n\r ${reasons}
   `,
   };
   return formattedReport;
@@ -45,14 +51,50 @@ export const formatQuestion = (report, user) => {
 };
 
 export const formatLeaveOfAbsence = (report, user) => {
+  let timeOffBeg = new Date(report.from).setHours(0, 0, 0, 0);
+  timeOffBeg = moment
+    .parseZone(timeOffBeg)
+    .local()
+    .format();
+  let timeOffEnd = new Date(report.to).setHours(0, 0, 0, 0);
+  timeOffEnd = moment
+    .parseZone(timeOffEnd)
+    .local()
+    .format();
+  const timeOffDays = moment(timeOffEnd).diff(moment(timeOffBeg), 'days') + 1;
+  const returnDate = moment
+    .parseZone(timeOffEnd)
+    .local()
+    .add(1, 'days')
+    .format();
   return {
     employeeId:
       user[
         'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'
       ],
+    distCenterId: 1, //hardcoded
+    position: '', //hardcoded
+    shiftId: 1, //hardcoded
+    departmentId: 1, //hardcoded
     leaveAbsReasonId: report.reason,
     reasonDetail: report.message,
-    timeOffBeg: new Date(report.from),
-    timeOffEnd: new Date(report.to),
+    timeOffBeg,
+    timeOffEnd,
+    timeOffDays,
+    returnDate,
+  };
+};
+
+export const formatFeedbackReport = report => {
+  console.log(report);
+  return {
+    report: `
+      A Coldlogic employee has provided feedback on the Coldlogic Portal. \r\n
+      They rated the app ${report.rating} out of 5. \r\n
+      feature(s) liked most: "${report.liked}" \r\n
+      feature(s) likes least "${report.disliked}" \r\n
+      additional comments: \r\n
+      ${report.message}
+    `,
   };
 };

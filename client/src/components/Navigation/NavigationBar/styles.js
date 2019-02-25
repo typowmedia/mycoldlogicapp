@@ -9,13 +9,13 @@ const styles = theme => ({
     justifyContent: 'space-between',
   },
   menuButton: {
-    marginLeft: '-1.2rem',
-    marginRight: '2rem',
+    marginLeft: -12,
+    marginRight: theme.spacing.unit * 2,
   },
   logo: {
     padding: 5,
     alignSelf: 'flex-end',
-    width: '20rem',
+    width: 200,
   },
 });
 

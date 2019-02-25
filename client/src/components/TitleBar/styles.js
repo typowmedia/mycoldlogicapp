@@ -1,26 +1,34 @@
 const styles = theme => ({
   titleBar: {
+    maxWidth: theme.breakpoints.values.lg,
+    margin: '0 auto',
     display: 'flex',
+    justifyContent: 'space-evenly',
+  },
+  iconContainer: {
+    display: 'flex',
+    justifyContent: 'center',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    [theme.breakpoints.up('sm')]: {
-      justifyContent: 'space-evenly'
-    }
   },
   icon: {
-    height: 60,
-    width: 60
-    // height: 120,
-    // width: 120
+    height: 80,
+    width: 80,
+  },
+  textContainer: {
+    display: 'flex',
+    alignItems: 'center',
   },
   title: {
-    ...theme.typography.headline,
-    color: theme.palette.primary.main,
+    ...theme.typography.display2,
     textDecoration: 'underline',
-    [theme.breakpoints.up('sm')]: {
-      ...theme.typography.display2
-    }
-  }
-})
+    [theme.breakpoints.down('sm')]: {
+      ...theme.typography.display2,
+    },
+    [theme.breakpoints.down('xs')]: {
+      ...theme.typography.display1,
+      textAlign: 'right',
+    },
+  },
+});
 
-export default styles
+export default styles;

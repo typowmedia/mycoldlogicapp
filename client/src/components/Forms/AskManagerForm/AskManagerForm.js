@@ -50,6 +50,30 @@ class AskManagerForm extends Component {
   render() {
     const { classes, departments } = this.props;
     const { loading, error, success } = this.state;
+    if (success) {
+      setTimeout(() => {
+        this.setState({ success: false });
+      }, 3000);
+      return (
+        <div className={classes.askManagerSuccess}>
+          <p className={classes.askManagerSuccessText}>
+            Message sent! Your manager will get back to you shortly.
+          </p>
+        </div>
+      );
+    }
+    if (error) {
+      setTimeout(() => {
+        this.setState({ error: false });
+      }, 3000);
+      return (
+        <div className={classes.askManagerError}>
+          <p className={classes.askManagerErrorText}>
+            Oops something went wrong! Please try again later.
+          </p>
+        </div>
+      );
+    }
     return (
       <div className={classes.form}>
         <Form
@@ -63,8 +87,14 @@ class AskManagerForm extends Component {
                 <Field name="manager">
                   {({ input, meta }) => (
                     <Fragment>
-                      <InputLabel htmlFor="manager">Manager</InputLabel>
+                      <InputLabel
+                        htmlFor="manager"
+                        error={pristine ? false : meta.error ? true : false}
+                      >
+                        Manager
+                      </InputLabel>
                       <Select
+                        error={pristine ? false : meta.error ? true : false}
                         id="manager"
                         value={input.value}
                         {...input}
@@ -95,6 +125,7 @@ class AskManagerForm extends Component {
                 <Field name="subject">
                   {({ input, meta }) => (
                     <TextField
+                      error={pristine ? false : meta.error ? true : false}
                       id="subject"
                       {...input}
                       onChange={e => {
@@ -113,6 +144,7 @@ class AskManagerForm extends Component {
                 <Field name="question">
                   {({ input, meta }) => (
                     <TextField
+                      error={pristine ? false : meta.error ? true : false}
                       id="question"
                       {...input}
                       onChange={e => {
@@ -133,8 +165,6 @@ class AskManagerForm extends Component {
                 <FormControls
                   loading={loading}
                   error={error}
-                  success={success}
-                  successClicked={() => this.setState({ success: false })}
                   errorClicked={() => this.setState({ error: false })}
                   invalid={invalid}
                   pristine={pristine}

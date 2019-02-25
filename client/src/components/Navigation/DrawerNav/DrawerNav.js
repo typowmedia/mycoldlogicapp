@@ -77,7 +77,7 @@ const DrawerNav = ({ show, clicked, classes, history, logout, user }) => {
           <ListItemText
             classes={{ primary: classes.primary }}
             inset
-            primary="Request Leave of Absence"
+            primary="Unpaid Time Off Request"
           />
         </MenuItem>
         <MenuItem
@@ -95,7 +95,7 @@ const DrawerNav = ({ show, clicked, classes, history, logout, user }) => {
           <ListItemText
             classes={{ primary: classes.primary }}
             inset
-            primary="Bonus Recognitions"
+            primary="Incentive Recognitions"
           />
         </MenuItem>
         <MenuItem

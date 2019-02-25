@@ -1,5 +1,7 @@
 import React, { Fragment } from 'react';
-import { Button, Chip, withStyles } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
+import Chip from '@material-ui/core/Chip';
+import Button from '@material-ui/core/Button';
 import Spinner from '../../UI/Spinner';
 import styles from './styles';
 import PropTypes from 'prop-types';
@@ -16,9 +18,7 @@ const FormControls = ({
 }) => (
   <div className={classes.buttons}>
     {loading ? (
-      <div>
-        <Spinner size={30} color="secondary" />
-      </div>
+      <Spinner size={30} color="secondary" />
     ) : (
       <Fragment>
         {success && (

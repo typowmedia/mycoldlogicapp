@@ -9,7 +9,7 @@ import {
 } from '@material-ui/core';
 import { Form, Field } from 'react-final-form';
 import styles from './styles';
-import Spinner from '../../components/UI/Spinner';
+import Spinner from '../../UI/Spinner';
 import PropTypes from 'prop-types';
 
 class RequestPasswordForm extends Component {

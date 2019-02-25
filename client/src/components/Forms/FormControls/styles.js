@@ -5,6 +5,7 @@ const styles = theme => ({
     justifyContent: 'center',
     alignItems: 'center',
     height: 40,
+    minWidth: 250,
   },
   formButton: {
     width: '100%',

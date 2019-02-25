@@ -13,6 +13,7 @@ import styles from './styles';
 import Spinner from '../../UI/Spinner';
 import { UserContext } from '../../../context/UserProvider';
 import PropTypes from 'prop-types';
+import { REQUEST_PASSWORD } from '../../../routes/routes';
 
 class AccountForm extends Component {
   constructor(props) {
@@ -50,111 +51,110 @@ class AccountForm extends Component {
     return (
       <UserContext.Consumer>
         {({ login }) => (
-          <div className={classes.form}>
-            <Form
-              onSubmit={values => this._onSubmit(values, login)}
-              validate={values => this._validate(values)}
-              render={({ handleSubmit, invalid, form, pristine }) => {
-                return (
-                  <form onSubmit={handleSubmit} className={classes.accountForm}>
-                    <FormControl fullWidth className={classes.formControl}>
-                      <Field name="userName">
-                        {({ input, meta }) => (
-                          <Fragment>
-                            <InputLabel
-                              htmlFor="pin"
-                              className={meta.error ? classes.error : ``}
-                            >
-                              {meta.error ? `${meta.error}` : 'Pin'}
-                            </InputLabel>
-                            <Input
-                              error={typeof meta.error === 'string'}
-                              label={meta.error}
-                              id="pin"
-                              type="text"
-                              inputProps={{
-                                autoComplete: 'off',
-                              }}
-                              {...input}
-                              onChange={event => {
-                                if (this.state.error) {
-                                  this.setState({ error: false });
-                                }
-                                input.onChange(event.target.value);
-                              }}
-                            />
-                          </Fragment>
-                        )}
-                      </Field>
-                    </FormControl>
-                    <FormControl fullWidth className={classes.formControl}>
-                      <Field name="password">
-                        {({ input, meta }) => (
-                          <Fragment>
-                            <InputLabel htmlFor="password">Password</InputLabel>
-                            <Input
-                              id="password"
-                              type="password"
-                              inputProps={{
-                                autoComplete: 'off',
-                              }}
-                              {...input}
-                              onChange={event => {
-                                if (this.state.error) {
-                                  this.setState({ error: false });
-                                }
-                                input.onChange(event.target.value);
-                              }}
-                            />
-                          </Fragment>
-                        )}
-                      </Field>
-                    </FormControl>
-                    <FormControl fullWidth className={classes.formControl}>
-                      <div className={classes.buttons}>
-                        <Typography>
-                          <button
-                            className={classes.formToggle}
-                            type="button"
-                            onClick={() => {
-                              form.reset();
-                              this.props.history.push('/request-password');
+          <Form
+            className={classes.formContainer}
+            onSubmit={values => this._onSubmit(values, login)}
+            validate={values => this._validate(values)}
+            render={({ handleSubmit, invalid, form, pristine }) => {
+              return (
+                <form onSubmit={handleSubmit} className={classes.form}>
+                  <FormControl fullWidth className={classes.formControl}>
+                    <Field name="userName">
+                      {({ input, meta }) => (
+                        <Fragment>
+                          <InputLabel
+                            htmlFor="pin"
+                            className={meta.error ? classes.error : ``}
+                          >
+                            {meta.error ? `${meta.error}` : 'Employee ID'}
+                          </InputLabel>
+                          <Input
+                            error={typeof meta.error === 'string'}
+                            label={meta.error}
+                            id="pin"
+                            type="text"
+                            inputProps={{
+                              autoComplete: 'off',
                             }}
-                          >
-                            Request a password
-                          </button>
-                        </Typography>
-                        {loading ? (
-                          <div>
-                            <Spinner size={30} color="secondary" />
-                          </div>
-                        ) : (
-                          <Button
-                            type="submit"
-                            className={classes.formButton}
-                            variant="contained"
-                            size="medium"
-                            color="secondary"
-                            disabled={pristine || invalid || loading}
-                          >
-                            Continue
-                          </Button>
-                        )}
-                      </div>
-                      <Fade in={this.state.error}>
-                        <div className={classes.errorContainer}>
-                          <p className={classes.error}>
-                            Pin/Password is incorrect. Please check that you
-                            have not entered it incorrectly
-                          </p>
+                            {...input}
+                            onChange={event => {
+                              if (this.state.error) {
+                                this.setState({ error: false });
+                              }
+                              input.onChange(event.target.value);
+                            }}
+                          />
+                        </Fragment>
+                      )}
+                    </Field>
+                  </FormControl>
+                  <FormControl fullWidth className={classes.formControl}>
+                    <Field name="password">
+                      {({ input, meta }) => (
+                        <Fragment>
+                          <InputLabel htmlFor="password">Password</InputLabel>
+                          <Input
+                            id="password"
+                            type="password"
+                            inputProps={{
+                              autoComplete: 'off',
+                            }}
+                            {...input}
+                            onChange={event => {
+                              if (this.state.error) {
+                                this.setState({ error: false });
+                              }
+                              input.onChange(event.target.value);
+                            }}
+                          />
+                        </Fragment>
+                      )}
+                    </Field>
+                  </FormControl>
+                  <FormControl fullWidth className={classes.formControl}>
+                    <div className={classes.buttons}>
+                      <Typography>
+                        <button
+                          className={classes.inlineButton}
+                          type="button"
+                          onClick={() => {
+                            form.reset();
+                            this.props.history.push(REQUEST_PASSWORD);
+                          }}
+                        >
+                          How to reset password
+                        </button>
+                      </Typography>
+                      {loading ? (
+                        <div>
+                          <Spinner size={30} color="secondary" />
                         </div>
-                      </Fade>
-                    </FormControl>
-                  </form>
-                );
-              }}
-            />
-          </div>
+                      ) : (
+                        <Button
+                          type="submit"
+                          className={classes.formButton}
+                          variant="contained"
+                          size="medium"
+                          color="secondary"
+                          disabled={pristine || invalid || loading}
+                        >
+                          Continue
+                        </Button>
+                      )}
+                    </div>
+                    <Fade in={this.state.error}>
+                      <div className={classes.errorContainer}>
+                        <p className={classes.error}>
+                          Pin/Password is incorrect. Please check that you have
+                          not entered it incorrectly
+                        </p>
+                      </div>
+                    </Fade>
+                  </FormControl>
+                </form>
+              );
+            }}
+          />
         )}
       </UserContext.Consumer>
     );

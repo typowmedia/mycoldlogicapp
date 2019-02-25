@@ -1,46 +1,47 @@
 import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 import { COLDLOGIC_TOKEN } from '../../config/tokens';
-import moment from 'moment';
 
 class LoadLeaveOfAbsence extends Component {
   state = {
     loading: true,
     error: false,
-    data: [],
+    reasons: [],
+    torLoaStat: [],
+    loaCount: null,
   };
 
-  componentDidMount() {
-    const Token = `Bearer ${localStorage.getItem(COLDLOGIC_TOKEN)}`;
+  componentDidMount = async () => {
+    const Token = await `Bearer ${localStorage.getItem(COLDLOGIC_TOKEN)}`;
     axios
-      .all([this._getLoa(Token), this._getTorLoaStatus(Token)])
+      .all([
+        this._getTorLoaStatus(Token),
+        this._getLoaReasons(Token),
+        this._getLoaCount(Token),
+      ])
       .then(
-        axios.spread((reasons, torloastat) => {
-          const data = this._formatLeaveOfAbsence(
-            reasons.data,
-            torloastat.data,
-          );
+        axios.spread((torloastat, reasons, loaCount) => {
           this.setState({
-            data,
+            reasons: reasons.data,
+            torLoaStat: torloastat.data,
+            loaCount: loaCount.data,
             loading: false,
           });
         }),
       )
-      .catch(err => this.setState({ loading: false, error: true }));
-  }
-  _formatLeaveOfAbsence = (reasons, stat) => {
-    const loa = reasons.reduce((acc, curr) => {
-      const status = stat.find(s => s.id === curr.torLoaStatusId);
-      acc.push({
-        id: curr.id,
-        reason: curr.reasonDetail,
-        status: status.name,
-        from: moment(curr.timeOffBeg).format('YYYY/MM/DD'),
-        to: moment(curr.timeOffEnd).format('YYYY/MM/DD'),
+      .catch(err => {
+        console.log(err);
+        this.setState({ loading: false, error: true });
       });
-      return acc;
-    }, []);
-    return loa;
+  };
+
+  _getLoaCount = token => {
+    return axios.get('/LeaveAbs/0/count', {
+      headers: {
+        accept: 'application/json',
+        Authorization: token,
+      },
+    });
   };
   _getTorLoaStatus = token => {
     return axios.get('/TorLoaStatus', {
@@ -50,8 +51,8 @@ class LoadLeaveOfAbsence extends Component {
       },
     });
   };
-  _getLoa = token => {
-    return axios.get('/LeaveAbs', {
+  _getLoaReasons = token => {
+    return axios.get('/LeaveAbsReasons', {
       headers: {
         accept: 'application/json',
         Authorization: token,
