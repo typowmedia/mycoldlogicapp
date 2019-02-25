@@ -18,7 +18,7 @@ class DashboardPage extends Component {
     return (
       <LoadContent url="/Departments">
         {({ loading, error, data }) => {
-          if (!loading) return <LoadingScreen />;
+          if (loading) return <LoadingScreen />;
           if (error) return <p>Error</p>;
           return (
             <ScreenSize>

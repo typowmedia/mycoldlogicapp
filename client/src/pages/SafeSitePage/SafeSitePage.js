@@ -14,6 +14,7 @@ import {
   SAFE_SITE_REPORT_2,
   SAFE_SITE_REPORT_3,
   SAFE_SITE_REPORT,
+  ERROR,
 } from '../../routes/routes';
 import PropTypes from 'prop-types';
 import LoadContent from '../../hoc/LoadContent';
@@ -69,17 +70,24 @@ class SafeSitePage extends Component {
 
   _submitReport = async report => {
     this.setState({ loading: true });
-    const token = await localStorage.getItem(COLDLOGIC_TOKEN);
-    const formattedReport = await formatSafetyReport(report, this.props.user);
-    const response = await submitReport(formattedReport, '/SafeSiteVms', token);
-    if (response.status === 201) {
-      this.setState({ loading: false });
-      this.props.history.push(SAFE_SITE_REPORT_3);
-    } else {
-      this.setState({ loading: false });
-      return false;
+    try {
+      const token = await localStorage.getItem(COLDLOGIC_TOKEN);
+      const formattedReport = await formatSafetyReport(report, this.props.user);
+      const response = await submitReport(
+        formattedReport,
+        '/SafeSiteVms',
+        token,
+      );
+      if (response.status === 201) {
+        this.props.history.push(SAFE_SITE_REPORT_3);
+      } else {
+        this.props.history.push(ERROR, { from: SAFE_SITE_REPORT });
+      }
+      return true;
+    } catch (error) {
+      this.props.history.push(ERROR, { from: SAFE_SITE_REPORT });
     }
-    return true;
+    this.setState({ loading: false });
   };
 
   render() {

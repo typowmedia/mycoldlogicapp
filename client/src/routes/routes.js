@@ -9,5 +9,6 @@ export const SAFE_SITE_REPORT = '/safe-site-report';
 export const SAFE_SITE_REPORT_2 = '/safe-site-report/my-report';
 export const SAFE_SITE_REPORT_3 = '/safe-site-report/success';
 export const FEEDBACK = '/feedback';
+export const ERROR = '/error';
 export const REQUEST_PASSWORD = '/request-password';
 export const HOME = '/';

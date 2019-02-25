@@ -25,7 +25,6 @@ class FeedbackPage extends Component {
     this.setState({ loading: true });
     const token = await localStorage.getItem(COLDLOGIC_TOKEN);
     const formattedReport = await formatFeedbackReport(report);
-    console.log(formattedReport);
     const response = await submitReport(
       formattedReport,
       '/FeedbackSiteVms',

@@ -9,6 +9,7 @@ import BestSitePage from '../pages/BestSitePage';
 import FeedbackPage from '../pages/FeedbackPage';
 import FeedbackButtons from '../components/FeedbackButtons';
 import BonusRecognitionPage from '../pages/BonusRecognitionPage';
+import ErrorPage from '../pages/ErrorPage';
 import { UserContext } from '../context/UserProvider';
 import Header from '../components/Header';
 import NavigationBar from '../components/Navigation/NavigationBar';
@@ -26,6 +27,7 @@ import {
   FEEDBACK,
   REQUEST_PASSWORD,
   REQUEST_TIME_OFF_2,
+  ERROR,
 } from './routes';
 
 export default () => (
@@ -83,6 +85,7 @@ export default () => (
             />
             <Route exact path={SAFE_SITE_REPORT_3} component={SafeSitePage} />
             <Route exact path={FEEDBACK} component={FeedbackPage} />
+            <Route exact path={ERROR} component={ErrorPage} />
             <Redirect to={DASHBOARD} />
           </Switch>
           <FeedbackButtons />
