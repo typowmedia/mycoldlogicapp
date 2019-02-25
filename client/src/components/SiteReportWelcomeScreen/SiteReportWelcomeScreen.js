@@ -1,6 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import { Fab } from '@material-ui/core';
 import styles from './styles';
 import PropTypes from 'prop-types';
 
@@ -16,14 +16,14 @@ const SiteReportWelcomeScreen = ({
       <p className={classes.SiteReportWelcomeScreenText}>{firstParagraph}</p>
       <p className={classes.SiteReportWelcomeScreenText}>{secondParagraph}</p>
     </div>
-    <Button
-      variant="extendedFab"
+    <Fab
+      variant="extended"
       className={classes.SiteReportWelcomeScreenButton}
       color="secondary"
       onClick={clicked}
     >
       {buttonText}
-    </Button>
+    </Fab>
   </div>
 );
 

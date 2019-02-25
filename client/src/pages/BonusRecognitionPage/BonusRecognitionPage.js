@@ -8,6 +8,8 @@ import ScreenSize from '../../hoc/ScreenSize';
 import LoadContent from '../../hoc/LoadContent';
 import LoadingScreen from '../../components/UI/LoadingScreen';
 import PropTypes from 'prop-types';
+import { BONUS_RECOGNITIONS } from '../../routes/routes';
+import ErrorHandler from '../../components/ErrorHandler/ErrorHandler';
 
 class BonusRecognitionPage extends Component {
   componentDidMount() {
@@ -19,7 +21,7 @@ class BonusRecognitionPage extends Component {
       <LoadContent url={'/EpIncentives'}>
         {({ loading, error, data }) => {
           if (loading) return <LoadingScreen />;
-          if (error) return <p>Something went wrong!</p>;
+          if (error) return <ErrorHandler from={BONUS_RECOGNITIONS} />;
           const bonuses = data.sort((a, b) => a.wkEndDate < b.wkEndDate);
           return (
             <ScreenSize>

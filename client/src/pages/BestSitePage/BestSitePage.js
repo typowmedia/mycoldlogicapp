@@ -14,6 +14,7 @@ import {
   BEST_SITE_REPORT_2,
   BEST_SITE_REPORT_3,
   BEST_SITE_REPORT,
+  ERROR,
 } from '../../routes/routes';
 import PropTypes from 'prop-types';
 
@@ -35,25 +36,38 @@ class BestSitePage extends Component {
 
   _submitReport = async report => {
     this.setState({ loading: true });
-    const token = await localStorage.getItem(COLDLOGIC_TOKEN);
-    const formattedResponse = await formatBestSiteReport(
-      report,
-      this.props.user,
-    );
-    const response = await submitReport(
-      formattedResponse,
-      '/BestSiteVms',
-      token,
-    );
-    if (response.status === 201) {
-      this.setState({ loading: false });
-      this.props.history.push(BEST_SITE_REPORT_3);
-    } else {
-      this.setState({ loading: false, error: true });
-      return false;
+    try {
+      const token = await localStorage.getItem(COLDLOGIC_TOKEN);
+      const formattedResponse = await formatBestSiteReport(
+        report,
+        this.props.user,
+      );
+      const response = await submitReport(
+        formattedResponse,
+        '/BestSiteVms',
+        token,
+      );
+      if (response.status === 201) {
+        this.props.history.push(BEST_SITE_REPORT_3);
+      } else {
+        this.setState({ loading: false, error: true });
+        this.props.history.push(ERROR, {
+          from: BEST_SITE_REPORT,
+          showButton: true,
+        });
+        return;
+      }
+    } catch (error) {
+      this.setState({ error: true });
+      this.props.history.push(ERROR, {
+        from: BEST_SITE_REPORT,
+        showButton: true,
+      });
+      return;
     }
-    return true;
+    this.setState({ loading: false });
   };
+
   _showSitePage = route => {
     switch (route) {
       case BEST_SITE_REPORT_2:

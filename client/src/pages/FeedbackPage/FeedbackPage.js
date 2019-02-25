@@ -6,7 +6,7 @@ import FeedbackForm from '../../components/Forms/FeedbackForm';
 import { submitReport } from '../../lib/submitReport';
 import { formatFeedbackReport } from '../../lib/formatReport';
 import { COLDLOGIC_TOKEN } from '../../config/tokens';
-import { DASHBOARD } from '../../routes/routes';
+import { DASHBOARD, ERROR, FEEDBACK } from '../../routes/routes';
 
 class FeedbackPage extends Component {
   constructor(props) {
@@ -23,22 +23,25 @@ class FeedbackPage extends Component {
 
   _submitReport = async report => {
     this.setState({ loading: true });
-    const token = await localStorage.getItem(COLDLOGIC_TOKEN);
-    const formattedReport = await formatFeedbackReport(report);
-    const response = await submitReport(
-      formattedReport,
-      '/FeedbackSiteVms',
-      token,
-    );
-    if (response.status === 201) {
-      this.setState({ loading: false });
-      this.props.history.push(DASHBOARD);
-    } else {
-      this.setState({ loading: false });
-      alert('ERROR');
-      return false;
+    try {
+      const token = await localStorage.getItem(COLDLOGIC_TOKEN);
+      const formattedReport = await formatFeedbackReport(report);
+      const response = await submitReport(
+        formattedReport,
+        '/FeedbackSiteVms',
+        token,
+      );
+      if (response.status === 201) {
+        this.props.history.push(DASHBOARD);
+      } else {
+        this.props.history.push(ERROR, { from: FEEDBACK, showButton: true });
+        return;
+      }
+    } catch (error) {
+      this.props.history.push(ERROR, { from: FEEDBACK, showButton: true });
+      return;
     }
-    return true;
+    this.setState({ loading: false });
   };
 
   render() {

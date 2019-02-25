@@ -8,6 +8,8 @@ import ColdLogic from '../../assets/ColdLogicLogo';
 import ScreenSize from '../../hoc/ScreenSize';
 import LoadContent from '../../hoc/LoadContent';
 import LoadingScreen from '../../components/UI/LoadingScreen';
+import ErrorHandler from '../../components/ErrorHandler/ErrorHandler';
+import { DASHBOARD } from '../../routes/routes';
 
 class DashboardPage extends Component {
   componentDidMount() {
@@ -19,7 +21,7 @@ class DashboardPage extends Component {
       <LoadContent url="/Departments">
         {({ loading, error, data }) => {
           if (loading) return <LoadingScreen />;
-          if (error) return <p>Error</p>;
+          if (error) return <ErrorHandler from={DASHBOARD} />;
           return (
             <ScreenSize>
               {({ screenWidth, tabletScreen }) => (

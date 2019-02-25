@@ -16,7 +16,7 @@ class NothingFoundScreen extends Component {
         className={classes.NothingContainer}
       >
         <Grid item xs={8} className={classes.nothingItem}>
-          <Typography variant="headline" align="center" gutterBottom>
+          <Typography variant="h5" align="center" gutterBottom>
             {messageTop}
           </Typography>
           <Typography variant="body1" align="center">

@@ -81,11 +81,18 @@ class SafeSitePage extends Component {
       if (response.status === 201) {
         this.props.history.push(SAFE_SITE_REPORT_3);
       } else {
-        this.props.history.push(ERROR, { from: SAFE_SITE_REPORT });
+        this.props.history.push(ERROR, {
+          from: SAFE_SITE_REPORT,
+          showButton: true,
+        });
+        return;
       }
-      return true;
     } catch (error) {
-      this.props.history.push(ERROR, { from: SAFE_SITE_REPORT });
+      this.props.history.push(ERROR, {
+        from: SAFE_SITE_REPORT,
+        showButton: true,
+      });
+      return;
     }
     this.setState({ loading: false });
   };

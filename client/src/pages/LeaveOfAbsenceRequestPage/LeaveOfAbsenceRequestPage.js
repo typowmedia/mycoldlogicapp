@@ -12,6 +12,7 @@ import LoadingScreen from '../../components/UI/LoadingScreen';
 import { REQUEST_TIME_OFF, REQUEST_TIME_OFF_2 } from '../../routes/routes';
 import ReportSuccess from '../../components/ReportSuccess';
 import Pagination from '../../components/Pagination';
+import ErrorHandler from '../../components/ErrorHandler/ErrorHandler';
 
 class LeaveOfAbsenceRequestPage extends Component {
   componentDidMount() {
@@ -24,7 +25,7 @@ class LeaveOfAbsenceRequestPage extends Component {
       <LoadLeaveOfAbsence>
         {({ reasons, torLoaStat, loaCount, error, loading }) => {
           if (loading) return <LoadingScreen />;
-          if (error) return <p>Error</p>;
+          if (error) return <ErrorHandler from={REQUEST_TIME_OFF} />;
           return (
             <UserContext.Consumer>
               {({ user }) => (
