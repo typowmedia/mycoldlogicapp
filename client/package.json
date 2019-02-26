@@ -1,6 +1,7 @@
 {
   "name": "client",
-  "version": "0.1.0",
+  "version": "0.9.0",
+  "homepage": "https://typowmedia.github.io/mycoldlogicapp",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.9.2",
@@ -14,12 +15,18 @@
     "react-dom": "^16.4.1",
     "react-final-form": "^3.6.5",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.4"
+    "react-scripts": "1.1.4",
+    "yarn": "1.13.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "devDependencies": {
+    "gh-pages": "2.0.1"
   }
 }
