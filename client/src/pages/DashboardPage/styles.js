@@ -15,7 +15,8 @@ const styles = theme => ({
 
     display: 'none',
     [theme.breakpoints.down('xs')]: {
-      display: 'flex',
+      display: 'block',
+      height: 100,
     },
   },
   logoContainer: {
