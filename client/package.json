@@ -15,7 +15,7 @@
     "react-final-form": "3.7.0",
     "react-ga": "2.6.0",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.4",
+    "react-scripts": "^3.2.0",
     "yarn": "1.13.0"
   },
   "scripts": {
@@ -27,6 +27,19 @@
     "deploy": "gh-pages -d build"
   },
   "devDependencies": {
-    "gh-pages": "2.0.1"
+    "gh-pages": "2.0.1",
+    "typescript": "^3.6.3"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
